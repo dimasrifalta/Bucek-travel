@@ -21,7 +21,7 @@ class Paket_tour extends CI_Controller
             $offset = 0; else:
             $offset = $page;
         endif;
-        $limit=2;
+        $limit=7;
         $config['base_url'] = base_url() . 'paket_tour/index/';
         $config['total_rows'] = $jum->num_rows();
         $config['per_page'] = $limit;

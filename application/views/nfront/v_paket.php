@@ -107,7 +107,7 @@
                              <li><strong>Categories:</strong> Single</li>
 
                          </ul>
-                         <<p><?php echo $isi;?>... </p>
+                         <p><?php echo $isi;?>... </p>
                              <p><a href="<?php echo base_url().'paket_tour/detail_paket/'.$idberita;?>"
                                      class="btn btn-primary py-3 px-5">Read More</a></p>
                      </div>
