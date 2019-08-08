@@ -73,6 +73,7 @@ class Paket_tour extends CI_Controller
     }
     public function pesan_paket()
     {
+        is_logged_in();
         $x['paket']=$this->mberita->paket_footer();
         $x['berita']=$this->mberita->berita_footer();
         $x['photo']=$this->mberita->get_photo();
@@ -85,6 +86,7 @@ class Paket_tour extends CI_Controller
     }
     public function order()
     {
+        is_logged_in();
         $x['paket']=$this->mberita->paket_footer();
         $x['berita']=$this->mberita->berita_footer();
         $x['photo']=$this->mberita->get_photo();
@@ -118,6 +120,7 @@ class Paket_tour extends CI_Controller
     }
     public function set_pembayaran()
     {
+        is_logged_in();
         $x['paket']=$this->mberita->paket_footer();
         $x['berita']=$this->mberita->berita_footer();
         $x['photo']=$this->mberita->get_photo();
@@ -137,6 +140,7 @@ class Paket_tour extends CI_Controller
 
     public function Booking()
     {
+        is_logged_in();
         $x['paket']=$this->mberita->paket_footer();
         $x['berita']=$this->mberita->berita_footer();
         $x['photo']=$this->mberita->get_photo();
