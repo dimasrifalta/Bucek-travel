@@ -1,6 +1,6 @@
  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
      <div class="container">
-         <a class="navbar-brand" href="index.html">Bucektravel</a>
+         <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
              aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
              <span class="oi oi-menu"></span> Menu
@@ -26,19 +26,21 @@
                  </button>
                  <div class="dropdown-menu">
                      <?php
+                        $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                        if ($this->session->userdata('email')) { ?>
 
-                     <a class="dropdown-item text-secondary" href="<?=base_url('booking');?>">Booking</a>
+                     <a class="dropdown-item text-secondary"
+                         href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                     <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                     <?php
-                      } else {?>
-                     <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                     <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                      <?php
-                    }?>
+                        } else { ?>
+                     <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                     <?php
+                        } ?>
                  </div>
              </div>
          </div>
@@ -83,26 +85,28 @@
 
              <div class="col-md-6">
 
-                 <form action="<?php echo base_url().'konfirmasi/upload_bukti'?>" method="post"
+                 <form action="<?php echo base_url() . 'konfirmasi/upload_bukti' ?>" method="post"
                      enctype="multipart/form-data">
                      <?php
-                        error_reporting(0); 
+                        error_reporting(0);
                         echo $this->session->flashdata('msg');
-                        ?> 
+                        ?>
                      <div class="mb-3">
                          <label>No Invoice</label>
-                         <input type="text" class="form-control" id="firstname" name="invoice" placeholder="No Invoice" required />
+                         <input type="text" class="form-control" id="firstname" name="invoice" placeholder="No Invoice"
+                             required />
                          <?php
-                         $id_user=$this->session->userdata('id');
+                            $id_user = $this->session->userdata('id');
 
-                         ?>
-                         <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $id_user ;?>" >
+                            ?>
+                         <input type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $id_user; ?>">
                      </div>
 
 
                      <div class="mb-3">
                          <label>Pengirim</label>
-                         <input type="text" class="form-control" id="firstname" name="nama" placeholder="Nama pengirime" required />
+                         <input type="text" class="form-control" id="firstname" name="nama" placeholder="Nama pengirime"
+                             required />
                      </div>
 
 
@@ -110,11 +114,11 @@
                          <label for="payment">Pilih Bank</label>
                          <select class="form-control input-md select2-single " name="bank" required>
                              <?php foreach ($bnk->result_array() as $i) {
-            $id=$i['id_metode'];
-            $mtd=$i['bank'];
-            ?>
-                             <option value="<?php echo $id;?>"><?php echo $mtd;?></option>
-                             <?php }?>
+                                    $id = $i['id_metode'];
+                                    $mtd = $i['bank'];
+                                    ?>
+                             <option value="<?php echo $id; ?>"><?php echo $mtd; ?></option>
+                             <?php } ?>
                          </select>
                      </div>
 

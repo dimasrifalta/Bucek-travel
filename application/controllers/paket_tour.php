@@ -1,4 +1,4 @@
-<?php if (! defined('BASEPATH')) {
+<?php if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
@@ -12,16 +12,17 @@ class Paket_tour extends CI_Controller
     }
     public function index()
     {
-        $x['paket']=$this->mberita->paket_footer();
-        $x['berita']=$this->mberita->berita_footer();
-        $x['photo']=$this->mberita->get_photo();
-        $jum=$this->mpaket->tampil_paket();
-        $page=$this->uri->segment(3);
-        if (!$page):
-            $offset = 0; else:
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $jum = $this->mpaket->tampil_paket();
+        $page = $this->uri->segment(3);
+        if (!$page) :
+            $offset = 0;
+        else :
             $offset = $page;
         endif;
-        $limit=7;
+        $limit = 7;
         $config['base_url'] = base_url() . 'paket_tour/index/';
         $config['total_rows'] = $jum->num_rows();
         $config['per_page'] = $limit;
@@ -51,9 +52,9 @@ class Paket_tour extends CI_Controller
         // End style pagination
         // End style pagination
         $this->pagination->initialize($config);
-        $x['page'] =$this->pagination->create_links();
-        $x['news']=$this->mpaket->get_paket($offset, $limit);
-        $x['brt']=$this->mpaket->tampil_paket();
+        $x['page'] = $this->pagination->create_links();
+        $x['news'] = $this->mpaket->get_paket($offset, $limit);
+        $x['brt'] = $this->mpaket->tampil_paket();
 
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_paket', $x);
@@ -61,12 +62,12 @@ class Paket_tour extends CI_Controller
     }
     public function detail_paket()
     {
-        $x['paket']=$this->mberita->paket_footer();
-        $x['berita']=$this->mberita->berita_footer();
-        $x['photo']=$this->mberita->get_photo();
-        $kode=$this->uri->segment(3);
-        $x['brt']=$this->mpaket->tampil_paket();
-        $x['news']=$this->mpaket->getpaket($kode);
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $kode = $this->uri->segment(3);
+        $x['brt'] = $this->mpaket->tampil_paket();
+        $x['news'] = $this->mpaket->getpaket($kode);
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_detail_paket', $x);
         $this->load->view('nfront/templates/_footer', $x);
@@ -74,12 +75,12 @@ class Paket_tour extends CI_Controller
     public function pesan_paket()
     {
         is_logged_in();
-        $x['paket']=$this->mberita->paket_footer();
-        $x['berita']=$this->mberita->berita_footer();
-        $x['photo']=$this->mberita->get_photo();
-        $kode=$this->uri->segment(3);
-        $x['pkt']=$this->mpaket->getpaket($kode);
-        $x['byr']=$this->mpaket->get_metode_pembayaran();
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $kode = $this->uri->segment(3);
+        $x['pkt'] = $this->mpaket->getpaket($kode);
+        $x['byr'] = $this->mpaket->get_metode_pembayaran();
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_order', $x);
         $this->load->view('nfront/templates/_footer', $x);
@@ -87,33 +88,33 @@ class Paket_tour extends CI_Controller
     public function order()
     {
         is_logged_in();
-        $x['paket']=$this->mberita->paket_footer();
-        $x['berita']=$this->mberita->berita_footer();
-        $x['photo']=$this->mberita->get_photo();
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
         error_reporting(0);
-        $no_order=$this->mpaket->get_no_order();
-        $nama=strip_tags(str_replace("'", "", $this->input->post('nama')));
-        $jekel=strip_tags(str_replace("'", "", $this->input->post('jenkel')));
-        $alamat=strip_tags(str_replace("'", "", $this->input->post('alamat')));
-        $notelp=strip_tags(str_replace("'", "", $this->input->post('notelp')));
-        $email=strip_tags(str_replace("'", "", $this->input->post('email')));
-        $paket=strip_tags(str_replace("'", "", $this->input->post('paket')));
+        $no_order = $this->mpaket->get_no_order();
+        $nama = strip_tags(str_replace("'", "", $this->input->post('nama')));
+        $jekel = strip_tags(str_replace("'", "", $this->input->post('jenkel')));
+        $alamat = strip_tags(str_replace("'", "", $this->input->post('alamat')));
+        $notelp = strip_tags(str_replace("'", "", $this->input->post('notelp')));
+        $email = strip_tags(str_replace("'", "", $this->input->post('email')));
+        $paket = strip_tags(str_replace("'", "", $this->input->post('paket')));
 
         $tgl1     = $this->input->post('berangkat');
         $berangkat = date('Y-m-d', strtotime($tgl1));
 
-        $tgl2=$this->input->post('kembali');
+        $tgl2 = $this->input->post('kembali');
         $kembali = date('Y-m-d', strtotime($tgl2));
 
 
-        
-        $dewasa=$this->input->post('adultamt');
-        $anak2=$this->input->post('childrenamt');
-        
-        $ket= htmlspecialchars($this->input->post('notebox', true));
+
+        $dewasa = $this->input->post('adultamt');
+        $anak2 = $this->input->post('childrenamt');
+
+        $ket = htmlspecialchars($this->input->post('notebox', true));
         $this->mpaket->simpan_order($no_order, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket);
         $this->session->set_userdata('invoices', $no_order);
-        $x['data']=$this->mpaket->get_metode();
+        $x['data'] = $this->mpaket->get_metode();
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_metode_bayar', $x);
         $this->load->view('nfront/templates/_footer', $x);
@@ -121,41 +122,48 @@ class Paket_tour extends CI_Controller
     public function set_pembayaran()
     {
         is_logged_in();
-        $x['paket']=$this->mberita->paket_footer();
-        $x['berita']=$this->mberita->berita_footer();
-        $x['photo']=$this->mberita->get_photo();
-        $id=$this->uri->segment(3);
-        $no_invoice=$this->session->userdata('invoices');
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $id = $this->uri->segment(3);
+        $no_invoice = $this->session->userdata('invoices');
         $this->mpaket->set_bayar($no_invoice, $id);
-        if ($id=='1') {
-            $x['data']=$this->mpaket->faktur();
-            $x['judul']="Invoice";
+        if ($id == '1') {
+            $x['data'] = $this->mpaket->faktur();
+            $x['judul'] = "Invoice";
             $this->load->view('front/v_invoices', $x);
         } else {
-            $x['data']=$this->mpaket->faktur();
-            $x['judul']="Invoice";
+            $x['data'] = $this->mpaket->faktur();
+            $x['judul'] = "Invoice";
             $this->load->view('front/v_invoices_bank', $x);
         }
     }
 
     public function Booking()
     {
+
         is_logged_in();
-        $x['paket']=$this->mberita->paket_footer();
-        $x['berita']=$this->mberita->berita_footer();
-        $x['photo']=$this->mberita->get_photo();
-        $id=$this->uri->segment(3);
-        $id_user=$this->session->userdata('id');
-        $x['data']=$this->mpaket->booking($id_user);
-        $x['judul']="Booking Tiket";
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $id = $this->uri->segment(3);
+        $id_user = $this->session->userdata('id');
 
-        // echo"$id_user";
-        // die();
-        
+        $x['data'] = $this->mpaket->booking($id_user)->row_array();
+        $x['judul'] = "Booking Tiket";
 
 
-        $this->load->view('nfront/templates/f_header', $x);
-        $this->load->view('nfront/v_booking', $x);
-        $this->load->view('nfront/templates/_footer', $x);
+
+        if ($x['data']['total'] > 1) {
+
+            $this->load->view('nfront/templates/f_header', $x);
+            $this->load->view('nfront/v_booking', $x);
+            $this->load->view('nfront/templates/_footer', $x);
+        } else {
+            echo "<script>
+            alert('Tidak ada Booking yang ada lakukan!! Silakan Booking');
+            window.location.href='../paket_tour';
+            </script>";
+        }
     }
 }

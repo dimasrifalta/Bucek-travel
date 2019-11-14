@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Bucektravel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
@@ -20,24 +19,24 @@
 
             </ul>
             <div class="btn-group ml-4 rights">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"><i class="fa fa-list-alt"></i>
+                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
                 </button>
                 <div class="dropdown-menu">
                     <?php
+                    $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                    if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('booking');?>">Booking</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                    <?php
-                      } else {?>
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
-                    }?>
+                    } else { ?>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -47,9 +46,7 @@
 
 
 
-<div class="block-37 block-37-sm item"
-    style="background-image: url('http://localhost/bucektravel/assets/vendors/images/img_4.jpg');"
-    data-stellar-background-ratio="0.5">
+<div class="block-37 block-37-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/img_4.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -61,8 +58,8 @@
 </div>
 
 <?php
-          $b=$pkt->row_array();
-          ?>
+$b = $pkt->row_array();
+?>
 
 <div class="site-section">
     <div class="container">
@@ -87,7 +84,7 @@
 
             <div class="col-md-6">
 
-                <form action="<?php echo base_url().'paket_tour/order'?>" method="post">
+                <form action="<?php echo base_url() . 'paket_tour/order' ?>" method="post">
 
 
                     <div class="mb-3">
@@ -98,8 +95,7 @@
 
                     <div class="mb-3">
                         <label for="payment">Jenis Kelamin</label>
-                        <select class="form-control input-md select2-single " id="payment" name="jenkel"
-                            placeholder="Pilih">
+                        <select class="form-control input-md select2-single " id="payment" name="jenkel" placeholder="Pilih">
                             <option>Laki-Laki</option>
                             <option>Perempuan</option>
                         </select>
@@ -108,20 +104,17 @@
 
                     <div class="mb-3">
                         <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" id="alamat"
-                            placeholder="Example : 1234 Main St" required>
+                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Example : 1234 Main St" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="notelp">No Handphone</label>
-                        <input type="text" class="form-control" name="notelp" id="notelp"
-                            placeholder="Example: 082345126678" value="">
+                        <input type="text" class="form-control" name="notelp" id="notelp" placeholder="Example: 082345126678" value="">
                     </div>
 
                     <div class="mb-3">
                         <label for="jml_bayar">Email</label>
-                        <input type="text" class="form-control" name="email" id="email"
-                            placeholder="Contoh: mahakaryapromosindo@gmail.com" required>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Contoh: mahakaryapromosindo@gmail.com" required>
                     </div>
                     <div class="mb-4 mt-4">
                         <h1 class="text-danger">*Wisata Info</h1>
@@ -129,9 +122,8 @@
 
                     <div class="mb-3">
                         <label for="notelp">Paket Pulau</label>
-                        <input type="hidden" name="paket" class="form-control" value="<?php echo $b['idpaket']?>">
-                        <input type="text" name="nama_paket" class="form-control" value="<?php echo $b['nama_paket']?>"
-                            readonly="readonly" required />
+                        <input type="hidden" name="paket" class="form-control" value="<?php echo $b['idpaket'] ?>">
+                        <input type="text" name="nama_paket" class="form-control" value="<?php echo $b['nama_paket'] ?>" readonly="readonly" required />
                     </div>
 
 
@@ -140,8 +132,7 @@
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span>
                             </div>
-                            <input type="text" id="checkin_date" class="form-control datepicker"
-                                data-date-format="yyyy-mm-dd" autocomplete="off" name="berangkat" required />
+                            <input type="text" id="checkin_date" class="form-control datepicker" data-date-format="yyyy-mm-dd" autocomplete="off" name="berangkat" required />
                         </div>
                     </div>
 
@@ -150,8 +141,7 @@
                         <div class="field-icon-wrap">
                             <div class="icon"><span class="icon-calendar"></span>
                             </div>
-                            <input type="text" id="checkout_date" class="form-control datepicker"
-                                data-date-format="yyyy-mm-dd" autocomplete="off" name="kembali" required />
+                            <input type="text" id="checkout_date" class="form-control datepicker" data-date-format="yyyy-mm-dd" autocomplete="off" name="kembali" required />
                         </div>
                     </div>
 
@@ -167,8 +157,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="th_sewa">Anak-Anak</label>
-                            <input type="number" class="form-control" id="childrenamt" name="childrenamt" value="0"
-                                class="spinner-min0" />
+                            <input type="number" class="form-control" id="childrenamt" name="childrenamt" value="0" class="spinner-min0" />
                         </div>
                     </div>
 

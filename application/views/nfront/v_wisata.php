@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Bucektravel</a>
+        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -25,19 +25,21 @@
                 </button>
                 <div class="dropdown-menu">
                     <?php
+                    $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                    if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('booking');?>">Booking</a>
+                    <a class="dropdown-item text-secondary"
+                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                    <?php
-                      } else {?>
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
-                    }?>
+                    } else { ?>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -59,26 +61,26 @@
     <div class="swiper-container images-carousel">
         <div class="swiper-wrapper">
             <?php
-      foreach ($news->result_array() as $b) {
-        $idberita=$b['idwisata'];
-        $judul=$b['nama_wisata'];
-        $isi=limit_words($b['deskripsi'],25);
-        $gbr=$b['gambar'];
-        ?>
+            foreach ($news->result_array() as $b) {
+                $idberita = $b['idwisata'];
+                $judul = $b['nama_wisata'];
+                $isi = limit_words($b['deskripsi'], 25);
+                $gbr = $b['gambar'];
+                ?>
             <div class="swiper-slide">
                 <div class="image-wrap">
                     <div class="image-info">
 
-                        <h2 class="mb-3"><?php echo $judul;?></h2>
-                        <a href="<?php echo base_url().'wisata_post/detail_wisata/'.$idberita;?>"
+                        <h2 class="mb-3"><?php echo $judul; ?></h2>
+                        <a href="<?php echo base_url() . 'wisata_post/detail_wisata/' . $idberita; ?>"
                             class="btn btn-outline-white py-2 px-4">More Info</a>
                     </div>
-                    <img src="http://localhost/bucektravel/assets/gambars/<?= $gbr ;?>" alt="Image">
+                    <img src="http://localhost/bucektravel/assets/gambars/<?= $gbr; ?>" alt="Image">
                 </div>
             </div>
             <?php
-      }
-      ?>
+            }
+            ?>
 
         </div>
 
@@ -96,10 +98,11 @@
 
 
 </div>
-<?php 
-function limit_words($string, $word_limit){
-  $words = explode(" ",$string);
-  return implode(" ",array_splice($words,0,$word_limit));
+<?php
+function limit_words($string, $word_limit)
+{
+    $words = explode(" ", $string);
+    return implode(" ", array_splice($words, 0, $word_limit));
 }
 
 ?>

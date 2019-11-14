@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Bucektravel</a>
+        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -11,7 +11,7 @@
                 <li class="nav-item "><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
                 <li class="nav-item "><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a></li>
                 <li class="nav-item"><a href="<?= base_url('wisata_post'); ?>" class="nav-link">Tempat Wisata</a></li>
-                <li class="nav-item active"><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a>
+                <li class="nav-item"><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a>
                 </li>
                 <li class="nav-item "><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a></li>
 
@@ -25,19 +25,21 @@
                 </button>
                 <div class="dropdown-menu">
                     <?php
+                    $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                    if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('booking');?>">Booking</a>
+                    <a class="dropdown-item text-secondary"
+                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                    <?php
-                      } else {?>
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
-                    }?>
+                    } else { ?>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -81,19 +83,19 @@
                     </thead>
                     <tbody>
                         <?php
-            foreach ($data->result_array() as $i) :
-              $idmetode=$i['id_metode'];
-              $metode=$i['metode'];
-              $bank=$i['bank'];
-              $norek=$i['norek'];
-              $atasnama=$i['atasnama'];
-              ?>
+                        foreach ($data->result_array() as $i) :
+                            $idmetode = $i['id_metode'];
+                            $metode = $i['metode'];
+                            $bank = $i['bank'];
+                            $norek = $i['norek'];
+                            $atasnama = $i['atasnama'];
+                            ?>
                         <tr>
-                            <td><?php echo $metode;?></td>
-                            <td><?php echo $bank;?></td>
-                            <td><?php echo $norek;?></td>
-                            <td><?php echo $atasnama;?></td>
-                            <td><a href="<?php echo base_url().'paket_tour/set_pembayaran/'.$idmetode;?>"
+                            <td><?php echo $metode; ?></td>
+                            <td><?php echo $bank; ?></td>
+                            <td><?php echo $norek; ?></td>
+                            <td><?php echo $atasnama; ?></td>
+                            <td><a href="<?php echo base_url() . 'paket_tour/set_pembayaran/' . $idmetode; ?>"
                                     target="_blank" class="badge badge-success">Pilih</a></td>
                         </tr>
                         <?php endforeach ?>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Bucektravel</a>
+        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -25,19 +25,21 @@
                 </button>
                 <div class="dropdown-menu">
                     <?php
+                    $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                    if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('booking');?>">Booking</a>
+                    <a class="dropdown-item text-secondary"
+                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                    <?php
-                      } else {?>
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
-                    }?>
+                    } else { ?>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -59,14 +61,14 @@
     </div>
 </div>
 <?php
-    $n=$news->row_array();
+$n = $news->row_array();
 ?>
 
 <div class="container">
 
     <div class="row site-section">
         <div class="col-lg-7 mb-5">
-            <img src="<?php echo base_url().'assets/gambars/'.$n['gambar'];?>" alt="Image placeholder"
+            <img src="<?php echo base_url() . 'assets/gambars/' . $n['gambar']; ?>" alt="Image placeholder"
                 class="img-fluid img-shadow">
         </div>
         <div class="col-lg-5 pl-md-5">
@@ -75,7 +77,7 @@
                 <div class="icon"><span class="ion-ios- "></span></div>
                 <div class="media-body">
                     <h3 class="heading text-danger">Nama Paket Tours</h3>
-                    <p class="bg-success text-white "><?php echo $n['nama_paket'];?>.</p>
+                    <p class="bg-success text-white "><?php echo $n['nama_paket']; ?>.</p>
                 </div>
             </div>
 
@@ -83,8 +85,8 @@
                 <div class="icon"><span class="ion-ios-checkmark"></span></div>
                 <div class="media-body">
                     <h3 class="heading">Deskripsi &amp; Fasilitas</h3>
-                    <p><?php echo $n['deskripsi'];?>.</p>
-                    <p><a href="<?php echo base_url().'paket_tour/pesan_paket/'.$n['idpaket'];?>"
+                    <p><?php echo $n['deskripsi']; ?>.</p>
+                    <p><a href="<?php echo base_url() . 'paket_tour/pesan_paket/' . $n['idpaket']; ?>"
                             class="btn btn-primary py-3 px-5">Pesan Sekarang</a></p>
                 </div>
             </div>

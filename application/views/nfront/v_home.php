@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Bucektravel</a>
+        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -9,11 +9,11 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item active"><a href="<?=base_url('');?>" class="nav-link">Home</a></li>
-                <li class="nav-item "><a href="<?=base_url('paket_tour');?>" class="nav-link">Paket Tours</a></li>
-                <li class="nav-item"><a href="<?=base_url('wisata_post');?>" class="nav-link">Tempat Wisata</a></li>
-                <li class="nav-item "><a href="<?=base_url('Konfirmasi');?>" class="nav-link">Konfirmasi</a></li>
-                <li class="nav-item"><a href="<?=base_url('semua_album');?>" class="nav-link">Album dan Foto</a></li>
+                <li class="nav-item active"><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
+                <li class="nav-item "><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a></li>
+                <li class="nav-item"><a href="<?= base_url('wisata_post'); ?>" class="nav-link">Tempat Wisata</a></li>
+                <li class="nav-item "><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a></li>
+                <li class="nav-item"><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a></li>
 
             </ul>
             <div class="btn-group ml-4 rights">
@@ -22,21 +22,21 @@
                 </button>
                 <div class="dropdown-menu">
                     <?php
-                    $id=$this->session->userdata('email');
+                    $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                    if ($this->session->userdata('email')) { ?>
 
                     <a class="dropdown-item text-secondary"
-                        href="<?=base_url('paket_tour/booking');?>">Booking(<?= $id;?>)</a>
+                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                    <?php
-                      } else {?>
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
-                    }?>
+                    } else { ?>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <div class="col-md-10">
                         <span class="subheading-sm">Welcome</span>
                         <h2 class="heading">Enjoy a Luxury Experience</h2>
-                        <p><a href="<?=base_url('paket_tour');?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                        <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     <div class="col-md-10">
                         <span class="subheading-sm">Welcome</span>
                         <h2 class="heading">Fun &amp; Beautiful</h2>
-                        <p><a href="<?=base_url('paket_tour');?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                        <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                         <div class="col-md-10">
                             <span class="subheading-sm">Welcome</span>
                             <h2 class="heading">Travel &amp; New world</h2>
-                            <p><a href="<?=base_url('paket_tour');?>" class="btn py-4 px-5 btn-primary">Learn More</a>
+                            <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a>
                             </p>
                         </div>
                     </div>

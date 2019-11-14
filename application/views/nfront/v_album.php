@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Bucektravel</a>
+        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -25,19 +25,21 @@
                 </button>
                 <div class="dropdown-menu">
                     <?php
+                    $id = $this->session->userdata('email');
 
-                      if ($this->session->userdata('email')) {?>
+                    if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('booking');?>">Booking</a>
+                    <a class="dropdown-item text-secondary"
+                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth/logout');?>">Logout</a>
-
-                    <?php
-                      } else {?>
-                    <a class="dropdown-item text-secondary" href="<?=base_url('auth');?>">Login</a>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
-                    }?>
+                    } else { ?>
+                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -60,25 +62,25 @@
         <div class="row">
 
             <?php
-                foreach ($alm->result_array() as $b) {
-                    $idalbum=$b['idalbum'];
-                    $judul=$b['jdl_album'];
-                    $cover=$b['cover'];
-                    $jumlah=$b['jml'];
-            ?>
+            foreach ($alm->result_array() as $b) {
+                $idalbum = $b['idalbum'];
+                $judul = $b['jdl_album'];
+                $cover = $b['cover'];
+                $jumlah = $b['jml'];
+                ?>
             <div class="col-12 col-md-6 col-lg-3 no-padding">
                 <div class="portfolio-content">
                     <figure>
-                        <img src="<?php echo base_url().'assets/gambars/'.$cover;?>" alt="">
+                        <img src="<?php echo base_url() . 'assets/gambars/' . $cover; ?>" alt="">
                     </figure>
 
                     <div class="entry-content flex flex-column align-items-center justify-content-center">
-                        <h3><a href="<?php echo base_url().'detail_photo/index/'.$idalbum;?>"><?php echo $judul;?>
-                                (<?php echo $jumlah;?>)</a></h3>
+                        <h3><a href="<?php echo base_url() . 'detail_photo/index/' . $idalbum; ?>"><?php echo $judul; ?>
+                                (<?php echo $jumlah; ?>)</a></h3>
 
                         <ul class="flex flex-wrap justify-content-center">
 
-                            <li><a href="<?php echo base_url().'detail_photo/index/'.$idalbum;?>"><?php echo $jumlah;?>
+                            <li><a href="<?php echo base_url() . 'detail_photo/index/' . $idalbum; ?>"><?php echo $jumlah; ?>
                                     Foto</a></li>
                         </ul>
                     </div><!-- .entry-content -->
@@ -86,7 +88,7 @@
             </div><!-- .col -->
 
             <?php
-                }
+            }
             ?>
 
         </div><!-- .row -->
@@ -98,7 +100,7 @@
         </div><!-- .scroll-down -->
         <div class="row mt-5">
             <div class="col-md-12 pt-5">
-                <?=$page ;?>
+                <?= $page; ?>
 
 
             </div>
