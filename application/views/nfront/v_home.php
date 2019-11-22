@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
@@ -17,8 +16,7 @@
 
             </ul>
             <div class="btn-group ml-4 rights">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"><i class="fa fa-list-alt"></i>
+                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
                 </button>
                 <div class="dropdown-menu">
                     <?php
@@ -26,14 +24,13 @@
 
                     if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary"
-                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
                     } else { ?>
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
 
                     <?php
                     } ?>
@@ -47,8 +44,7 @@
 
 <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
-        <div class="block-30 item" style="background-image: url('././././assets/vendors/images/bg_2.jpg');"
-            data-stellar-background-ratio="0.5">
+        <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img4.jpg');" data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-10">
@@ -59,8 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="block-30 item" style="background-image: url('././././assets/vendors/images/bg_1.jpg');"
-            data-stellar-background-ratio="0.5">
+        <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img2.jpg');" data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-10">
@@ -70,9 +65,18 @@
                     </div>
                 </div>
             </div>
-
-            <div class="block-30 item" style="background-image: url('././././assets/vendors/images/bg_3.jpg');"
-                data-stellar-background-ratio="0.5">
+            <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img4.jpg');" data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-10">
+                            <span class="subheading-sm">Welcome</span>
+                            <h2 class="heading">Food &amp; Drinks</h2>
+                            <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img4.jpg');" data-stellar-background-ratio="0.5">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-10">

@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/photon/css/aos.css">
 
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/photon/css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/SweetAlert/sweetalert.css">
 
 
 

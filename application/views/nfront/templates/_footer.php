@@ -76,8 +76,7 @@
                                 Francisco, California, USA</span></li>
                         <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929
                                     210</span></a></li>
-                        <li><a href="#"><span class="icon icon-envelope"></span><span
-                                    class="text">info@yourdomain.com</span></a></li>
+                        <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
                         <li><span class="icon icon-clock-o"></span><span class="text">Monday &mdash; Friday 8:00am -
                                 5:00pm</span></li>
                     </ul>
@@ -91,10 +90,8 @@
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
-                    document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="icon-heart"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
-                        class="text-primary">Colorlib</a>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>
@@ -105,11 +102,10 @@
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-            stroke="#F96D00" /></svg></div>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
 
-<script src="<?= base_url('assets/vendors/'); ?>/js/jquery.min.js"></script>
+<script src="<?= base_url('assets/vendors/'); ?>/photon/js/jquery-3.3.1.min.js"></script>
 <script src="<?= base_url('assets/vendors/'); ?>/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="<?= base_url('assets/vendors/'); ?>/js/popper.min.js"></script>
 <script src="<?= base_url('assets/vendors/'); ?>/js/bootstrap.min.js"></script>
@@ -154,10 +150,11 @@
 
 
 
+
 <script type="text/javascript">
-$(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-});
+    $(document).ready(function() {
+        $(".dropdown-toggle").dropdown();
+    });
 </script>
 
 
@@ -165,26 +162,26 @@ $(document).ready(function() {
 
 
 <script>
-$(document).ready(function() {
-    $('#lightgallery').lightGallery();
-    $('#video-gallery').lightGallery();
-});
+    $(document).ready(function() {
+        $('#lightgallery').lightGallery();
+        $('#video-gallery').lightGallery();
+    });
 </script>
 
 <script>
-$('#video-player-param').lightGallery({
-    youtubePlayerParams: {
-        modestbranding: 1,
-        showinfo: 0,
-        rel: 0,
-        controls: 0 
-    },
-    vimeoPlayerParams: {
-        byline: 0,
-        portrait: 0,
-        color: 'A90707'
-    }
-});
+    $('#video-player-param').lightGallery({
+        youtubePlayerParams: {
+            modestbranding: 1,
+            showinfo: 0,
+            rel: 0,
+            controls: 0
+        },
+        vimeoPlayerParams: {
+            byline: 0,
+            portrait: 0,
+            color: 'A90707'
+        }
+    });
 </script>
 </body>
 

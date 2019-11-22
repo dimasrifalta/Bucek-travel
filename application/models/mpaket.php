@@ -77,9 +77,9 @@ class Mpaket extends CI_Model
         }
         return "INV" . date('dmy') . $kd;
     }
-    public function simpan_order($no_order, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket)
+    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket)
     {
-        $hasil = $this->db->query("INSERT INTO orders(id_order,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal)VALUES('$no_order','$nama','$jekel','$alamat','$notelp','$email','$berangkat','$kembali','$dewasa','$anak2','$paket','$ket',CURDATE())");
+        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email','$berangkat','$kembali','$dewasa','$anak2','$paket','$ket',CURDATE())");
         return $hasil;
     }
     public function get_metode()
@@ -99,17 +99,37 @@ class Mpaket extends CI_Model
         return $hasil;
     }
 
-    public function booking($id_user)
+    public function booking($id)
     {
 
-        $inv = $this->session->userdata('invoices');
-        $hasil = $this->db->query("SELECT id_user, id_order,tanggal,nama_paket,hrg_dewasa,hrg_anak,adult,kids,SUM(adult + kids)AS jml_berangkat,(hrg_dewasa*adult) AS sub_dewasa,(hrg_anak*kids)AS sub_anak,SUM((hrg_dewasa*adult)+(hrg_anak*kids))AS total,berangkat,kembali,metode,bank,norek,atasnama,nama,IF(jenkel='L','Laki-Laki','Perempuan')AS jenkel,alamat,notelp,email FROM orders JOIN metode_bayar ON orders.metode_id=metode_bayar.id_metode JOIN paket ON orders.paket_id_order=paket.idpaket JOIN pembayaran ON orders.id_order=pembayaran.order_id WHERE pembayaran.id_user='$id_user' ");
+        $id_user = $this->session->userdata('id');
+        $hasil = $this->db->query("SELECT pembayaran.id_user,orders.pembatalan, id_order,tanggal,nama_paket,hrg_dewasa,hrg_anak,adult,kids,SUM(adult + kids)AS jml_berangkat,(hrg_dewasa*adult) AS sub_dewasa,(hrg_anak*kids)AS sub_anak,SUM((hrg_dewasa*adult)+(hrg_anak*kids))AS total,berangkat,kembali,metode,bank,norek,atasnama,nama,IF(jenkel='L','Laki-Laki','Perempuan')AS jenkel,alamat,notelp,email FROM orders JOIN metode_bayar ON orders.metode_id=metode_bayar.id_metode JOIN paket ON orders.paket_id_order=paket.idpaket JOIN pembayaran ON orders.id_order=pembayaran.order_id WHERE pembayaran.id_user='$id_user' AND pembayaran.order_id='$id' AND orders.status='LUNAS' ");
         return $hasil;
     }
 
-    public function booking_pembatalan($id_user)
+    public function list_booking($id_user)
     {
-        $hasil = $this->db->query("SELECT id_user, id_order,tanggal,nama_paket,hrg_dewasa,hrg_anak,adult,kids,SUM(adult + kids)AS jml_berangkat,(hrg_dewasa*adult) AS sub_dewasa,(hrg_anak*kids)AS sub_anak,SUM((hrg_dewasa*adult)+(hrg_anak*kids))AS total,berangkat,kembali,metode,bank,norek,atasnama,nama,IF(jenkel='L','Laki-Laki','Perempuan')AS jenkel,alamat,notelp,email FROM orders JOIN metode_bayar ON orders.metode_id=metode_bayar.id_metode JOIN paket ON orders.paket_id_order=paket.idpaket JOIN pembayaran ON orders.id_order=pembayaran.order_id WHERE pembayaran.id_user='$id_user' ");
+
+
+        $hasil = $this->db->query("SELECT a.id_order,a.pembatalan, a.tanggal, d.nama_paket,a.berangkat,a.kembali,s.metode,s.bank,s.norek,s.atasnama,a.alamat,a.notelp,a.email,c.name,d.gambar FROM orders a INNER JOIN metode_bayar s ON a.metode_id = s.id_metode INNER JOIN paket d ON a.paket_id_order = d.idpaket INNER JOIN user c ON a.id_user = c.id WHERE a.id_user='$id_user' AND a.status='LUNAS' ");
+        return $hasil;
+    }
+
+    public function booking_pembatalan($id_user, $kode)
+    {
+        $hasil = $this->db->query("SELECT a.id_order, a.tanggal, d.nama_paket,a.berangkat,a.kembali,s.metode,s.bank,s.norek,s.atasnama,a.alamat,a.notelp,a.email,c.name,d.gambar FROM orders a INNER JOIN metode_bayar s ON a.metode_id = s.id_metode INNER JOIN paket d ON a.paket_id_order = d.idpaket INNER JOIN user c ON a.id_user = c.id WHERE a.id_user='$id_user' AND a.status='LUNAS' AND a.id_order ='$kode' ");
+        return $hasil;
+    }
+
+    public function simpan_pembatalan($order_id, $id_user, $no_rek, $nama_rekening, $alasan_pembatalan)
+    {
+        $hasil = $this->db->query("INSERT INTO pembatalan(order_id,id_user,no_rek,nama_rekening,alasan_pembatalan) VALUES ('$order_id', '$id_user', '$no_rek', '$nama_rekening', '$alasan_pembatalan')");
+        return $hasil;
+    }
+
+    function get_pembatalan()
+    {
+        $hasil = $this->db->query("SELECT a.id_order,a.notelp,a.email,a.pembatalan, c.no_rek,c.nama_rekening,b.nama_paket,a.berangkat,a.kembali,c.alasan_pembatalan FROM orders a INNER JOIN paket b ON a.paket_id_order = b.idpaket INNER JOIN pembatalan c ON a.id_order = c.order_id WHERE a.pembatalan='CANCEL' ");
         return $hasil;
     }
 }

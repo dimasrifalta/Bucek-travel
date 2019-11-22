@@ -341,7 +341,73 @@ $jum_konfirmasi = $query4->num_rows();
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="Section2">
                                     <h3>Data Pembatalan tiket</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque. </p>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <table id="example2" class="table table-striped" style="font-size:12px;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align:center;width: 120px;vertical-align:middle;">No
+                                                        Invoice</th>
+                                                    <th style="text-align:center;width: 120px;vertical-align:middle;">Nama Paket</th>
+                                                    <th style="text-align:center;width: 120px;vertical-align:middle;">Tanggal Berangkat</th>
+                                                    <th style="text-align:center;width: 160px;vertical-align:middle;">NO Telp</th>
+                                                    <th style="text-align:center;width: 140px;vertical-align:middle;">NO Rekening</th>
+
+                                                    <th style="text-align:center;width: 140px;vertical-align:middle;">Atas Nama</th>
+
+                                                    <th style="text-align:center;width: 200px;vertical-align:middle;">
+                                                        Pengirim</th>
+
+                                                    <th style="text-align:center;width: 200px;vertical-align:middle;">
+                                                        Alasan Pembatalan</th>
+                                                    <th style="text-align:center;width:100px;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 0;
+                                                foreach ($pembatalan->result_array() as $a) :
+                                                    $no++;
+                                                    $id = $a['id_order'];
+                                                    $nama_paket = $a['nama_paket'];
+                                                    $berangkat = $a['berangkat'];
+                                                    $notelp = $a['notelp'];
+                                                    $no_rek = $a['no_rek'];
+                                                    $nama_rekening = $a['nama_rekening'];
+                                                    $pengirim = $this->session->userdata('email');
+                                                    $alasan_pembatalan = $a['alasan_pembatalan'];
+
+
+                                                    ?>
+                                                    <tr>
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $id; ?></td>
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $nama_paket; ?></td>
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $berangkat; ?></td>
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $nama_rekening; ?></td>
+
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $no_rek; ?></td>
+
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $nama_rekening; ?></td>
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $pengirim; ?></td>
+                                                        <td style="text-align: center;vertical-align:middle;">
+                                                            <?php echo $alasan_pembatalan; ?></td>
+                                                        <td style="text-align: center;vertical-align: middle;">
+                                                            <a class="btn" href="<?php echo base_url() . 'backend/konfirmasi/set_pembatalan/' . $a['id_order']; ?>" title="Konfirmasi Pembatalan"><span class="fa fa-check"></span> </a>
+                                                            <a class="btn" href="#ModalHapus<?php echo $id; ?>" data-toggle="modal" title="Hapus"><span class="fa fa-trash"></span> </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
                                 </div>
 
                             </div>
@@ -500,12 +566,35 @@ $jum_konfirmasi = $query4->num_rows();
         });
     </script>
 
-
-    <?php if ($this->session->flashdata('msg') == 'success-hapus') : ?>
+    <?php if ($this->session->flashdata('msg') == 'info') : ?>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Info',
+                text: "Order berhasil di update",
+                showHideTransition: 'slide',
+                icon: 'info',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#00C9E6'
+            });
+        </script>
+    <?php elseif ($this->session->flashdata('msg') == 'success') : ?>
         <script type="text/javascript">
             $.toast({
                 heading: 'Success',
-                text: "Konfirmasi Berhasil dihapus.",
+                text: "Pembatalan tiket selesai",
+                showHideTransition: 'slide',
+                icon: 'success',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#7EC857'
+            });
+        </script>
+    <?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Success',
+                text: "Order Berhasil dihapus.",
                 showHideTransition: 'slide',
                 icon: 'success',
                 hideAfter: false,

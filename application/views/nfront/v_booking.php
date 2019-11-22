@@ -54,6 +54,9 @@
     </div>
 </div>
 <!-- END nav -->
+
+
+
 <style type="text/css">
     html,
     body,
@@ -564,7 +567,23 @@ $b = $data;
             <br>
             <br>
             <div>
-                <p><a href="<?php echo base_url() . 'pembatalan/index'; ?>" class="btn btn-primary py-1 px-2">Pembatalan</a></p>
+                <p>
+                    <?php
+
+                    if ($b['pembatalan'] == "CANCEL" or $b['pembatalan'] == "BATAL") { ?>
+
+                        <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2 disabled">Sudah Di Batalkan</a>
+
+                    <?php
+                    } else { ?>
+
+
+                        <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2">Pembatalan</a>
+
+                    <?php
+                    } ?>
+
+                </p>
             </div>
         </div>
         <div class="end">Invoice was created on a computer and is valid without the signature and seal.</div>
@@ -574,3 +593,45 @@ $b = $data;
 <br>
 <br>
 <br>
+
+<script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
+</div>
+<?php if ($this->session->flashdata('msg') == 'success') : ?>
+    <script type="text/javascript">
+        $.toast({
+            heading: 'Success',
+            text: "Data Berhasil Di simpan kamai akan menghubungi anda secepatnya.",
+            showHideTransition: 'slide',
+            icon: 'success',
+            hideAfter: false,
+            position: 'bottom-right',
+            bgColor: '#7EC857'
+        });
+    </script>
+<?php elseif ($this->session->flashdata('msg') == 'info') : ?>
+    <script type="text/javascript">
+        $.toast({
+            heading: 'Info',
+            text: "Post berhasil di update",
+            showHideTransition: 'slide',
+            icon: 'info',
+            hideAfter: false,
+            position: 'bottom-right',
+            bgColor: '#00C9E6'
+        });
+    </script>
+<?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
+    <script type="text/javascript">
+        $.toast({
+            heading: 'Success',
+            text: "Post Berhasil dihapus.",
+            showHideTransition: 'slide',
+            icon: 'success',
+            hideAfter: false,
+            position: 'bottom-right',
+            bgColor: '#7EC857'
+        });
+    </script>
+<?php else : ?>
+
+<?php endif; ?>

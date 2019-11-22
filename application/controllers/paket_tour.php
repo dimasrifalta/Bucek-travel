@@ -112,7 +112,8 @@ class Paket_tour extends CI_Controller
         $anak2 = $this->input->post('childrenamt');
 
         $ket = htmlspecialchars($this->input->post('notebox', true));
-        $this->mpaket->simpan_order($no_order, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket);
+        $id_user = $this->session->userdata('id');
+        $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket);
         $this->session->set_userdata('invoices', $no_order);
         $x['data'] = $this->mpaket->get_metode();
         $this->load->view('nfront/templates/f_header', $x);
@@ -149,12 +150,39 @@ class Paket_tour extends CI_Controller
         $id = $this->uri->segment(3);
         $id_user = $this->session->userdata('id');
 
-        $x['data'] = $this->mpaket->booking($id_user)->row_array();
+        $x['data'] = $this->mpaket->list_booking($id_user)->result_array();
+        $x['judul'] = "Booking Tiket";
+
+
+        if ($x['data'] > 1) {
+
+            $this->load->view('nfront/templates/f_header', $x);
+            $this->load->view('nfront/v_list_booking', $x);
+            $this->load->view('nfront/templates/_footer', $x);
+        } else {
+            echo "<script>
+            alert('Tidak ada Booking yang ada lakukan!! Silakan Booking');
+            window.location.href='../paket_tour';
+            </script>";
+        }
+    }
+
+    public function Detail_booking()
+    {
+
+        is_logged_in();
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $id = $this->uri->segment(3);
+        $id_user = $this->session->userdata('id');
+
+        $x['data'] = $this->mpaket->booking($id)->row_array();
         $x['judul'] = "Booking Tiket";
 
 
 
-        if ($x['data']['total'] > 1) {
+        if ($x['data'] > 1) {
 
             $this->load->view('nfront/templates/f_header', $x);
             $this->load->view('nfront/v_booking', $x);
