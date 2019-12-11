@@ -43,17 +43,17 @@
       </div>
   </nav>
 
-  <div class="block-37 block-37-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/bg_0.jpg');" data-stellar-background-ratio="0.5">
+  <div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="container">
           <div class="row align-items-center">
               <div class="col-md-10">
-                  <span class="subheading-sm">Pakets Travel</span>
-                  <h1 class="heading text-center">Pembatalan</h1>
+                  <span class="subheading-sm">Travel</span>
+                  <h2 class="heading">Paket &amp; Tours</h2>
               </div>
           </div>
       </div>
   </div>
-  <!-- END nav -->
+
 
 
 

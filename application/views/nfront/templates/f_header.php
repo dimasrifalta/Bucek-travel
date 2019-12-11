@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/css/icomoon.css">
     <link rel="stylesheet" href="http://localhost/bucektravel/assets/vendors/css/styles.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/po-portfolio/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/po-portfolio/css/bootstrap.min.css"> -->
 
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/po-portfolio/css/font-awesome.min.css">
