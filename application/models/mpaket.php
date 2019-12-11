@@ -77,9 +77,9 @@ class Mpaket extends CI_Model
         }
         return "INV" . date('dmy') . $kd;
     }
-    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket)
+    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket, $no_ktp)
     {
-        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email','$berangkat','$kembali','$dewasa','$anak2','$paket','$ket',CURDATE())");
+        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email','$berangkat','$kembali','$dewasa','$anak2','$paket','$ket',CURDATE(), '$no_ktp')");
         return $hasil;
     }
     public function get_metode()
@@ -130,6 +130,13 @@ class Mpaket extends CI_Model
     function get_pembatalan()
     {
         $hasil = $this->db->query("SELECT a.id_order,a.notelp,a.email,a.pembatalan, c.no_rek,c.nama_rekening,b.nama_paket,a.berangkat,a.kembali,c.alasan_pembatalan FROM orders a INNER JOIN paket b ON a.paket_id_order = b.idpaket INNER JOIN pembatalan c ON a.id_order = c.order_id WHERE a.pembatalan='CANCEL' ");
+        return $hasil;
+    }
+
+
+    function paket_populer()
+    {
+        $hasil = $this->db->query("SELECT * FROM paket ORDER BY views DESC limit 5");
         return $hasil;
     }
 }

@@ -22,7 +22,7 @@ class Paket_tour extends CI_Controller
         else :
             $offset = $page;
         endif;
-        $limit = 7;
+        $limit = 4;
         $config['base_url'] = base_url() . 'paket_tour/index/';
         $config['total_rows'] = $jum->num_rows();
         $config['per_page'] = $limit;
@@ -99,6 +99,7 @@ class Paket_tour extends CI_Controller
         $notelp = strip_tags(str_replace("'", "", $this->input->post('notelp')));
         $email = strip_tags(str_replace("'", "", $this->input->post('email')));
         $paket = strip_tags(str_replace("'", "", $this->input->post('paket')));
+        $no_ktp = strip_tags(str_replace("'", "", $this->input->post('no_ktp')));
 
         $tgl1     = $this->input->post('berangkat');
         $berangkat = date('Y-m-d', strtotime($tgl1));
@@ -108,17 +109,26 @@ class Paket_tour extends CI_Controller
 
 
 
-        $dewasa = $this->input->post('adultamt');
-        $anak2 = $this->input->post('childrenamt');
+        $date = date('Y-m-d', strtotime("-1 day"));
 
-        $ket = htmlspecialchars($this->input->post('notebox', true));
-        $id_user = $this->session->userdata('id');
-        $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket);
-        $this->session->set_userdata('invoices', $no_order);
-        $x['data'] = $this->mpaket->get_metode();
-        $this->load->view('nfront/templates/f_header', $x);
-        $this->load->view('nfront/v_metode_bayar', $x);
-        $this->load->view('nfront/templates/_footer', $x);
+        if ($date > $tgl1) {
+            $dewasa = $this->input->post('adultamt');
+            $anak2 = $this->input->post('childrenamt');
+
+            $ket = htmlspecialchars($this->input->post('notebox', true));
+            $id_user = $this->session->userdata('id');
+            $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket, $no_ktp);
+            $this->session->set_userdata('invoices', $no_order);
+            $x['data'] = $this->mpaket->get_metode();
+            $this->load->view('nfront/templates/f_header', $x);
+            $this->load->view('nfront/v_metode_bayar', $x);
+            $this->load->view('nfront/templates/_footer', $x);
+        } else {
+            echo "<script>
+            alert('Maaf. Paket tidak tersedia. Harap Masukan Tanggal Keberangkatan Yang benar');
+            window.location=document.referrer;
+            </script>";
+        }
     }
     public function set_pembayaran()
     {

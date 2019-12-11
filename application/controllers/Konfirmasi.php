@@ -9,7 +9,6 @@ class Konfirmasi extends CI_Controller
         $this->load->model('morders');
         $this->load->library('upload');
         $this->load->model('mberita');
-
     }
     public function index()
     {
@@ -56,6 +55,7 @@ class Konfirmasi extends CI_Controller
                         redirect('konfirmasi');
                     }
                     echo $this->session->set_flashdata('msg', 'Terima Kasih Telah Melakukan Konfirmasi Pembayaran!');
+
                     redirect('konfirmasi');
                 }
             }

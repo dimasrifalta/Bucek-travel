@@ -5,7 +5,6 @@ class Lokasi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mberita');
-
     }
     public function index()
     {
@@ -25,7 +24,8 @@ class Lokasi extends CI_Controller
         $marker['position'] = $long . ',' . $lat;
         $this->googlemaps->add_marker($marker);
         $x['map'] = $this->googlemaps->create_map();
-        $this->load->view('front/v_lokasi', $x);
-
+        $this->load->view('nfront/templates/f_header', $x);
+        $this->load->view('nfront/v_kontak', $x);
+        $this->load->view('nfront/templates/_footer', $x);
     }
 }

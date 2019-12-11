@@ -14,7 +14,7 @@ class Morders extends CI_Model
     }
     function get_pembayaran()
     {
-        $hasil = $this->db->query("SELECT id_bayar,tgl_bayar,metode,bank,order_id,SUM((hrg_dewasa*adult)+(hrg_anak*kids))AS total,jumlah,status,bukti_transfer,pengirim FROM pembayaran JOIN orders ON order_id=id_order JOIN metode_bayar ON metode_id_bayar=id_metode JOIN paket ON idpaket=paket_id_order  GROUP BY order_id");
+        $hasil = $this->db->query("SELECT idpaket,id_bayar,tgl_bayar,metode,bank,order_id,SUM((hrg_dewasa*adult)+(hrg_anak*kids))AS total,jumlah,status,bukti_transfer,pengirim FROM pembayaran JOIN orders ON order_id=id_order JOIN metode_bayar ON metode_id_bayar=id_metode JOIN paket ON idpaket=paket_id_order  GROUP BY order_id");
         return $hasil;
     }
     function get_orders()

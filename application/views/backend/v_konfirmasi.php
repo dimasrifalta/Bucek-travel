@@ -438,6 +438,8 @@ $jum_konfirmasi = $query4->num_rows();
     foreach ($data->result_array() as $a) :
         $no++;
         $id = $a['id_bayar'];
+        $idpaket = $a['idpaket'];
+
         $tgl_bayar = $a['tgl_bayar'];
         $metode = $a['metode'];
         $bank = $a['bank'];
@@ -458,6 +460,7 @@ $jum_konfirmasi = $query4->num_rows();
                     <form class="form-horizontal" method="post" action="<?php echo base_url() . 'backend/konfirmasi/pembayaran_selesai' ?>">
                         <div class="modal-body">
                             <input name="kode" type="hidden" value="<?php echo $invoice; ?>">
+                            <input name="idpaket" type="hidden" value="<?php echo $idpaket; ?>">
                             <img height="500" src="<?php echo base_url() . 'assets/bukti_transfer/' . $bukti; ?>">
 
                         </div>

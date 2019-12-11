@@ -27,13 +27,13 @@
 
                     if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
                     } else { ?>
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
 
                     <?php
                     } ?>
@@ -92,6 +92,11 @@ $b = $pkt->row_array();
                         <input type="text" class="form-control" id="firstname" name="nama" value="" required />
                     </div>
 
+                    <div class="mb-3">
+                        <label>NO KTP/SIM</label>
+                        <input type="text" class="form-control" maxlength="16" id="no_ktp" name="no_ktp" value="" required />
+                    </div>
+
 
                     <div class="mb-3">
                         <label for="payment">Jenis Kelamin</label>
@@ -109,12 +114,12 @@ $b = $pkt->row_array();
 
                     <div class="mb-3">
                         <label for="notelp">No Handphone</label>
-                        <input type="text" class="form-control" name="notelp" id="notelp" placeholder="Example: 082345126678" value="">
+                        <input type="number" class="form-control" name="notelp" id="notelp" placeholder="Example: 082345126678" value="">
                     </div>
 
                     <div class="mb-3">
                         <label for="jml_bayar">Email</label>
-                        <input type="text" class="form-control" name="email" id="email" placeholder="Contoh: mahakaryapromosindo@gmail.com" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Contoh: mahakaryapromosindo@gmail.com" required>
                     </div>
                     <div class="mb-4 mt-4">
                         <h1 class="text-danger">*Wisata Info</h1>

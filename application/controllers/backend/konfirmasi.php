@@ -20,7 +20,9 @@ class Konfirmasi extends CI_Controller
     function pembayaran_selesai()
     {
         $id = $this->input->post('kode');
+        $idpaket = $this->input->post('idpaket');
         $this->morders->bayar_selesai($id);
+        $this->db->query("UPDATE paket SET views=views+1 WHERE idpaket='$idpaket'");
         echo $this->session->set_flashdata('msg', 'success');
         redirect('backend/orders');
     }
