@@ -9,15 +9,16 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item"><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
-        <li class="nav-item dropdown">
+        <li class="nav-item active dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            Profil
+            <i class="fa fa-chevron-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Cara Pesan</a>
+
+            <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
           </div>
         </li>
         <li class="nav-item "><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a></li>
@@ -54,6 +55,22 @@
 
   </div>
 </nav>
+
+<div class="block-37" style="position: relative;">
+  <div class="owl-carousel loop-block-31 ">
+    <div class="block-30 item" style="background-image: url('././././assets/vendors/images/kontak.jpg');">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-10">
+            <span class="subheading-sm">Welcome</span>
+            <h2 class="heading">Kontak Kami</h2>
+            <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- END nav -->
 <div class="site-section">
   <div class="container">

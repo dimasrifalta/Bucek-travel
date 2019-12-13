@@ -16,6 +16,18 @@
          <div class="collapse navbar-collapse" id="ftco-nav">
              <ul class="navbar-nav ml-auto">
                  <li class="nav-item "><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Profil
+                         <i class="fa fa-chevron-down"></i>
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
+                         <a class="dropdown-item" href="#">Cara Pesan</a>
+
+                         <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
+                     </div>
+                 </li>
                  <li class="nav-item active"><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a>
                  </li>
                  <li class="nav-item"><a href="<?= base_url('wisata_post'); ?>" class="nav-link">Tempat Wisata</a></li>
@@ -36,13 +48,13 @@
 
                         if ($this->session->userdata('email')) { ?>
 
-                     <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+                         <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                     <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+                         <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                      <?php
                         } else { ?>
-                     <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+                         <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
 
                      <?php
                         } ?>
@@ -84,29 +96,29 @@
                     $gbr = $b['gambar'];
                     $hrg_anak = $b['hrg_anak'];
                     ?>
-             <div class="col-md-12 mb-5">
-                 <div class="block-3 d-md-flex">
-                     <div class="image" style="background-image: url('http://localhost/bucektravel/assets/gambars/<?= $gbr; ?>')">
-                     </div>
-                     <div class="text">
+                 <div class="col-md-12 mb-5">
+                     <div class="block-3 d-md-flex">
+                         <div class="image" style="background-image: url('http://localhost/bucektravel/assets/gambars/<?= $gbr; ?>')">
+                         </div>
+                         <div class="text">
 
 
 
-                         <h2 class="heading"><?= $judul; ?></h2>
-                         <ul class="specs mb-5">
-                             <li><strong>Dewasa: 1 <div class="price"><sup>$</sup><span class="number"><?= $hargadewasa; ?></span><sub>/per tours</sub></div>
-                                 </strong></li>
+                             <h2 class="heading"><?= $judul; ?></h2>
+                             <ul class="specs mb-5">
+                                 <li><strong>Dewasa: 1 <div class="price"><sup>$</sup><span class="number"><?= $hargadewasa; ?></span><sub>/per tours</sub></div>
+                                     </strong></li>
 
-                             <li><strong>Anak-anak: 1 <div class="price"><sup>$</sup><span class="number"><?= $hrg_anak; ?></span><sub>/per tours</sub></div>
-                                 </strong></li>
-                             <li><strong>Categories:</strong> Single</li>
+                                 <li><strong>Anak-anak: 1 <div class="price"><sup>$</sup><span class="number"><?= $hrg_anak; ?></span><sub>/per tours</sub></div>
+                                     </strong></li>
+                                 <li><strong>Categories:</strong> Single</li>
 
-                         </ul>
-                         <p><?php echo $isi; ?>... </p>
-                         <p><a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>" class="btn btn-primary py-3 px-5">Read More</a></p>
+                             </ul>
+                             <p><?php echo $isi; ?>... </p>
+                             <p><a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>" class="btn btn-primary py-3 px-5">Read More</a></p>
+                         </div>
                      </div>
                  </div>
-             </div>
 
              <?php
                 }

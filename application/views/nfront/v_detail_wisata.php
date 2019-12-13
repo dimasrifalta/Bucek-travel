@@ -8,6 +8,18 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item "><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profil
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
+                        <a class="dropdown-item" href="#">Cara Pesan</a>
+
+                        <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
+                    </div>
+                </li>
                 <li class="nav-item "><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a></li>
                 <li class="nav-item active"><a href="<?= base_url('wisata_post'); ?>" class="nav-link">Tempat Wisata</a>
                 </li>
@@ -27,13 +39,13 @@
 
                     if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
                     } else { ?>
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
 
                     <?php
                     } ?>
@@ -100,21 +112,21 @@ $n = $news->row_array();
                         $tgl_post = $j['tgl_post'];
                         $pesan = $j['pesan'];
                         ?>
-                    <ul class="comment-list">
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="<?= base_url(); ?>assets\images\user_blank.png" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3><?php echo $name; ?></h3>
-                                <div class="meta"><?php echo $tgl_post; ?></div>
-                                <p> "<?php echo $pesan; ?>"</p>
-                                <p></p>
-                            </div>
-                        </li>
+                        <ul class="comment-list">
+                            <li class="comment">
+                                <div class="vcard bio">
+                                    <img src="<?= base_url(); ?>assets\images\user_blank.png" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                    <h3><?php echo $name; ?></h3>
+                                    <div class="meta"><?php echo $tgl_post; ?></div>
+                                    <p> "<?php echo $pesan; ?>"</p>
+                                    <p></p>
+                                </div>
+                            </li>
 
 
-                    </ul>
+                        </ul>
 
                     <?php endforeach; ?>
 
@@ -130,7 +142,7 @@ $n = $news->row_array();
                             </div>
                             <div class="form-group">
                                 <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" name="email" class="form-control" id="email" required>
                             </div>
 
 
@@ -166,7 +178,7 @@ $n = $news->row_array();
                             $isi = $b['deskripsi'];
                             $gbr = $b['gambar'];
                             ?>
-                        <li><a href="<?php echo base_url() . 'wisata_post/detail_wisata/' . $idberita; ?>"><img width="50" height="50" src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" alt="" /> <span class="text-primary"><?php echo $judul; ?></span></a></li>
+                            <li><a href="<?php echo base_url() . 'wisata_post/detail_wisata/' . $idberita; ?>"><img width="50" height="50" src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" alt="" /> <span class="text-primary"><?php echo $judul; ?></span></a></li>
                         <?php
                         }
                         ?>

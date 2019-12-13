@@ -154,9 +154,14 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(".dropdown-toggle").dropdown();
+
     });
 </script>
-
+<style>
+    .dropdown-toggle::after {
+        display: none;
+    }
+</style>
 
 
 

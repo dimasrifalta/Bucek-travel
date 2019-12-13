@@ -63,3 +63,14 @@
 </head>
 
 <body>
+
+    <style type="text/css">
+        .bs-example {
+            margin: auto;
+            width: 25%;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>

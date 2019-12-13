@@ -21,8 +21,16 @@ class Konfirmasi extends CI_Controller
     {
         $id = $this->input->post('kode');
         $idpaket = $this->input->post('idpaket');
+        $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $res = "";
+        for ($i = 0; $i < 6; $i++) {
+            $res .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+
         $this->morders->bayar_selesai($id);
         $this->db->query("UPDATE paket SET views=views+1 WHERE idpaket='$idpaket'");
+        $this->db->query("UPDATE orders SET kode_booking='$res' WHERE id_order='$id'");
+
         echo $this->session->set_flashdata('msg', 'success');
         redirect('backend/orders');
     }
@@ -38,7 +46,9 @@ class Konfirmasi extends CI_Controller
     function set_pembatalan()
     {
         $id = $this->uri->segment(4);
+
         $this->morders->set_pembatalan($id);
+
         echo $this->session->set_flashdata('msg', 'success');
         redirect('backend/Konfirmasi');
     }

@@ -9,15 +9,16 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item"><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
-                <li class="nav-item dropdown">
+                <li class="nav-item active dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Profil
+                        <i class="fa fa-chevron-down"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Cara Pesan</a>
+
+                        <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                     </div>
                 </li>
                 <li class="nav-item "><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a></li>
@@ -56,12 +57,12 @@
 </nav>
 
 <!-- END nav -->
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/img5.jpg');" data-stellar-background-ratio="0.5">
+<div class="block-37 block-37-sm item" style="background-image: url('././././assets/vendors/images/cta-bg2.png');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
-                <span class="subheading-sm">Travel</span>
-                <h2 class="heading">Paket &amp; Tours</h2>
+                <span class="subheading-sm">Pakets Travel</span>
+                <h1 class="heading text-center">Testimoni</h1>
             </div>
         </div>
     </div>
@@ -71,24 +72,23 @@
     <div class="container">
         <div class="row block-9">
             <div class="col-md-6 pr-md-5">
-                <form action="<?php echo base_url() . 'kontak/kirim_pesan' ?>" method="post">
+                <?php echo $this->session->flashdata('message'); ?>
+                <form action="<?php echo base_url() . 'testimoni/simpan' ?>" method="post">
                     <div class="form-group">
-                        <input type="text" name="xnama" class="form-control px-3 py-3" placeholder="Your Name" required />
+                        <input type="text" name="nama" id="name" class="form-control px-3 py-3" placeholder="Your Name" required />
                     </div>
                     <div class="form-group">
-                        <input type="email" name="xemail" class="form-control px-3 py-3" placeholder="Your Email" required />
+                        <input type="email" name="email" class="form-control px-3 py-3" placeholder="Your Email" required />
                     </div>
+
                     <div class="form-group">
-                        <input type="text" name="xkontak" class="form-control px-3 py-3" placeholder="No Hp">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="xpesan" id="" cols="30" rows="7" class="form-control px-3 py-3" placeholder="Message"></textarea>
+                        <textarea name="message" id="comment" cols="30" rows="7" class="form-control px-3 py-3" placeholder="Message"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
                     </div>
                 </form>
-                <?php echo $this->session->flashdata('msg'); ?>
+
             </div>
 
 
@@ -100,69 +100,51 @@
 
 
 
-<div class="site-section bg-light">
+<div class="site-section block-13 bg-light ">
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-7 section-heading">
-                <span class="subheading-sm">Reviews</span>
-                <h2 class="heading">Customer Reviews</h2>
+                <span class="subheading-sm">Reviews</span></span>
+                <h2 class="heading">Pelanggan &amp;Reviews</h2>
+
+
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-6 col-lg-4">
-
-                <div class="block-33">
-                    <div class="vcard d-flex mb-3">
-                        <div class="image align-self-center"><img src="images/person_3.jpg" alt="Person here"></div>
-                        <div class="name-text align-self-center">
-                            <h2 class="heading">Martin Newmansfield</h2>
-                            <span class="meta">Satisfied Customer</span>
+            <div class="col-md-12 col-sm-4">
+                <div class="nonloop-block-13 owl-carousel">
+                    <?php foreach ($testimoni_order->result_array() as $a) :
+                        $id = $a['idtestimoni'];
+                        $nama = $a['nama'];
+                        $email = $a['email'];
+                        $pesan = $a['pesan'];
+                        $status = $a['status'];
+                        $tglpost = $a['tgl_post'];
+                        ?>
+                        <div class="item">
+                            <div class="block-33">
+                                <div class="vcard d-flex mb-3">
+                                    <div class="image align-self-center"><img src="<?= base_url(); ?>assets\images\user_blank.png" alt="Person here"></div>
+                                    <div class="name-text align-self-center">
+                                        <h2 class="heading"><?= $nama; ?></h2>
+                                        <span class="meta"><?= $email; ?></span>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <blockquote>
+                                        <p>&rdquo; <?= $pesan; ?>. &ldquo;</p>
+                                    </blockquote>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text">
-                        <blockquote>
-                            <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-                        </blockquote>
-                    </div>
+                    <?php endforeach; ?>
+
+
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-4">
 
-                <div class="block-33">
-                    <div class="vcard d-flex mb-3">
-                        <div class="image align-self-center"><img src="images/person_2.jpg" alt="Person here"></div>
-                        <div class="name-text align-self-center">
-                            <h2 class="heading">Nancy Green</h2>
-                            <span class="meta">Satisfied Customer</span>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <blockquote>
-                            <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-                        </blockquote>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-6 col-lg-4">
-
-                <div class="block-33">
-                    <div class="vcard d-flex mb-3">
-                        <div class="image align-self-center"><img src="images/person_1.jpg" alt="Person here"></div>
-                        <div class="name-text align-self-center">
-                            <h2 class="heading">Elizabeth Charles</h2>
-                            <span class="meta">Satisfied Customer</span>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <blockquote>
-                            <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-                        </blockquote>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        </div> <!-- .col-md-12 -->
     </div>
 </div>

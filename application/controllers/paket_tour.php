@@ -9,6 +9,7 @@ class Paket_tour extends CI_Controller
         parent::__construct();
         $this->load->model('mpaket');
         $this->load->model('mberita');
+        $this->load->model('morders');
     }
     public function index()
     {
@@ -119,6 +120,7 @@ class Paket_tour extends CI_Controller
             $id_user = $this->session->userdata('id');
             $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket, $no_ktp);
             $this->session->set_userdata('invoices', $no_order);
+            $x['photo'] = $this->mberita->get_photo();
             $x['data'] = $this->mpaket->get_metode();
             $this->load->view('nfront/templates/f_header', $x);
             $this->load->view('nfront/v_metode_bayar', $x);
@@ -130,6 +132,41 @@ class Paket_tour extends CI_Controller
             </script>";
         }
     }
+
+    /*kirim email*/
+    private function _sendEmail()
+    {
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'bucekcoffe@gmail.com',
+            'smtp_pass' => 'Liger1998',
+            'smtp_port' =>  465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+        $x['data'] = $this->mpaket->faktur();
+
+        $this->email->initialize($config);
+        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->to($this->session->userdata('email'));
+        $message = $this->load->view('nfront/email_invoice', $x, TRUE);
+
+
+        $this->email->subject('Cancel Tour Verification');
+        $this->email->message('$message');
+
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+
     public function set_pembayaran()
     {
         is_logged_in();
@@ -139,6 +176,9 @@ class Paket_tour extends CI_Controller
         $id = $this->uri->segment(3);
         $no_invoice = $this->session->userdata('invoices');
         $this->mpaket->set_bayar($no_invoice, $id);
+
+        $this->_sendEmail();
+
         if ($id == '1') {
             $x['data'] = $this->mpaket->faktur();
             $x['judul'] = "Invoice";

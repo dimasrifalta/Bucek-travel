@@ -30,7 +30,8 @@
                  <li class="nav-item active"><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Profil
+                         Profil &nbsp;
+                         <i class="fa fa-chevron-down"></i>
                      </a>
                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                          <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
@@ -75,12 +76,13 @@
  </nav>
  <!-- END nav -->
 
- <div class="block-31" style="position: relative;">
+
+ <div class="block-37" style="position: relative;">
      <div class="owl-carousel loop-block-31 ">
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img4.jpg');" data-stellar-background-ratio="0.5">
+         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/home-banner.png');">
              <div class="container">
                  <div class="row align-items-center">
-                     <div class="col-md-10 col-sm-4">
+                     <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
                          <h2 class="heading">Enjoy a Luxury Experience</h2>
                          <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
@@ -88,124 +90,113 @@
                  </div>
              </div>
          </div>
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img2.jpg');" data-stellar-background-ratio="0.5">
+         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/self-driving-tour1.jpg');" data-stellar-background-ratio="1">
              <div class="container">
                  <div class="row align-items-center">
-                     <div class="col-md-10 col-sm-4">
+                     <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
-                         <h2 class="heading">Fun &amp; Beautiful</h2>
+                         <h2 class="heading">Simple &amp; Elegant</h2>
                          <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
-             <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img4.jpg');" data-stellar-background-ratio="0.5">
-                 <div class="container">
-                     <div class="row align-items-center">
-                         <div class="col-md-10 col-sm-4">
-                             <span class="subheading-sm">Welcome</span>
-                             <h2 class="heading">Food &amp; Drinks</h2>
-                             <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="block-30 item" style="background-image: url('././././assets/vendors/images/img4.jpg');" data-stellar-background-ratio="0.5">
-                 <div class="container">
-                     <div class="row align-items-center">
-                         <div class="col-md-10 col-sm-4">
-                             <span class="subheading-sm">Welcome</span>
-                             <h2 class="heading">Travel &amp; New world</h2>
-                             <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a>
-                             </p>
-                         </div>
+         </div>
+         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/1.jpg');" data-stellar-background-ratio="0.5">
+             <div class="container">
+                 <div class="row align-items-center">
+                     <div class="col-md-10">
+                         <span class="subheading-sm">Welcome</span>
+                         <h2 class="heading">Food &amp; Drinks</h2>
+                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
          </div>
      </div>
+ </div>
 
 
 
-     <div class="container">
-         <div class="row mb-5">
-             <div class="col-md-12 col-sm-4">
-                 <div class="row site-section">
-                     <div class="col-md-12 col-sm-4">
-                         <div class="row mb-5">
-                             <div class="col-md-7 section-heading">
-                                 <span class="subheading-sm">Services</span>
-                                 <h2 class="heading">Facilities &amp; Services</h2>
-                             </div>
+ <div class="container">
+     <div class="row mb-5">
+         <div class="col-md-12 col-sm-4">
+             <div class="row site-section">
+                 <div class="col-md-12 col-sm-4">
+                     <div class="row mb-5">
+                         <div class="col-md-7 section-heading">
+                             <span class="subheading-sm">Services</span>
+                             <h2 class="heading">Facilities &amp; Services</h2>
                          </div>
                      </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-double-bed"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Luxury Rooms</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-wifi"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Fast &amp; Free Wifi</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-customer-service"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Call Us 24/7</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
-
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-taxi"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Travel Accomodation</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-credit-card"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Accepts Credit Card</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-dinner"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Restaurant</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
-
                  </div>
-             </div>
+                 <div class="col-md-6 col-sm-4">
+                     <div class="media block-6">
+                         <div class="icon"><span class="flaticon-double-bed"></span></div>
+                         <div class="media-body">
+                             <h3 class="heading">Luxury Rooms</h3>
+                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                                 unorthographic.</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-sm-4">
+                     <div class="media block-6">
+                         <div class="icon"><span class="flaticon-wifi"></span></div>
+                         <div class="media-body">
+                             <h3 class="heading">Fast &amp; Free Wifi</h3>
+                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                                 unorthographic.</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-sm-4">
+                     <div class="media block-6">
+                         <div class="icon"><span class="flaticon-customer-service"></span></div>
+                         <div class="media-body">
+                             <h3 class="heading">Call Us 24/7</h3>
+                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                                 unorthographic.</p>
+                         </div>
+                     </div>
+                 </div>
 
+                 <div class="col-md-6 col-sm-4">
+                     <div class="media block-6">
+                         <div class="icon"><span class="flaticon-taxi"></span></div>
+                         <div class="media-body">
+                             <h3 class="heading">Travel Accomodation</h3>
+                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                                 unorthographic.</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-sm-4">
+                     <div class="media block-6">
+                         <div class="icon"><span class="flaticon-credit-card"></span></div>
+                         <div class="media-body">
+                             <h3 class="heading">Accepts Credit Card</h3>
+                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                                 unorthographic.</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-6 col-sm-4">
+                     <div class="media block-6">
+                         <div class="icon"><span class="flaticon-dinner"></span></div>
+                         <div class="media-body">
+                             <h3 class="heading">Restaurant</h3>
+                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
+                                 unorthographic.</p>
+                         </div>
+                     </div>
+                 </div>
+
+             </div>
          </div>
 
      </div>
+
+ </div>
  </div>
  <div class="site-section block-13 bg-light ">
      <div class="container">
@@ -283,7 +274,7 @@
                              <div class="image align-self-center"><img src="<?= base_url(); ?>assets\images\user_blank.png" alt="Person here"></div>
                              <div class="name-text align-self-center">
                                  <h2 class="heading"><?= $name; ?></h2>
-                                 <span class="meta">Satisfied Customer</span>
+                                 <span class="meta"><?= tanggal($tgl_post); ?></span>
                              </div>
                          </div>
                          <div class="text">

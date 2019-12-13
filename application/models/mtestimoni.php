@@ -9,7 +9,7 @@ class Mtestimoni extends CI_Model
 
     public function simpan_testimoni_order($nama, $email, $msg)
     {
-        $hasil = $this->db->query("INSERT INTO testimoni(nama,email,pesan,status,tgl_post) VALUES ($nama','$email','$msg','0',curdate())");
+        $hasil = $this->db->query("INSERT INTO testimoni_order(nama,email,pesan,status,tgl_post) VALUES ('$nama','$email','$msg','0',curdate())");
         return $hasil;
     }
     public function tampil_test_comment($kode)
@@ -20,7 +20,7 @@ class Mtestimoni extends CI_Model
 
     public function tampil_test()
     {
-        $hasil = $this->db->query("SELECT * FROM testimoni WHERE status='1'  order by idtestimoni desc");
+        $hasil = $this->db->query("SELECT * FROM testimoni_order WHERE status='1'  order by idtestimoni ");
         return $hasil;
     }
     public function count_comment($kode)
@@ -31,7 +31,7 @@ class Mtestimoni extends CI_Model
 
     public function get_testimoni_all()
     {
-        $hasil = $this->db->query("SELECT * FROM testimoni WHERE status='1' ");
+        $hasil = $this->db->query("SELECT * FROM testimoni WHERE status='1' order by idtestimoni DESC limit 3 ");
         return $hasil;
     }
     public function get_testimoni()
@@ -39,9 +39,21 @@ class Mtestimoni extends CI_Model
         $hasil = $this->db->query("SELECT * FROM testimoni WHERE status='0' order by tgl_post desc");
         return $hasil;
     }
+
+    public function get_testimoni_order()
+    {
+        $hasil = $this->db->query("SELECT * FROM testimoni_order WHERE status='0' order by tgl_post desc");
+        return $hasil;
+    }
     public function publish($id)
     {
         $hasil = $this->db->query("UPDATE testimoni SET status='1' WHERE idtestimoni='$id'");
+        return $hasil;
+    }
+
+    public function publish_testi_order($id)
+    {
+        $hasil = $this->db->query("UPDATE testimoni_order SET status='1' WHERE idtestimoni='$id'");
         return $hasil;
     }
     public function edit_testimoni($kode, $nama, $pesan)
@@ -52,6 +64,12 @@ class Mtestimoni extends CI_Model
     public function hapus_testimoni($kode)
     {
         $hasil = $this->db->query("delete from testimoni WHERE idtestimoni='$kode'");
+        return $hasil;
+    }
+
+    public function hapus_testimoni_order($kode)
+    {
+        $hasil = $this->db->query("delete from testimoni_order WHERE idtestimoni='$kode'");
         return $hasil;
     }
 }

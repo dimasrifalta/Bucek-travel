@@ -198,6 +198,9 @@ $jum_konfirmasi = $query4->num_rows();
             <div class="box">
 
               <div class="box">
+                <div class="box-header">
+                  <a class="btn btn-danger btn-flat" data-toggle="modal" data-target="#my-cetak"><span class="fa fa-print"></span> Print Laporan Penjualan Tiket</a>
+                </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                   <table id="example1" class="table table-striped" style="font-size:12px;">
@@ -279,6 +282,40 @@ $jum_konfirmasi = $query4->num_rows();
     <div class="control-sidebar-bg"></div>
   </div>
   <!-- ./wrapper -->
+
+
+  <form action="<?= base_url('backend/orders/printlaporan') ?>" method="POST" target=blank>
+    <!-- Modal Popup untuk delete -->
+    <div class="modal fade small" id="my-cetak">
+      <div class="modal-body center">
+        <div class="modal-dialog">
+          <div class="modal-content" style="margin-top:100px;">
+            <div class="modal-header">
+
+              <h4 class="modal-title" id="myModalLabel">Print Laporan Penjualan Tiket</h4>
+            </div>
+            <div class="modal-body center">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Tanggal Awal</label>
+                  <input type="text" class="form-control" id="datepicker" name="tglawal" autocomplete="off" value="" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Tanggal Akhir</label>
+                  <input type="text" class="form-control" id="datepicker2" name="tglakhir" autocomplete="off" value="" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
 
 
   <!-- ============ MODAL EDIT ORDER =============== -->
@@ -408,11 +445,17 @@ $jum_konfirmasi = $query4->num_rows();
 
       $('#datepicker').datepicker({
         autoclose: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        todayHighlight: true,
+        autoclose: true
       });
       $('#datepicker2').datepicker({
         autoclose: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        todayHighlight: true,
+        autoclose: true
       });
       $('.datepicker3').datepicker({
         autoclose: true,

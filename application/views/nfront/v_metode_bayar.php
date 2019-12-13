@@ -1,14 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item "><a href="<?= base_url(''); ?>" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profil
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
+                        <a class="dropdown-item" href="#">Cara Pesan</a>
+
+                        <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
+                    </div>
+                </li>
                 <li class="nav-item "><a href="<?= base_url('paket_tour'); ?>" class="nav-link">Paket Tours</a></li>
                 <li class="nav-item"><a href="<?= base_url('wisata_post'); ?>" class="nav-link">Tempat Wisata</a></li>
                 <li class="nav-item"><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a>
@@ -20,8 +31,7 @@
 
             </ul>
             <div class="btn-group ml-4 rights">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"><i class="fa fa-list-alt"></i>
+                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
                 </button>
                 <div class="dropdown-menu">
                     <?php
@@ -29,14 +39,13 @@
 
                     if ($this->session->userdata('email')) { ?>
 
-                    <a class="dropdown-item text-secondary"
-                        href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
 
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
 
                     <?php
                     } else { ?>
-                    <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+                        <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
 
                     <?php
                     } ?>
@@ -49,9 +58,7 @@
 
 
 
-<div class="block-37 block-37-sm item"
-    style="background-image: url('http://localhost/bucektravel/assets/vendors/images/bg_0.jpg');"
-    data-stellar-background-ratio="0.5">
+<div class="block-37 block-37-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/bg_0.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -90,14 +97,13 @@
                             $norek = $i['norek'];
                             $atasnama = $i['atasnama'];
                             ?>
-                        <tr>
-                            <td><?php echo $metode; ?></td>
-                            <td><?php echo $bank; ?></td>
-                            <td><?php echo $norek; ?></td>
-                            <td><?php echo $atasnama; ?></td>
-                            <td><a href="<?php echo base_url() . 'paket_tour/set_pembayaran/' . $idmetode; ?>"
-                                    target="_blank" class="badge badge-success">Pilih</a></td>
-                        </tr>
+                            <tr>
+                                <td><?php echo $metode; ?></td>
+                                <td><?php echo $bank; ?></td>
+                                <td><?php echo $norek; ?></td>
+                                <td><?php echo $atasnama; ?></td>
+                                <td><a href="<?php echo base_url() . 'paket_tour/set_pembayaran/' . $idmetode; ?>" target="_blank" class="badge badge-success">Pilih</a></td>
+                            </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
