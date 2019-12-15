@@ -25,42 +25,45 @@
                 <li class="nav-item"><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a>
                 </li>
                 <li class="nav-item "><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Akun &nbsp;
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <?php
+                        $id = $this->session->userdata('email');
+
+                        if ($this->session->userdata('email')) { ?>
+
+                            <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+
+                            <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+
+                        <?php
+                        } else { ?>
+                            <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                        <?php
+                        } ?>
+                    </div>
+                </li>
 
 
 
 
             </ul>
-            <div class="btn-group ml-4 rights">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <?php
-                    $id = $this->session->userdata('email');
 
-                    if ($this->session->userdata('email')) { ?>
-
-                        <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
-
-                        <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-
-                    <?php
-                    } else { ?>
-                        <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
-
-                    <?php
-                    } ?>
-                </div>
-            </div>
         </div>
     </div>
 </nav>
 
-<div class="block-37 block-37-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/bg_0.jpg');" data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/dribbble.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
-                <span class="subheading-sm">Pakets Travel</span>
-                <h1 class="heading text-center">Booking</h1>
+                <span class="subheading-sm">Travel</span>
+                <h2 class="heading">Booking </h2>
             </div>
         </div>
     </div>
@@ -496,7 +499,7 @@ $b = $data;
             </div>
             <div class="email right">
                 <span class="circle"><img src="data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE0LjE3M3B4Ig0KCSBoZWlnaHQ9IjE0LjE3M3B4IiB2aWV3Qm94PSIwLjM1NCAtMi4yNzIgMTQuMTczIDE0LjE3MyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwLjM1NCAtMi4yNzIgMTQuMTczIDE0LjE3MyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgk+DQo8dGl0bGU+ZW1haWwxOTwvdGl0bGU+DQo8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCjxnIGlkPSJQYWdlLTEiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPg0KCTxnIGlkPSJJTlZPSUNFLTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00MTcuMDAwMDAwLCAtNTUuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCI+DQoJCTxnIGlkPSJaQUdMQVZMSkUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwLjAwMDAwMCwgMTUuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TTGF5ZXJHcm91cCI+DQoJCQk8ZyBpZD0iS09OVEFLVEkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2Ny4wMDAwMDAsIDM1LjAwMDAwMCkiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiPg0KCQkJCTxnIGlkPSJPdmFsLTEtX3gyQl8tZW1haWwxOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTE3LjAwMDAwMCwgMC4wMDAwMDApIj4NCgkJCQkJPHBhdGggaWQ9ImVtYWlsMTkiIGZpbGw9IiM4QkMzNEEiIGQ9Ik0zLjM1NCwxNC4yODFoMTQuMTczVjUuMzQ2SDMuMzU0VjE0LjI4MXogTTEwLjQ0LDEwLjg2M0w0LjYyNyw2LjAwOGgxMS42MjZMMTAuNDQsMTAuODYzDQoJCQkJCQl6IE04LjEyNSw5LjgxMkw0LjA1LDEzLjIxN1Y2LjQwOUw4LjEyNSw5LjgxMnogTTguNjUzLDEwLjI1M2wxLjc4OCwxLjQ5M2wxLjc4Ny0xLjQ5M2w0LjAyOSwzLjM2Nkg0LjYyNEw4LjY1MywxMC4yNTN6DQoJCQkJCQkgTTEyLjc1NSw5LjgxMmw0LjA3NS0zLjQwM3Y2LjgwOEwxMi43NTUsOS44MTJ6Ii8+DQoJCQkJPC9nPg0KCQkJPC9nPg0KCQk8L2c+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=" alt=""><span class="helper"></span></span>
-                <a href="mailto:company@example.com">bucektravel@gmail.com</a>
+                <a href="mailto:company@example.com">sumawatour@gmail.com</a>
                 <span class="helper"></span>
             </div>
         </div>
@@ -515,8 +518,8 @@ $b = $data;
             <div class="data right">
                 <div class="title">Invoice <?php echo $b['id_order'] ?></div>
                 <div class="date">
-                    Tanggal Invoice: <?php echo $b['tanggal'] ?><br>
-                    Batas Waktu: <?php echo $b['berangkat']; ?>
+                    Tanggal Invoice: <?php echo tanggal($b['tanggal']) ?><br>
+                    Batas Waktu: <?php echo tanggal($b['berangkat']); ?>
                 </div>
             </div>
         </div>
@@ -536,7 +539,7 @@ $b = $data;
                     <td class="desc">
                         <h3><?php echo $b['nama_paket']; ?></h3>
                     </td>
-                    <td class="qty"><?php echo $b['berangkat']; ?></td>
+                    <td class="qty"><?php echo tanggal($b['berangkat']); ?></td>
                     <td class="unit"><?php echo $b['adult'] . ' Orang'; ?></td>
                     <td class="total"><?php echo $b['kids'] . ' Orang'; ?></td>
                     <td class="total"><?php echo $b['jml_berangkat'] .  ' Orang'; ?></td>
@@ -582,7 +585,7 @@ $b = $data;
                 <p>
                     <?php
 
-                    if ($b['pembatalan'] == "CANCEL" or $b['pembatalan'] == "BATAL") { ?>
+                    if ($b['status'] == "CANCEL" or $b['status'] == "BATAL") { ?>
 
                         <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2 disabled">Sudah Di Batalkan</a>
 

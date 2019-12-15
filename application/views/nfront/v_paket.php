@@ -34,32 +34,34 @@
                  <li class="nav-item "><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a></li>
                  <li class="nav-item "><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a>
                  </li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Akun &nbsp;
+                         <i class="fa fa-chevron-down"></i>
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <?php
+                            $id = $this->session->userdata('email');
 
+                            if ($this->session->userdata('email')) { ?>
+
+                             <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+
+                             <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+
+                         <?php
+                            } else { ?>
+                             <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                         <?php
+                            } ?>
+                     </div>
+                 </li>
 
 
 
              </ul>
-             <div class="btn-group ml-4 rights">
-                 <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
-                 </button>
-                 <div class="dropdown-menu">
-                     <?php
-                        $id = $this->session->userdata('email');
 
-                        if ($this->session->userdata('email')) { ?>
-
-                         <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
-
-                         <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-
-                     <?php
-                        } else { ?>
-                         <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
-
-                     <?php
-                        } ?>
-                 </div>
-             </div>
          </div>
      </div>
      </div>
@@ -68,7 +70,7 @@
 
 
 
- <div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+ <div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/the_journey_sm.jpg');" data-stellar-background-ratio="0.5">
      <div class="container">
          <div class="row align-items-center">
              <div class="col-md-10">
@@ -98,7 +100,7 @@
                     ?>
                  <div class="col-md-12 mb-5">
                      <div class="block-3 d-md-flex">
-                         <div class="image" style="background-image: url('http://localhost/bucektravel/assets/gambars/<?= $gbr; ?>')">
+                         <div class="image" style="background-image: url('<?php echo base_url() . 'assets/gambars/' . $gbr; ?>')">
                          </div>
                          <div class="text">
 
@@ -137,3 +139,20 @@
 
      </div>
  </div>
+
+ <!-- SweetAlet -->
+ <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert-dev.js' ?>"></script>
+ <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert.min.js' ?>"></script>
+ <!-- <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/myscript.js' ?>"></script> -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+ <?php if ($this->session->flashdata('flash')) : ?>
+     <script>
+         setTimeout(function() {
+             swal('Succes!', 'Terimah kasih Telah Melakukan Order Silahkan cek email Anda. Kami Telah mengirim jumlah yang harus anda bayar dan No.rekening yang ditujuh', 'success')
+         }, 10);
+         window.setTimeout(function() {
+
+         }, 1200);
+     </script>
+ <?php endif; ?>

@@ -26,47 +26,52 @@
                 <li class="nav-item "><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a></li>
                 <li class="nav-item "><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a></li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Akun &nbsp;
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <?php
+                        $id = $this->session->userdata('email');
 
+                        if ($this->session->userdata('email')) { ?>
+
+                            <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+
+                            <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+
+                        <?php
+                        } else { ?>
+                            <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                        <?php
+                        } ?>
+                    </div>
+                </li>
 
 
             </ul>
-            <div class="btn-group ml-4 rights">
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <?php
-                    $id = $this->session->userdata('email');
 
-                    if ($this->session->userdata('email')) { ?>
-
-                        <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
-
-                        <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-
-                    <?php
-                    } else { ?>
-                        <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
-
-                    <?php
-                    } ?>
-                </div>
-            </div>
         </div>
     </div>
 </nav>
 <!-- END nav -->
 
 
-<div class="block-37 block-37-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/img_4.jpg');" data-stellar-background-ratio="0.5">
+
+<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/25.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
                 <span class="subheading-sm">Travel</span>
-                <h2 class="heading ">Detail &amp; Wisata</h2>
+                <h2 class="heading">Detail Wisata</h2>
             </div>
         </div>
     </div>
 </div>
+
+
 <?php
 function limit_words($string, $word_limit)
 {

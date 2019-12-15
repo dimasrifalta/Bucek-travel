@@ -112,7 +112,7 @@ class Paket_tour extends CI_Controller
 
         $date = date('Y-m-d', strtotime("-1 day"));
 
-        if ($date > $tgl1) {
+        if ($date < $berangkat) {
             $dewasa = $this->input->post('adultamt');
             $anak2 = $this->input->post('childrenamt');
 
@@ -151,11 +151,11 @@ class Paket_tour extends CI_Controller
         $this->email->initialize($config);
         $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
         $this->email->to($this->session->userdata('email'));
-        $message = $this->load->view('nfront/email_invoice', $x, TRUE);
+        $message = $this->load->view('nfront/email/email_invoice', $x, TRUE);
 
 
-        $this->email->subject('Cancel Tour Verification');
-        $this->email->message('$message');
+        $this->email->subject('Konfirmasi Pemesanan Tiket Anda');
+        $this->email->message($message);
 
 
         if ($this->email->send()) {
@@ -180,13 +180,13 @@ class Paket_tour extends CI_Controller
         $this->_sendEmail();
 
         if ($id == '1') {
-            $x['data'] = $this->mpaket->faktur();
-            $x['judul'] = "Invoice";
-            $this->load->view('front/v_invoices', $x);
+
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert"> Terimah kasih Telah Melakukan Order Silahkan cek email anda. Kami Telah mengirim jumlah yang harus anda bayar dan nomor</div>');
+            redirect('paket_tour');
         } else {
-            $x['data'] = $this->mpaket->faktur();
-            $x['judul'] = "Invoice";
-            $this->load->view('front/v_invoices_bank', $x);
+
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert"> Terimah kasih Telah Melakukan Order Silahkan cek email anda. Kami Telah mengirim jumlah yang harus anda bayar dan nomor</div>');
+            redirect('paket_tour');
         }
     }
 

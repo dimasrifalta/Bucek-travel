@@ -87,9 +87,18 @@ class Pembatalan extends CI_Controller
         $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
         $this->email->to($this->session->userdata('email'));
 
+        $data = array(
+            'email' => $this->session->userdata('email'),
+            'order_id' => $order_id
+        );
+        $x['data'] = $data;
 
-        $this->email->subject('Cancel Tour Verification');
-        $this->email->message('Click this link to Cancel your ticket : <a href="' . base_url() . 'pembatalan/verify?email=' . $this->session->userdata('email') . '&token=' . $order_id . ' ">Batalkan Tiket</a> ');
+        $message = $this->load->view('nfront/email/email_verification_cancel_tiket', $x, TRUE);
+
+
+        $this->email->subject('Konfirmasi Pembatalan Tiket Anda');
+        $this->email->message($message);
+
 
 
         if ($this->email->send()) {
@@ -126,12 +135,12 @@ class Pembatalan extends CI_Controller
 
                 //token tidak ada di database
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account verifikasi!! Wrong token!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Konfirmasi Pembatalan Tiket!! Wrong token!</div>');
                 redirect('paket_tour/booking');
             }
             //email tidak ada di database
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account verifikasi!! Wrong email!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Konfirmasi Pembatalan Tiket!! Wrong email!</div>');
             redirect('paket_tour/booking');
         }
     }

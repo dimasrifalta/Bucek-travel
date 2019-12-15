@@ -54,7 +54,7 @@ class Konfirmasi extends CI_Controller
                     } else {
                         redirect('konfirmasi');
                     }
-                    echo $this->session->set_flashdata('msg', 'Terima Kasih Telah Melakukan Konfirmasi Pembayaran!');
+                    $this->session->set_flashdata('flash', 'Ditambahkan');
 
                     redirect('konfirmasi');
                 }

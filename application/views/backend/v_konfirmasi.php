@@ -376,6 +376,7 @@ $jum_konfirmasi = $query4->num_rows();
                                                     $nama_rekening = $a['nama_rekening'];
                                                     $pengirim = $this->session->userdata('email');
                                                     $alasan_pembatalan = $a['alasan_pembatalan'];
+                                                    $status = $a['status'];
 
 
                                                     ?>
@@ -399,9 +400,17 @@ $jum_konfirmasi = $query4->num_rows();
                                                         <td style="text-align: center;vertical-align:middle;">
                                                             <?php echo $alasan_pembatalan; ?></td>
                                                         <td style="text-align: center;vertical-align: middle;">
-                                                            <a class="btn" href="<?php echo base_url() . 'backend/konfirmasi/set_pembatalan/' . $a['id_order']; ?>" title="Konfirmasi Pembatalan"><span class="fa fa-check"></span> </a>
-                                                            <a class="btn" href="#ModalHapus<?php echo $id; ?>" data-toggle="modal" title="Hapus"><span class="fa fa-trash"></span> </a>
+                                                            <?php
+                                                                if ($status == 'BATAL') : ?>
+                                                                <label class="label label-success">BATAL</label>
+
+                                                            <?php else : ?>
+
+                                                                <a class="btn" href="<?php echo base_url() . 'backend/konfirmasi/set_pembatalan/' . $a['id_order']; ?>" title="Konfirmasi Pembatalan"><span class="fa fa-check"></span> </a>
+                                                                <a class="btn" href="#ModalHapus<?php echo $id; ?>" data-toggle="modal" title="Hapus"><span class="fa fa-trash"></span> </a>
                                                         </td>
+                                                    <?php endif ?>
+
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

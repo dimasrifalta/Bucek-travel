@@ -234,6 +234,7 @@ $jum_konfirmasi = $query4->num_rows();
                         $dewasa = $a['adult'];
                         $anak = $a['kids'];
                         $status = $a['status'];
+                        $pembatalan = $a['pembatalan'];
 
                         ?>
                         <tr>
@@ -249,6 +250,8 @@ $jum_konfirmasi = $query4->num_rows();
                             <?php
                               if ($status == 'LUNAS') : ?>
                               <label class="label label-success">LUNAS</label>
+                            <?php elseif ($status == 'BATAL') : ?>
+                              <label class="label label-danger">BATAL</label>
                             <?php else : ?>
                               <a class="btn btn-xs btn-info" href="<?php echo base_url() . 'backend/orders/pembayaran_selesai/' . $id ?>" data-toggle="modal" title="Pembayaran Selesai"><span class="fa fa-check"></span> </a>
                               <a class="btn btn-xs btn-warning" href="#modalEdit<?php echo $id ?>" data-toggle="modal" title="Edit"><span class="fa fa-pencil"></span> </a>

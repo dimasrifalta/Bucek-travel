@@ -45,39 +45,42 @@
                  <li class="nav-item "><a href="<?= base_url('Konfirmasi'); ?>" class="nav-link">Konfirmasi</a></li>
                  <li class="nav-item"><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a></li>
 
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Akun &nbsp;
+                         <i class="fa fa-chevron-down"></i>
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <?php
+                            $id = $this->session->userdata('email');
+
+                            if ($this->session->userdata('email')) { ?>
+
+                             <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+
+                             <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+
+                         <?php
+                            } else { ?>
+                             <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                         <?php
+                            } ?>
+                     </div>
+                 </li>
+
 
 
              </ul>
 
-             <div class="btn-group  rights">
-                 <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
-                 </button>
-                 <div class="dropdown-menu">
-                     <?php
-                        $id = $this->session->userdata('email');
 
-                        if ($this->session->userdata('email')) { ?>
-
-                         <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
-
-                         <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-
-                     <?php
-                        } else { ?>
-                         <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
-
-                     <?php
-                        } ?>
-                 </div>
-             </div>
          </div>
 
      </div>
  </nav>
  <!-- END nav -->
 
-
- <div class="block-37" style="position: relative;">
+ <div class="block-31" style="position: relative;">
      <div class="owl-carousel loop-block-31 ">
          <div class="block-30 item" style="background-image: url('././././assets/vendors/images/home-banner.png');">
              <div class="container">
@@ -85,7 +88,7 @@
                      <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
                          <h2 class="heading">Enjoy a Luxury Experience</h2>
-                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                         <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
@@ -96,24 +99,27 @@
                      <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
                          <h2 class="heading">Simple &amp; Elegant</h2>
-                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                         <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
          </div>
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/1.jpg');" data-stellar-background-ratio="0.5">
+         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/the_journey_sm.jpg');" data-stellar-background-ratio="1">
              <div class="container">
                  <div class="row align-items-center">
                      <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
-                         <h2 class="heading">Food &amp; Drinks</h2>
-                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                         <h2 class="heading">Simple &amp; Elegant</h2>
+                         <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
          </div>
+
      </div>
  </div>
+
+
 
 
 
@@ -224,7 +230,7 @@
                          <div class="item">
                              <div class="block-34">
                                  <div class="image">
-                                     <a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><img src="http://localhost/bucektravel/assets/gambars/<?= $gbr; ?>" alt="Image placeholder"></a>
+                                     <a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><img src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" alt="Image placeholder"></a>
                                  </div>
                                  <div class="text">
                                      <h2 class="heading"><a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><?= $judul; ?>g</a></h2>

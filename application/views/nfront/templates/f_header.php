@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/css/jquery.timepicker.css">
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/css/flaticon.css">
     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/css/icomoon.css">
-    <link rel="stylesheet" href="http://localhost/bucektravel/assets/vendors/css/styles.css">
+    <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/css/styles.css">
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/po-portfolio/css/bootstrap.min.css"> -->
 

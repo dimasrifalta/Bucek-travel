@@ -31,9 +31,52 @@ class Konfirmasi extends CI_Controller
         $this->db->query("UPDATE paket SET views=views+1 WHERE idpaket='$idpaket'");
         $this->db->query("UPDATE orders SET kode_booking='$res' WHERE id_order='$id'");
 
+        //simpan data ketabel transaksi
+        $date_created = date('Y-m-d H:i:s');
+        $this->morders->simpan_transaksi($id);
+        $this->db->query("UPDATE transaksi SET kode_booking='$res' ,date_created='$date_created',transaksi.status='LUNAS' WHERE id_order='$id'");
+
+        //Kirim email_invoice
+        $this->_sendEmail($id);
+
         echo $this->session->set_flashdata('msg', 'success');
         redirect('backend/orders');
     }
+    /*kirim email*/
+    private function _sendEmail($id)
+    {
+
+
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'bucekcoffe@gmail.com',
+            'smtp_pass' => 'Liger1998',
+            'smtp_port' =>  465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+        $x['data'] = $this->mpaket->booking_email($id);
+
+        $this->email->initialize($config);
+        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->to($this->session->userdata('email'));
+        $message = $this->load->view('nfront/email/email_invoice_booking', $x, TRUE);
+
+
+        $this->email->subject('E-Tiket Paket Tour Wisata -No.Pesanan' . $id);
+        $this->email->message($message);
+
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
     function hapus_konfirmasi()
     {
         $kode = $this->input->post('kode');
@@ -48,8 +91,50 @@ class Konfirmasi extends CI_Controller
         $id = $this->uri->segment(4);
 
         $this->morders->set_pembatalan($id);
+        //Kirim email_invoice
+        $this->_sendEmailPembatalan($id);
 
         echo $this->session->set_flashdata('msg', 'success');
         redirect('backend/Konfirmasi');
+    }
+
+
+    /*kirim email*/
+    private function _sendEmailPembatalan($id)
+    {
+
+
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'bucekcoffe@gmail.com',
+            'smtp_pass' => 'Liger1998',
+            'smtp_port' =>  465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+        $x['data'] = $this->mpaket->get_pembatalanEmail($id);
+
+
+
+
+
+        $this->email->initialize($config);
+        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->to($this->session->userdata('email'));
+        $message = $this->load->view('nfront/email/email_invoice_pembatalan', $x, TRUE);
+
+
+        $this->email->subject('Pengembalian Dana Dengan No.Invoice-' . $id);
+        $this->email->message($message);
+
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
     }
 }

@@ -26,32 +26,35 @@
                  </li>
                  <li class="nav-item "><a href="<?= base_url('semua_album'); ?>" class="nav-link">Album dan Foto</a>
                  </li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Akun &nbsp;
+                         <i class="fa fa-chevron-down"></i>
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <?php
+                            $id = $this->session->userdata('email');
+
+                            if ($this->session->userdata('email')) { ?>
+
+                             <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
+
+                             <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+
+                         <?php
+                            } else { ?>
+                             <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
+
+                         <?php
+                            } ?>
+                     </div>
+                 </li>
 
 
 
 
              </ul>
-             <div class="btn-group ml-4 rights">
-                 <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt"></i>
-                 </button>
-                 <div class="dropdown-menu">
-                     <?php
-                        $id = $this->session->userdata('email');
 
-                        if ($this->session->userdata('email')) { ?>
-
-                         <a class="dropdown-item text-secondary" href="<?= base_url('paket_tour/booking'); ?>">Booking(<?= $id; ?>)</a>
-
-                         <a class="dropdown-item text-secondary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-
-                     <?php
-                        } else { ?>
-                         <a class="dropdown-item text-secondary" href="<?= base_url('auth'); ?>">Login</a>
-
-                     <?php
-                        } ?>
-                 </div>
-             </div>
          </div>
      </div>
  </nav>
@@ -59,27 +62,23 @@
 
 
 
- <div class="block-37" style="position: relative;">
-     <div class="owl-carousel loop-block-31 ">
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/common-banner.jpg');">
-             <div class="container">
-                 <div class="row align-items-center">
-                     <div class="col-md-10">
-                         <span class="subheading-sm">Welcome</span>
-                         <h2 class="heading">Konfirmasi Pesanan Anda</h2>
-                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
-                     </div>
-                 </div>
+
+ <div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/home-banner.png');" data-stellar-background-ratio="1">
+     <div class="container">
+         <div class="row align-items-center">
+             <div class="col-md-10">
+                 <span class="subheading-sm">Travel</span>
+                 <h2 class="heading">Konfirmasi Pembayaran</h2>
              </div>
          </div>
      </div>
  </div>
 
 
-
  <div class="site-section">
      <div class="container">
          <div class="row">
+             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
              <div class="col-md-12 mb-3">
                  <h2 class="text-danger">Ketentuan dan Kebijakan</h2>
              </div>
@@ -164,3 +163,20 @@
          </div>
      </div>
  </div>
+
+ <!-- SweetAlet -->
+ <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert-dev.js' ?>"></script>
+ <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert.min.js' ?>"></script>
+ <!-- <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/myscript.js' ?>"></script> -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+ <?php if ($this->session->flashdata('flash')) : ?>
+     <script>
+         setTimeout(function() {
+             swal('Succes!', 'Terima Kasih Telah Melakukkan Konfirmasi Pembayaran. Kami Akan Memproses Pembayaran Anda 1X24 jam. Kode Booking Akan Dikirimkan Ke Email Anda', 'success')
+         }, 10);
+         window.setTimeout(function() {
+
+         }, 1200);
+     </script>
+ <?php endif; ?>
