@@ -23,6 +23,12 @@ class Morders extends CI_Model
         return $hasil;
     }
 
+    function get_transaksi()
+    {
+        $hasil = $this->db->query("SELECT date_created,id_order,tanggal,nama_paket,hrg_dewasa,hrg_anak,adult,kids,SUM(adult+kids)AS jml_berangkat,(hrg_dewasa*adult) AS sub_dewasa,(hrg_anak*kids)AS sub_anak,SUM((hrg_dewasa*adult)+(hrg_anak*kids))AS total,berangkat,kembali,metode,bank,norek,atasnama,nama,IF(jenkel='L','Laki-Laki','Perempuan')AS jenkel,alamat,notelp,email,keterangan,status FROM transaksi JOIN metode_bayar ON metode_id=id_metode JOIN paket ON paket_id_order=idpaket GROUP BY id_order order by tanggal desc");
+        return $hasil;
+    }
+
     public function simpan_transaksi($id)
     {
         $date_created = date('Y-m-d H:i:s');

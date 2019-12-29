@@ -181,11 +181,27 @@ $b = $pkt->row_array();
                             <input type="number" class="form-control" id="childrenamt" name="childrenamt" value="0" class="spinner-min0" />
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="payment">Tanggal Tersedia</label>
+                        <select name="id_paket" id="paket" data-width="100%" class="form-control select2" required>
+                            <option>Pilih</option>
+                            <?php
+                            foreach ($ketersediaan->result_array() as $i) {
+                                $kode = $i['id'];
+                                $tgl_awal = $i['tgl_awal'];
+                                $tgl_akhir = $i['tgl_akhir'];
+                            ?>
+                                <option value='<?php echo $kode ?>'><?php echo tanggal($tgl_awal) ?> - <?php echo tanggal($tgl_akhir) ?></option>
+                            <?php } ?>
+                        </select>
 
+                    </div>
                     <div class="mb-3">
                         <label for="khusus">Permintaan Khusus</label>
                         <textarea class="form-control" id="deskripsi" name="notebox" rows="3"></textarea>
                     </div>
+
+
 
 
 

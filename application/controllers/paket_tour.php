@@ -10,6 +10,7 @@ class Paket_tour extends CI_Controller
         $this->load->model('mpaket');
         $this->load->model('mberita');
         $this->load->model('morders');
+        $this->load->model('mwisata');
     }
     public function index()
     {
@@ -63,12 +64,15 @@ class Paket_tour extends CI_Controller
     }
     public function detail_paket()
     {
+        $limit = 100;
         $x['paket'] = $this->mberita->paket_footer();
         $x['berita'] = $this->mberita->berita_footer();
         $x['photo'] = $this->mberita->get_photo();
+
         $kode = $this->uri->segment(3);
         $x['brt'] = $this->mpaket->tampil_paket();
         $x['news'] = $this->mpaket->getpaket($kode);
+        $x['foto'] = $this->mwisata->get_foto($kode);
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_detail_paket', $x);
         $this->load->view('nfront/templates/_footer', $x);
@@ -81,6 +85,8 @@ class Paket_tour extends CI_Controller
         $x['photo'] = $this->mberita->get_photo();
         $kode = $this->uri->segment(3);
         $x['pkt'] = $this->mpaket->getpaket($kode);
+        $x['ketersediaan'] = $this->mpaket->get_ketersediaan($kode);
+
         $x['byr'] = $this->mpaket->get_metode_pembayaran();
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_order', $x);

@@ -33,9 +33,20 @@ class Mpaket extends CI_Model
         $hasil = $this->db->query("INSERT INTO paket(nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,gambar) VALUES ('$nama_paket','$hrg_dewasa','$hrg_anak','$deskripsi','$kategori','$gambar')");
         return $hasil;
     }
+
+    public function simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian)
+    {
+        $hasil = $this->db->query("INSERT INTO available_tour(id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian) VALUES ('$id_paket_tour','$tgl_awal','$tgl_akhir','$jumlah_ketersedian')");
+        return $hasil;
+    }
     public function tampil_paket()
     {
         $hasil = $this->db->query("select * from paket");
+        return $hasil;
+    }
+    public function tampil_availible_tour()
+    {
+        $hasil = $this->db->query("select gambar,nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,available_tour.id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian from paket INNER JOIN available_tour WHERE paket.idpaket=available_tour.id_paket_tour");
         return $hasil;
     }
     public function berita()
@@ -46,6 +57,12 @@ class Mpaket extends CI_Model
     public function getpaket($kode)
     {
         $hasil = $this->db->query("select * from paket where idpaket='$kode'");
+        return $hasil;
+    }
+
+    public function get_ketersediaan($kode)
+    {
+        $hasil = $this->db->query("select * from available_tour where id_paket_tour='$kode'");
         return $hasil;
     }
     public function updatedenganimg($kode, $nama_paket, $kategori, $deskripsi, $hrg_dewasa, $hrg_anak, $gambar)

@@ -32,6 +32,9 @@ $jum_konfirmasi = $query4->num_rows();
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/skins/_all-skins.min.css' ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
 
+  <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/select2/select2.min.css' ?>">
+
+
   <?php
   function limit_words($string, $word_limit)
   {
@@ -43,7 +46,7 @@ $jum_konfirmasi = $query4->num_rows();
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class=" hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
 
     <?php
@@ -223,7 +226,7 @@ $jum_konfirmasi = $query4->num_rows();
                         $gambar = $a['gbr_galeri'];
                         $idalbum = $a['albumid'];
                         $jdl_album = $a['jdl_album'];
-                        ?>
+                      ?>
                         <tr>
                           <td><img class="img-thumbnail" width="90" height="80" src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>"></td>
                           <td style="vertical-align:middle;"><?php echo $jdl_galeri; ?></td>
@@ -282,13 +285,31 @@ $jum_konfirmasi = $query4->num_rows();
 
             <div class="form-group">
               <label class="control-label col-xs-3">Album</label>
-              <div class="col-xs-8">
-                <select name="album" class="form-control" required>
+              <div class="col-md-8">
+                <select name="album" id="foto" class="form-control" data-width="100%" required>
+                  <option>Pilih</option>
                   <?php
                   foreach ($alm->result_array() as $i) {
                     $kode = $i['idalbum'];
                     $nama = $i['jdl_album'];
-                    ?>
+                  ?>
+                    <option value='<?php echo $kode ?>'><?php echo $nama ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-xs-3">Paket Tour</label>
+              <div class="col-xs-8">
+                <select name="id_paket" id="paket" data-width="100%" class="form-control select2" required>
+                  <option>Pilih</option>
+                  <?php
+                  foreach ($paket->result_array() as $i) {
+                    $kode = $i['idpaket'];
+                    $nama = $i['nama_paket'];
+                  ?>
                     <option value='<?php echo $kode ?>'><?php echo $nama ?></option>
                   <?php } ?>
                 </select>
@@ -322,9 +343,9 @@ $jum_konfirmasi = $query4->num_rows();
     $gambar = $a['gbr_galeri'];
     $idalbum = $a['albumid'];
     $jdl_album = $a['jdl_album'];
-    ?>
+  ?>
     <!-- ============ MODAL UPDATE PHOTO =============== -->
-    <div class="modal fade" id="ModalUpdate<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal fade edite" id="ModalUpdate<?php echo $id; ?>" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -344,13 +365,34 @@ $jum_konfirmasi = $query4->num_rows();
               <div class="form-group">
                 <label class="control-label col-xs-3">Album</label>
                 <div class="col-xs-8">
-                  <select name="album" class="form-control" required>
+                  <select name="album" id="foto_edit" class="form-control" data-width="100%" required>
+                    <option>Pilih</option>
                     <?php
-                      foreach ($alm->result_array() as $i) :
-                        $kode = $i['idalbum'];
-                        $nama = $i['jdl_album'];
-                        ?>
+                    foreach ($alm->result_array() as $i) :
+                      $kode = $i['idalbum'];
+                      $nama = $i['jdl_album'];
+                    ?>
                       <?php if ($idalbum == $kode) : ?>
+                        <option value='<?php echo $kode ?>' selected><?php echo $nama ?></option>
+                      <?php else : ?>
+                        <option value='<?php echo $kode ?>'><?php echo $nama ?></option>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-xs-3">Paket Tour</label>
+                <div class="col-xs-8">
+                  <select name="id_paket" id="paket_edit" data-width="100%" class="form-control" required>
+                    <option>Pilih</option>
+                    <?php
+                    foreach ($paket->result_array() as $i) :
+                      $kode = $i['idpaket'];
+                      $nama = $i['nama_paket'];
+                    ?>
+                      <?php if ($id_paket == $kode) : ?>
                         <option value='<?php echo $kode ?>' selected><?php echo $nama ?></option>
                       <?php else : ?>
                         <option value='<?php echo $kode ?>'><?php echo $nama ?></option>
@@ -390,7 +432,7 @@ $jum_konfirmasi = $query4->num_rows();
     $gambar = $a['gbr_galeri'];
     $idalbum = $a['albumid'];
     $jdl_album = $a['jdl_album'];
-    ?>
+  ?>
     <!--Modal Hapus PHOTO-->
     <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -433,7 +475,36 @@ $jum_konfirmasi = $query4->num_rows();
   <script src="<?php echo base_url() . 'assets/dist/js/demo.js' ?>"></script>
   <script src="<?php echo base_url() . 'assets/ckeditor/ckeditor.js' ?>"></script>
   <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/select2/select2.min.js' ?>"></script>
+
   <!-- page script -->
+
+  <script>
+    $(document).ready(function() {
+      $("#foto").select2({
+        dropdownParent: $("#largeModal")
+
+      });
+
+    });
+
+    $(document).ready(function() {
+      $("#paket").select2({
+        dropdownParent: $("#largeModal")
+      });
+
+    });
+
+    $(document).ready(function() {
+      $("#foto_edit").select2();
+
+    });
+
+    $(document).ready(function() {
+      $("#paket_edit").select2();
+
+    });
+  </script>
   <script>
     $(function() {
       $("#example1").DataTable();

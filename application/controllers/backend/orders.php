@@ -13,6 +13,7 @@ class Orders extends CI_Controller
     function index()
     {
         $x['data'] = $this->morders->get_orders();
+        $x['data_transaksi'] = $this->morders->get_transaksi();
         $this->load->view('backend/v_orders', $x);
     }
     function pembayaran_selesai()

@@ -226,7 +226,7 @@
                             $gbr = $b['gambar'];
                             $hrg_anak = $b['hrg_anak'];
                             $views = $b['views'];
-                            ?>
+                        ?>
                          <div class="item">
                              <div class="block-34">
                                  <div class="image">
@@ -238,7 +238,7 @@
                                      <ul class="specs">
                                          <li><strong>Dipesan: <?= $views; ?></strong> Kali </li>
                                          <li><strong>Child: <?= $hrg_anak; ?></strong> 12th</li>
-                                         <li><strong>Deskripsi: </strong> <?= $isi; ?></li>
+                                         <!-- <li><strong>Deskripsi: </strong> <?= $isi; ?></li> -->
 
                                      </ul>
                                  </div>
@@ -273,7 +273,7 @@
                     $name = $j['nama'];
                     $tgl_post = $j['tgl_post'];
                     $pesan = $j['pesan'];
-                    ?>
+                ?>
                  <div class="col-md-6 col-lg-4">
                      <div class="block-33">
                          <div class="vcard d-flex mb-3">

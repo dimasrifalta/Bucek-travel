@@ -25,21 +25,29 @@ $jum_konfirmasi = $query4->num_rows();
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/font-awesome/css/font-awesome.min.css' ?>">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/datatables/dataTables.bootstrap.css' ?>">
+  <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/daterangepicker/daterangepicker.css' ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/AdminLTE.min.css' ?>">
+  <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/daterangepicker/daterangepicker.css' ?>">
+  <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/timepicker/bootstrap-timepicker.min.css' ?>">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/datepicker/datepicker3.css' ?>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/skins/_all-skins.min.css' ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
+  <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/select2/select2.min.css' ?>">
 
-  <?php
-  function limit_words($string, $word_limit)
-  {
-    $words = explode(" ", $string);
-    return implode(" ", array_splice($words, 0, $word_limit));
-  }
+</head>
 
-  ?>
+<?php
+function limit_words($string, $word_limit)
+{
+  $words = explode(" ", $string);
+  return implode(" ", array_splice($words, 0, $word_limit));
+}
+
+?>
 
 </head>
 
@@ -177,78 +185,204 @@ $jum_konfirmasi = $query4->num_rows();
       </section>
       <!-- /.sidebar -->
     </aside>
+    <style>
+      .tab {
+        margin-top: 30px;
+      }
 
+      .tab .nav-tabs {
+        border: none;
+        border-bottom: 1px solid #e4e4e4;
+      }
+
+      .nav-tabs li a {
+        padding: 15px 40px;
+        border: 1px solid #ededed;
+        border-top: 2px solid #ededed;
+        border-right: 0px none;
+        background: #7a81f4;
+        color: #fff;
+        border-radius: 0px;
+        margin-right: 0px;
+        font-weight: bold;
+        transition: all 0.3s ease-in 0s;
+      }
+
+      .nav-tabs li a:hover {
+        border-bottom-color: #ededed;
+        border-right: 0px none;
+        background: #00b0ad;
+        color: #fff;
+      }
+
+      .nav-tabs li a i {
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+      }
+
+      .nav-tabs li:last-child {
+        border-right: 1px solid #ededed;
+      }
+
+      .nav-tabs li.active a,
+      .nav-tabs li.active a:focus,
+      .nav-tabs li.active a:hover {
+        border-top: 3px solid #00b0ad;
+        border-right: 1px solid #d3d3d3;
+        margin-top: -15px;
+        color: #444;
+        padding: 22px 40px;
+      }
+
+      .tab .tab-content {
+        padding: 20px;
+        line-height: 22px;
+        box-shadow: 0px 1px 0px #808080;
+      }
+
+      .tab .tab-content h3 {
+        margin-top: 0;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .nav-tabs li {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .nav-tabs li a {
+          padding: 15px;
+        }
+
+        .nav-tabs li.active a,
+        .nav-tabs li.active a:focus,
+        .nav-tabs li.active a:hover {
+          padding: 15px;
+          margin-top: 0;
+        }
+      }
+    </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Paket Tour
-          <small></small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Paket</li>
-        </ol>
-      </section>
+
+
+
 
       <!-- Main content -->
       <section class="content">
+
         <div class="row">
           <div class="col-xs-12">
-            <div class="box">
+            <div class="tab" role="tabpanel">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user"></i>Paket Tour</a></li>
+                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>Availble Tour</a></li>
 
-              <div class="box">
-                <div class="box-header">
-                  <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Add New</a>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-striped" style="font-size:13px;">
-                    <thead>
-                      <tr>
-                        <th>Gambar</th>
-                        <th>Paket</th>
-                        <th style="text-align: right;">Tarif Dewasa</th>
-                        <th style="text-align: right;">Tarif Anak-Anak</th>
-                        <th style="text-align:right;">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $no = 0;
-                      foreach ($data->result_array() as $a) :
-                        $no++;
-                        $id = $a['idpaket'];
-                        $gambar = $a['gambar'];
-                        $nama_paket = $a['nama_paket'];
-                        $hrg_dewasa = $a['hrg_dewasa'];
-                        $hrg_anak = $a['hrg_anak'];
-                        $kategori_id = $a['kategori_id'];
-                        ?>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+
+                  <div class="box-header">
+                    <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Add New</a>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-striped" style="font-size:13px;">
+                      <thead>
                         <tr>
-                          <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" style="width:90px;"></td>
-                          <td><?php echo $nama_paket; ?></td>
-                          <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_dewasa); ?></td>
-                          <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_anak); ?></td>
-                          <td style="text-align:right;">
-                            <a class="btn" data-toggle="modal" data-target="#ModalUpdate<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
-                            <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
-                          </td>
+                          <th>Gambar</th>
+                          <th>Paket</th>
+                          <th style="text-align: right;">Tarif Dewasa</th>
+                          <th style="text-align: right;">Tarif Anak-Anak</th>
+                          <th style="text-align:right;">Aksi</th>
                         </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $no = 0;
+                        foreach ($data->result_array() as $a) :
+                          $no++;
+                          $id = $a['idpaket'];
+                          $gambar = $a['gambar'];
+                          $nama_paket = $a['nama_paket'];
+                          $hrg_dewasa = $a['hrg_dewasa'];
+                          $hrg_anak = $a['hrg_anak'];
+                          $kategori_id = $a['kategori_id'];
+                        ?>
+                          <tr>
+                            <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" style="width:90px;"></td>
+                            <td><?php echo $nama_paket; ?></td>
+                            <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_dewasa); ?></td>
+                            <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_anak); ?></td>
+                            <td style="text-align:right;">
+                              <a class="btn" data-toggle="modal" data-target="#ModalUpdate<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
+                              <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                            </td>
+                          </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.box-body -->
+
                 </div>
-                <!-- /.box-body -->
+                <div role="tabpanel" class="tab-pane fade" id="Section2">
+
+                  <!-- /.box-header -->
+                  <div class="box-header">
+                    <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#my-tour"><span class="fa fa-plus"></span> Add New</a>
+                  </div>
+                  <div class="box-body">
+                    <table id="example1" class="table table-striped" style="font-size:13px;">
+                      <thead>
+                        <tr>
+                          <th>Gambar</th>
+                          <th>Paket</th>
+                          <th style="text-align: right;">Tarif Dewasa</th>
+                          <th style="text-align: right;">Tarif Anak-Anak</th>
+                          <th style="text-align:right;">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $no = 0;
+                        foreach ($availble_tour->result_array() as $a) :
+                          $no++;
+                          $id = $a['id'];
+                          $gambar = $a['gambar'];
+                          $nama_paket = $a['nama_paket'];
+                          $hrg_dewasa = $a['tgl_awal'];
+                          $hrg_anak = $a['tgl_akhir'];
+                          $kategori_id = $a['jumlah_ketersedian'];
+                        ?>
+                          <tr>
+                            <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" style="width:90px;"></td>
+                            <td><?php echo $nama_paket; ?></td>
+                            <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_dewasa); ?></td>
+                            <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_anak); ?></td>
+                            <td style="text-align:right;">
+                              <a class="btn" data-toggle="modal" data-target="#ModalUpdate<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
+                              <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                            </td>
+                          </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+
               </div>
-              <!-- /.box -->
             </div>
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
+        </div>
+
+
       </section>
-      <!-- /.content -->
+
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
@@ -261,6 +395,8 @@ $jum_konfirmasi = $query4->num_rows();
     <div class="control-sidebar-bg"></div>
   </div>
   <!-- ./wrapper -->
+
+
 
 
   <!-- ============ MODAL ADD PAKET TOUR =============== -->
@@ -297,7 +433,7 @@ $jum_konfirmasi = $query4->num_rows();
                   <?php foreach ($kat->result_array() as $k) :
                     $idkat = $k['id_kategori'];
                     $kate = $k['kategori'];
-                    ?>
+                  ?>
                     <option value="<?php echo $idkat; ?>"><?php echo $kate; ?></option>
                   <?php endforeach; ?>
                 </select>
@@ -336,6 +472,68 @@ $jum_konfirmasi = $query4->num_rows();
     </div>
   </div>
 
+
+  <!-- ============ MODAL ADD availble TOUR =============== -->
+  <div class="modal fade" id="my-tour" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h3 class="modal-title" id="myModalLabel">Tambah Ketersediaan Paket</h3>
+        </div>
+        <form class="form-horizontal" method="post" action="<?php echo base_url() . 'backend/paket_tour/simpan_ketersedian_paket' ?>" enctype="multipart/form-data">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label class="control-label col-xs-2">Kategori</label>
+              <div class="col-xs-8">
+                <select name="id_paket_tour" id="paket" data-width="100%" class="form-control" required>
+                  <option value="">-PILIH-</option>
+
+                  <?php
+                  foreach ($data->result_array() as $i) {
+                    $kode = $i['idpaket'];
+                    $nama = $i['nama_paket'];
+                  ?>
+                    <option value='<?php echo $kode ?>'><?php echo $nama ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-2">Jumlah Ketersedian</label>
+              <div class="col-xs-8">
+                <input name="jumlah_ketersedian" class="form-control" type="number" placeholder="Jumlah Ketersedian" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-xs-2">Tanggal Awal</label>
+              <div class="col-xs-8">
+                <input type="text" class="form-control" id="datepicker" name="tgl_awal" autocomplete="off" value="" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-xs-2">Tanggal Akhir</label>
+              <div class="col-xs-8">
+
+                <input type="text" class="form-control" id="datepicker2" name="tgl_akhir" autocomplete="off" value="" required>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-flat" data-dismiss="modal" aria-hidden="true">Tutup</button>
+            <button class="btn btn-primary btn-flat">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <?php
   $no = 0;
   foreach ($data->result_array() as $a) :
@@ -347,7 +545,7 @@ $jum_konfirmasi = $query4->num_rows();
     $hrg_dewasa = $a['hrg_dewasa'];
     $hrg_anak = $a['hrg_anak'];
     $kategori_id = $a['kategori_id'];
-    ?>
+  ?>
     <!-- ============ MODAL EDIT PAKET TOUR =============== -->
     <div class="modal fade" id="ModalUpdate<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -380,9 +578,9 @@ $jum_konfirmasi = $query4->num_rows();
                   <select name="kategori" class="form-control" required>
                     <option value="">-PILIH-</option>
                     <?php foreach ($kat->result_array() as $k) :
-                        $idkat = $k['id_kategori'];
-                        $kate = $k['kategori'];
-                        ?>
+                      $idkat = $k['id_kategori'];
+                      $kate = $k['kategori'];
+                    ?>
                       <?php if ($idkat == $kategori_id) : ?>
                         <option value="<?php echo $idkat; ?>" selected><?php echo $kate; ?></option>
                       <?php else : ?>
@@ -439,7 +637,7 @@ $jum_konfirmasi = $query4->num_rows();
     $hrg_dewasa = $a['hrg_dewasa'];
     $hrg_anak = $a['hrg_anak'];
     $kategori_id = $a['kategori_id'];
-    ?>
+  ?>
     <!--Modal Hapus Post-->
     <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -475,6 +673,9 @@ $jum_konfirmasi = $query4->num_rows();
   <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.bootstrap.min.js' ?>"></script>
   <!-- SlimScroll -->
   <script src="<?php echo base_url() . 'assets/plugins/slimScroll/jquery.slimscroll.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/datepicker/bootstrap-datepicker.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/timepicker/bootstrap-timepicker.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/daterangepicker/daterangepicker.js' ?>"></script>
   <!-- FastClick -->
   <script src="<?php echo base_url() . 'assets/plugins/fastclick/fastclick.js' ?>"></script>
   <!-- AdminLTE App -->
@@ -483,21 +684,70 @@ $jum_konfirmasi = $query4->num_rows();
   <script src="<?php echo base_url() . 'assets/dist/js/demo.js' ?>"></script>
   <script src="<?php echo base_url() . 'assets/ckeditor/ckeditor.js' ?>"></script>
   <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/plugins/select2/select2.min.js' ?>"></script>
   <!-- page script -->
   <script>
-    $(function() {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
+    $(document).ready(function() {
+      $("#foto").select2({
+        dropdownParent: $("#my-tour")
+
       });
-      CKEDITOR.replace('ckeditor');
+
+    });
+
+    $(document).ready(function() {
+      $("#paket").select2({
+        dropdownParent: $("#my-tour")
+      });
+
+    });
+
+    $(document).ready(function() {
+      $("#foto_edit").select2();
+
+    });
+
+    $(document).ready(function() {
+      $("#paket_edit").select2();
+
     });
   </script>
+  <script>
+    $(function() {
+      $('#datepicker').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        todayHighlight: true,
+        autoclose: true
+      });
+      $('#datepicker2').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        todayHighlight: true,
+        autoclose: true
+      });
+      $('.datepicker3').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+      });
+      $('.datepicker4').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+      });
+      $(".timepicker").timepicker({
+        showInputs: true
+      });
+      $("#example1").DataTable();
+      $('#example2').DataTable();
+      CKEDITOR.replace('ckeditor');
+
+
+    });
+  </script>
+
+
 
   <?php if ($this->session->flashdata('msg') == 'success') : ?>
     <script type="text/javascript">
