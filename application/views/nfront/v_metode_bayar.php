@@ -99,13 +99,13 @@
                             $bank = $i['bank'];
                             $norek = $i['norek'];
                             $atasnama = $i['atasnama'];
-                            ?>
+                        ?>
                             <tr>
                                 <td><?php echo $metode; ?></td>
                                 <td><?php echo $bank; ?></td>
                                 <td><?php echo $norek; ?></td>
                                 <td><?php echo $atasnama; ?></td>
-                                <td><a href="<?php echo base_url() . 'paket_tour/set_pembayaran/' . $idmetode; ?>" target="_blank" class="badge badge-success">Pilih</a></td>
+                                <td><a href="<?php echo base_url() . 'paket_tour/set_pembayaran/' . $idmetode; ?>" class="badge badge-success">Pilih</a></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

@@ -458,9 +458,7 @@ $b = $data->row_array();
                                         <td class="item-col item">
                                             <table cellspacing="0" cellpadding="0" width="100%">
                                                 <tr>
-                                                    <td class="mobile-hide-img">
-                                                        <a href=""><img width="110" height="92" src="http://s3.amazonaws.com/swu-filepicker/RPezUIwPRv8pjatAAH1E_item_images_19.jpg" alt="item1"></a>
-                                                    </td>
+
                                                     <td class="product">
                                                         <span style="color: #4d4d4d; font-weight:bold;"><?php echo tanggal($b['berangkat']); ?></span>
 

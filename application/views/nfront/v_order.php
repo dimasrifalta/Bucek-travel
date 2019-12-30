@@ -147,7 +147,7 @@ $b = $pkt->row_array();
                         <input type="text" name="nama_paket" class="form-control" value="<?php echo $b['nama_paket'] ?>" readonly="readonly" required />
                     </div>
 
-
+                    <!-- 
                     <div class="mb-3">
                         <label for="checkin">Keberangkatan</label>
                         <div class="field-icon-wrap">
@@ -164,7 +164,7 @@ $b = $pkt->row_array();
                             </div>
                             <input type="text" id="checkout_date" class="form-control datepicker" data-date-format="yyyy-mm-dd" autocomplete="off" name="kembali" required />
                         </div>
-                    </div>
+                    </div> -->
 
 
 
@@ -183,17 +183,28 @@ $b = $pkt->row_array();
                     </div>
                     <div class="mb-3">
                         <label for="payment">Tanggal Tersedia</label>
-                        <select name="id_paket" id="paket" data-width="100%" class="form-control select2" required>
-                            <option>Pilih</option>
-                            <?php
-                            foreach ($ketersediaan->result_array() as $i) {
-                                $kode = $i['id'];
-                                $tgl_awal = $i['tgl_awal'];
-                                $tgl_akhir = $i['tgl_akhir'];
-                            ?>
-                                <option value='<?php echo $kode ?>'><?php echo tanggal($tgl_awal) ?> - <?php echo tanggal($tgl_akhir) ?></option>
+                        <?php if ($ketersediaan->num_rows() >= 1) { ?>
+                            <select name="id_paket_tour" id="paket" data-width="100%" class="form-control select2" required>
+
+                                <option>Pilih</option>
+                                <?php
+                                foreach ($ketersediaan->result_array() as $i) {
+                                    $kode = $i['id_paket_tour'];
+                                    $tgl_awal = $i['tgl_awal'];
+                                    $tgl_akhir = $i['tgl_akhir'];
+                                ?>
+                                    <option value='<?php echo $kode ?>'><?php echo tanggal($tgl_awal) ?> - <?php echo tanggal($tgl_akhir) ?></option>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Jadwal Belum Tersedia!</h4>
+                                    <p>Mohon maaf, atas ketidaknyamanan. Untuk saat ini jadwal paket tour belum tersedia.</p>
+                                    <hr>
+                                    <p class="mb-0">Kami akan secepatnya mengupdate jadwal paket tour. Terima kasih atas perhatiannya. -Sumbawa Tour Travel.</p>
+                                </div>
                             <?php } ?>
-                        </select>
+
+                            </select>
 
                     </div>
                     <div class="mb-3">
@@ -207,7 +218,14 @@ $b = $pkt->row_array();
 
                     <hr class="mb-4">
 
-                    <p><button type="submit" class="btn btn-primary py-3 px-5">Pesan Sekarang</button></p>
+                    <p>
+                        <?php if ($ketersediaan->num_rows() < 1) { ?>
+                            <button type="submit" class="btn btn-primary py-3 px-5 " disabled>Pesan Sekarang</button>
+                        <?php } else { ?>
+                            <button type="submit" class="btn btn-primary py-3 px-5 ">Pesan Sekarang</button>
+
+                        <?php } ?>
+                    </p>
 
                 </form>
             </div>

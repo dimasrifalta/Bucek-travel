@@ -107,36 +107,23 @@ class Paket_tour extends CI_Controller
         $email = strip_tags(str_replace("'", "", $this->input->post('email')));
         $paket = strip_tags(str_replace("'", "", $this->input->post('paket')));
         $no_ktp = strip_tags(str_replace("'", "", $this->input->post('no_ktp')));
-
-        $tgl1     = $this->input->post('berangkat');
-        $berangkat = date('Y-m-d', strtotime($tgl1));
-
-        $tgl2 = $this->input->post('kembali');
-        $kembali = date('Y-m-d', strtotime($tgl2));
+        $id_paket_tour = $this->input->post('id_paket_tour');
 
 
 
-        $date = date('Y-m-d', strtotime("-1 day"));
 
-        if ($date < $berangkat) {
-            $dewasa = $this->input->post('adultamt');
-            $anak2 = $this->input->post('childrenamt');
+        $dewasa = $this->input->post('adultamt');
+        $anak2 = $this->input->post('childrenamt');
 
-            $ket = htmlspecialchars($this->input->post('notebox', true));
-            $id_user = $this->session->userdata('id');
-            $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket, $no_ktp);
-            $this->session->set_userdata('invoices', $no_order);
-            $x['photo'] = $this->mberita->get_photo();
-            $x['data'] = $this->mpaket->get_metode();
-            $this->load->view('nfront/templates/f_header', $x);
-            $this->load->view('nfront/v_metode_bayar', $x);
-            $this->load->view('nfront/templates/_footer', $x);
-        } else {
-            echo "<script>
-            alert('Maaf. Paket tidak tersedia. Harap Masukan Tanggal Keberangkatan Yang benar');
-            window.location=document.referrer;
-            </script>";
-        }
+        $ket = htmlspecialchars($this->input->post('notebox', true));
+        $id_user = $this->session->userdata('id');
+        $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id_paket_tour);
+        $this->session->set_userdata('invoices', $no_order);
+        $x['photo'] = $this->mberita->get_photo();
+        $x['data'] = $this->mpaket->get_metode();
+        $this->load->view('nfront/templates/f_header', $x);
+        $this->load->view('nfront/v_metode_bayar', $x);
+        $this->load->view('nfront/templates/_footer', $x);
     }
 
     /*kirim email*/

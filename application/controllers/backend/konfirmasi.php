@@ -1,6 +1,12 @@
 <?php
+
+require('assets/plugins/dompdf/autoload.inc.php');
+
+use Dompdf\Dompdf;
+
 class Konfirmasi extends CI_Controller
 {
+
     function __construct()
     {
         parent::__construct();
@@ -10,6 +16,7 @@ class Konfirmasi extends CI_Controller
         };
         $this->load->model('morders');
         $this->load->model('mpaket');
+        $this->load->library('pdf');
     }
     function index()
     {
@@ -36,6 +43,7 @@ class Konfirmasi extends CI_Controller
         $this->morders->simpan_transaksi($id);
         $this->db->query("UPDATE transaksi SET kode_booking='$res' ,date_created='$date_created',transaksi.status='LUNAS' WHERE id_order='$id'");
 
+
         //Kirim email_invoice
         $this->_sendEmail($id);
 
@@ -46,7 +54,22 @@ class Konfirmasi extends CI_Controller
     private function _sendEmail($id)
     {
 
+        //File name
+        $filename = "E-Ticket";
+        $this->load->library('pdf');
+        $this->load->view('nfront/email/attach.html');
+        $html = $this->output->get_output();
+        $this->pdf->load_html($html);
+        // $customPaper = array(0,0,570,570);
+        //$this->pdf->set_paper($customPaper);
+        $this->pdf->setPaper('A4', 'landscape');
+        $this->pdf->render();
 
+        $pdf = $this->pdf->output();
+
+        file_put_contents('assets/plugins/dompdf/' . $filename . '.pdf', $pdf);
+
+        $attach = 'C:\xampp\htdocs\bucektravel\assets\plugins\dompdf\E-Ticket.pdf';
         $config = [
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -67,9 +90,11 @@ class Konfirmasi extends CI_Controller
 
         $this->email->subject('E-Tiket Paket Tour Wisata -No.Pesanan' . $id);
         $this->email->message($message);
+        $this->email->attach($attach);
 
 
         if ($this->email->send()) {
+            unlink("C:\xampp\htdocs\bucektravel\assets\plugins\dompdf\E-Ticket.pdf");
             return true;
         } else {
             echo $this->email->print_debugger();

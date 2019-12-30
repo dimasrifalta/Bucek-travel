@@ -94,9 +94,9 @@ class Mpaket extends CI_Model
         }
         return "INV" . date('dmy') . $kd;
     }
-    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $berangkat, $kembali, $dewasa, $anak2, $ket, $no_ktp)
+    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id_paket_tour)
     {
-        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email','$berangkat','$kembali','$dewasa','$anak2','$paket','$ket',CURDATE(), '$no_ktp')");
+        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal,status, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email',(SELECT tgl_awal from  available_tour where 	id_paket_tour = '$id_paket_tour'),(SELECT tgl_akhir from  available_tour where 	id_paket_tour = '$id_paket_tour'),'$dewasa','$anak2','$paket','$ket',CURDATE(),'belum_bayar', '$no_ktp')");
         return $hasil;
     }
 
