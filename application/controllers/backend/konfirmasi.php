@@ -38,6 +38,7 @@ class Konfirmasi extends CI_Controller
         $this->db->query("UPDATE paket SET views=views+1 WHERE idpaket='$idpaket'");
         $this->db->query("UPDATE orders SET kode_booking='$res' WHERE id_order='$id'");
 
+
         //simpan data ketabel transaksi
         $date_created = date('Y-m-d H:i:s');
         $this->morders->simpan_transaksi($id);
@@ -48,28 +49,29 @@ class Konfirmasi extends CI_Controller
         $this->_sendEmail($id);
 
         echo $this->session->set_flashdata('msg', 'success');
-        redirect('backend/orders');
+        redirect('backend/konfirmasi');
     }
     /*kirim email*/
     private function _sendEmail($id)
     {
 
         //File name
+        $x['data'] = $this->mpaket->booking_email($id);
         $filename = "E-Ticket";
         $this->load->library('pdf');
-        $this->load->view('nfront/email/attach.html');
+        $this->load->view('nfront/email/attach', $x);
         $html = $this->output->get_output();
         $this->pdf->load_html($html);
         // $customPaper = array(0,0,570,570);
         //$this->pdf->set_paper($customPaper);
-        $this->pdf->setPaper('A4', 'landscape');
+        $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->render();
 
         $pdf = $this->pdf->output();
 
         file_put_contents('assets/plugins/dompdf/' . $filename . '.pdf', $pdf);
 
-        $attach = 'C:\xampp\htdocs\bucektravel\assets\plugins\dompdf\E-Ticket.pdf';
+        $attach = FCPATH . 'assets/plugins/dompdf/E-Ticket.pdf';
         $config = [
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -80,7 +82,7 @@ class Konfirmasi extends CI_Controller
             'charset'   => 'utf-8',
             'newline'   => "\r\n"
         ];
-        $x['data'] = $this->mpaket->booking_email($id);
+
 
         $this->email->initialize($config);
         $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
@@ -94,7 +96,7 @@ class Konfirmasi extends CI_Controller
 
 
         if ($this->email->send()) {
-            unlink("C:\xampp\htdocs\bucektravel\assets\plugins\dompdf\E-Ticket.pdf");
+            unlink(FCPATH . 'assets/plugins/dompdf/E-Ticket.pdf');
             return true;
         } else {
             echo $this->email->print_debugger();

@@ -3,7 +3,7 @@
 
 <?php
 error_reporting(0);
-$b = $data;
+$b = $data->row_array();
 //$c=$samp->row_array();
 ?>
 
@@ -19,91 +19,116 @@ $b = $data;
 <body>
     <header class="clearfix">
         <div id="logo">
-            <img src="logo.png">
+            <img src=" <?php echo $_SERVER["DOCUMENT_ROOT"] . '/plugins/invoice/logo.png'; ?>">
         </div>
-        <div id="company">
-            <h2 class="name">Company Name</h2>
-            <div>455 Foggy Heights, AZ 85004, US</div>
+        <div id=" company">
+            <h2 class="name">Sumbawa Tour Travel</h2>
+            <div> 84454, Sumbawa<br>
+                AZ 85004, ID</div>
             <div>(602) 519-0450</div>
-            <div><a href="mailto:company@example.com">company@example.com</a></div>
+            <div>
+                <a href="mailto:company@example.com">sumawatour@gmail.com</<a>
+            </div>
         </div>
         </div>
     </header>
     <main>
         <div id="details" class="clearfix">
             <div id="client">
-                <div class="to">INVOICE TO:</div>
+                <div class="to">NO INVOICE : <?php echo $b['id_order'] ?></div>
                 <h2 class="name">John Doe</h2>
-                <div class="address">796 Silver Harbour, TX 79273, US</div>
-                <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                <div class="address"> ALAMAT :<?php echo $b['alamat']; ?>, ID</div>
+                <div class="email"><a href="<?php echo $b['id'] ?>"><?php echo $b['id'] ?></a></div>
             </div>
             <div id="invoice">
-                <h1>INVOICE 3-2-1</h1>
-                <div class="date">Date of Invoice: 01/06/2014</div>
-                <div class="date">Due Date: 30/06/2014</div>
+                <div class="to">KODE BOOKING : <span style="color: #1E90FF; font-weight:bold;"><?php echo $b['kode_booking'] ?></span></div>
+                <div class="date">Tanggal Invoice: <?php echo tanggal($b['tanggal']) ?></div>
+                <div class="date">Batas Waktu: <?php echo tanggal($b['berangkat']); ?></div>
             </div>
         </div>
         <table border="0" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
-                    <th class="no">#</th>
-                    <th class="desc">DESCRIPTION</th>
-                    <th class="unit">UNIT PRICE</th>
-                    <th class="qty">QUANTITY</th>
-                    <th class="total">TOTAL</th>
+                    <th class="no">Paket Tour</th>
+                    <th class="desc">Keberangkatan</th>
+                    <th class="unit">Dewasa</th>
+                    <th class="qty">Anak-Anak</th>
+                    <th class="total">Total</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="no">01</td>
+                    <td class="no"><?php echo $b['nama_paket']; ?></td>
                     <td class="desc">
-                        <h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity
+                        <?php echo tanggal($b['berangkat']); ?>
                     </td>
-                    <td class="unit">$40.00</td>
-                    <td class="qty">30</td>
-                    <td class="total">$1,200.00</td>
-                </tr>
-                <tr>
-                    <td class="no">02</td>
-                    <td class="desc">
-                        <h3>Website Development</h3>Developing a Content Management System-based Website
+                    <td class="unit"><?php echo $b['adult'] . ' Orang'; ?></td>
+                    <td class="qty"><?php echo $b['kids'] . ' Orang'; ?>
                     </td>
-                    <td class="unit">$40.00</td>
-                    <td class="qty">80</td>
-                    <td class="total">$3,200.00</td>
+                    <td class="total"><?php echo $b['jml_berangkat'] .  ' Orang'; ?></td>
                 </tr>
-                <tr>
-                    <td class="no">03</td>
-                    <td class="desc">
-                        <h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)
-                    </td>
-                    <td class="unit">$40.00</td>
-                    <td class="qty">20</td>
-                    <td class="total">$800.00</td>
-                </tr>
+
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="2"></td>
-                    <td colspan="2">SUBTOTAL</td>
-                    <td>$5,200.00</td>
+                    <td colspan="2">Dewasa</td>
+
+                    <td class="total"><?php echo 'Rp. ' . number_format($b['hrg_dewasa']); ?> X <?php echo $b['adult']; ?></td>
+
                 </tr>
                 <tr>
                     <td colspan="2"></td>
-                    <td colspan="2">TAX 25%</td>
-                    <td>$1,300.00</td>
+                    <td colspan="2">Anak-anak</td>
+                    <td><?php echo 'Rp. ' . number_format($b['hrg_anak']) . ' X '; ?> <?php echo $b['kids']; ?></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td colspan="2">GRAND TOTAL</td>
-                    <td>$6,500.00</td>
+                    <td><?php echo 'Rp. ' . number_format($b['total']); ?></td>
                 </tr>
             </tfoot>
         </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
         <div id="thanks">Thank you!</div>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <div id="notices">
             <div>NOTICE:</div>
-            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+            <div class="notice">Kami telah membuat jadwal tour anda mohon untuk membaca nya.</div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <h1>TO DO LIST </h1>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h3 class="list-group-item-heading"><?php echo $b['deskripsi']; ?></h3>
+
+                </li>
+
+            </ul>
         </div>
     </main>
     <footer>

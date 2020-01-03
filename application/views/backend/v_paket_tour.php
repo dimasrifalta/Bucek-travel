@@ -336,13 +336,15 @@ function limit_words($string, $word_limit)
                     <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#my-tour"><span class="fa fa-plus"></span> Add New</a>
                   </div>
                   <div class="box-body">
-                    <table id="example1" class="table table-striped" style="font-size:13px;">
+                    <table id="example2" class="table table-striped" style="font-size:13px;">
                       <thead>
                         <tr>
                           <th>Gambar</th>
                           <th>Paket</th>
-                          <th style="text-align: right;">Tarif Dewasa</th>
-                          <th style="text-align: right;">Tarif Anak-Anak</th>
+                          <th style="text-align: right;">Tanggal Awal</th>
+                          <th style="text-align: right;">Tanggal Akhir</th>
+                          <th style="text-align: right;">Jumlah Ketersediaan</th>
+
                           <th style="text-align:right;">Aksi</th>
                         </tr>
                       </thead>
@@ -354,17 +356,19 @@ function limit_words($string, $word_limit)
                           $id = $a['id'];
                           $gambar = $a['gambar'];
                           $nama_paket = $a['nama_paket'];
-                          $hrg_dewasa = $a['tgl_awal'];
-                          $hrg_anak = $a['tgl_akhir'];
-                          $kategori_id = $a['jumlah_ketersedian'];
+                          $tgl_awal = $a['tgl_awal'];
+                          $tgl_akhir = $a['tgl_akhir'];
+                          $jumlah_ketersedian = $a['jumlah_ketersedian'];
                         ?>
                           <tr>
                             <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" style="width:90px;"></td>
                             <td><?php echo $nama_paket; ?></td>
-                            <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_dewasa); ?></td>
-                            <td style="text-align: right;"><?php echo 'Rp ' . number_format($hrg_anak); ?></td>
+                            <td style="text-align: right;"><?php echo tanggal($tgl_awal); ?></td>
+                            <td style="text-align: right;"><?php echo tanggal($tgl_akhir); ?></td>
+                            <td style="text-align: right;"><?php echo $jumlah_ketersedian; ?></td>
+
                             <td style="text-align:right;">
-                              <a class="btn" data-toggle="modal" data-target="#ModalUpdate<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
+                              <a class="btn" data-toggle="modal" data-target="#available_tour<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
                               <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
                             </td>
                           </tr>
@@ -541,8 +545,8 @@ function limit_words($string, $word_limit)
     $id = $a['idpaket'];
     $gambar = $a['gambar'];
     $nama_paket = $a['nama_paket'];
-    $deskripsi = $a['deskripsi'];
     $hrg_dewasa = $a['hrg_dewasa'];
+    $deskripsi = $a['deskripsi'];
     $hrg_anak = $a['hrg_anak'];
     $kategori_id = $a['kategori_id'];
   ?>
@@ -611,6 +615,73 @@ function limit_words($string, $word_limit)
                   <input type="file" name="filefoto">
                 </div>
               </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <input type="hidden" name="kode" value="<?php echo $id; ?>">
+              <button class="btn btn-flat" data-dismiss="modal" aria-hidden="true">Tutup</button>
+              <button class="btn btn-primary btn-flat">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  <?php endforeach; ?>
+
+  <?php
+  $no = 0;
+  foreach ($availble_tour->result_array() as $a) :
+    $no++;
+    $id = $a['id'];
+    $gambar = $a['gambar'];
+    $nama_paket = $a['nama_paket'];
+    $tgl_awal = $a['tgl_awal'];
+    $tgl_akhir = $a['tgl_akhir'];
+    $jumlah_ketersedian = $a['jumlah_ketersedian'];
+  ?>
+    <!-- ============ MODAL EDIT AVAILABLE TOUR =============== -->
+    <div class="modal fade" id="available_tour<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 class="modal-title" id="available_tour">Edit Available Tour</h3>
+          </div>
+          <form class="form-horizontal" method="post" action="<?php echo base_url() . 'backend/paket_tour/update_available_tour' ?>" enctype="multipart/form-data">
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">Paket</label>
+                <div class="col-xs-8">
+                  <input name="nama_paket" value="<?php echo $nama_paket; ?>" class="form-control" type="text" placeholder="Nama Paket" readonly>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">Tanggal Awal</label>
+                <div class="col-xs-8">
+                  <input type="text" class="form-control" id="datepicker3" name="tgl_awal" autocomplete="off" value="<?php echo $tgl_awal; ?>" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">Tanggal Akhir</label>
+                <div class="col-xs-8">
+                  <input name="tgl_akhir" id="datepicker4" value="<?php echo $tgl_akhir; ?>" class="form-control" type="text" placeholder="Tanggal Akhir" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">Jumlah Ketersediaan</label>
+                <div class="col-xs-8">
+                  <input name="jumlah_ketersedian" value="<?php echo $jumlah_ketersedian; ?>" class="form-control" type="number" max="40" placeholder="Jumlah Ketersedian" required>
+                </div>
+              </div>
+
 
             </div>
 
@@ -728,13 +799,17 @@ function limit_words($string, $word_limit)
         todayHighlight: true,
         autoclose: true
       });
-      $('.datepicker3').datepicker({
+      $('#datepicker3').datepicker({
         autoclose: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        autoclose: true
       });
-      $('.datepicker4').datepicker({
+      $('#datepicker4').datepicker({
         autoclose: true,
-        format: 'yyyy-mm-dd'
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        autoclose: true
       });
       $(".timepicker").timepicker({
         showInputs: true

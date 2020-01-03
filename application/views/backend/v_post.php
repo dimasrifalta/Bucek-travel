@@ -30,17 +30,16 @@ $jum_konfirmasi = $query4->num_rows();
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/skins/_all-skins.min.css' ?>">
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
 
     <?php
-  function limit_words($string, $word_limit)
-  {
-    $words = explode(" ", $string);
-    return implode(" ", array_splice($words, 0, $word_limit));
-  }
+    function limit_words($string, $word_limit)
+    {
+        $words = explode(" ", $string);
+        return implode(" ", array_splice($words, 0, $word_limit));
+    }
 
-  ?>
+    ?>
 
 </head>
 
@@ -48,8 +47,8 @@ $jum_konfirmasi = $query4->num_rows();
     <div class="wrapper">
 
         <?php
-    $this->load->view('backend/v_header');
-    ?>
+        $this->load->view('backend/v_header');
+        ?>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
@@ -76,10 +75,8 @@ $jum_konfirmasi = $query4->num_rows();
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i
-                                        class="fa fa-thumb-tack"></i> Add New</a></li>
-                            <li class="active"><a href="<?php echo base_url() . 'backend/post' ?>"><i
-                                        class="fa fa-list"></i> Post List</a></li>
+                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i class="fa fa-thumb-tack"></i> Add New</a></li>
+                            <li class="active"><a href="<?php echo base_url() . 'backend/post' ?>"><i class="fa fa-list"></i> Post List</a></li>
                         </ul>
                     </li>
                     <li>
@@ -184,90 +181,208 @@ $jum_konfirmasi = $query4->num_rows();
             </section>
             <!-- /.sidebar -->
         </aside>
+        <style>
+            .tab {
+                margin-top: 30px;
+            }
+
+            .tab .nav-tabs {
+                border: none;
+                border-bottom: 1px solid #e4e4e4;
+            }
+
+            .nav-tabs li a {
+                padding: 15px 40px;
+                border: 1px solid #ededed;
+                border-top: 2px solid #ededed;
+                border-right: 0px none;
+                background: #7a81f4;
+                color: #fff;
+                border-radius: 0px;
+                margin-right: 0px;
+                font-weight: bold;
+                transition: all 0.3s ease-in 0s;
+            }
+
+            .nav-tabs li a:hover {
+                border-bottom-color: #ededed;
+                border-right: 0px none;
+                background: #00b0ad;
+                color: #fff;
+            }
+
+            .nav-tabs li a i {
+                display: inline-block;
+                text-align: center;
+                margin-right: 10px;
+            }
+
+            .nav-tabs li:last-child {
+                border-right: 1px solid #ededed;
+            }
+
+            .nav-tabs li.active a,
+            .nav-tabs li.active a:focus,
+            .nav-tabs li.active a:hover {
+                border-top: 3px solid #00b0ad;
+                border-right: 1px solid #d3d3d3;
+                margin-top: -15px;
+                color: #444;
+                padding: 22px 40px;
+            }
+
+            .tab .tab-content {
+                padding: 20px;
+                line-height: 22px;
+                box-shadow: 0px 1px 0px #808080;
+            }
+
+            .tab .tab-content h3 {
+                margin-top: 0;
+            }
+
+            @media only screen and (max-width: 767px) {
+                .nav-tabs li {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                .nav-tabs li a {
+                    padding: 15px;
+                }
+
+                .nav-tabs li.active a,
+                .nav-tabs li.active a:focus,
+                .nav-tabs li.active a:hover {
+                    padding: 15px;
+                    margin-top: 0;
+                }
+            }
+        </style>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Post Lists
-                    <small></small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="#">Post</a></li>
-                    <li class="active">List</li>
-                </ol>
-            </section>
+
 
             <!-- Main content -->
             <section class="content">
+
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="box">
+                        <div class="tab" role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user"></i>Data Kupon</a></li>
+                                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>Post List</a></li>
 
-                            <div class="box">
-                                <div class="box-header">
-                                    <a class="btn btn-success btn-flat"
-                                        href="<?php echo base_url() . 'backend/post/add_post' ?>"><span
-                                            class="fa fa-plus"></span> Add Post</a>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table id="example1" class="table table-striped" style="font-size:13px;">
-                                        <thead>
-                                            <tr>
-                                                <th>Gambar</th>
-                                                <th>Judul</th>
-                                                <th>Tanggal</th>
-                                                <th>Author</th>
-                                                <th>Views</th>
-                                                <th style="text-align:right;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                      $no = 0;
-                      foreach ($data->result_array() as $a) :
-                        $no++;
-                        $id = $a['idberita'];
-                        $gambar = $a['gambar'];
-                        $jdl = $a['judul'];
-                        $tglpost = $a['tglpost'];
-                        $last_update = $a['tgl_last_update'];
-                        $author = $a['user'];
-                        $views = $a['views'];
-                        ?>
-                                            <tr>
-                                                <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>"
-                                                        style="width:90px;"></td>
-                                                <td><?php echo $jdl; ?></td>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content tabs">
+                                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                    <h3>Data Kupon</h3>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <table id="example1" class="table table-striped" style="font-size:13px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Gambar</th>
+                                                    <th>Judul</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Author</th>
+                                                    <th>Views</th>
+                                                    <th style="text-align:right;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 0;
+                                                foreach ($data->result_array() as $a) :
+                                                    $no++;
+                                                    $id = $a['idberita'];
+                                                    $gambar = $a['gambar'];
+                                                    $jdl = $a['judul'];
+                                                    $tglpost = $a['tglpost'];
+                                                    $last_update = $a['tgl_last_update'];
+                                                    $author = $a['user'];
+                                                    $views = $a['views'];
+                                                ?>
+                                                    <tr>
+                                                        <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" style="width:90px;"></td>
+                                                        <td><?php echo $jdl; ?></td>
 
-                                                <td><?php echo $tglpost; ?></td>
-                                                <td><?php echo $author; ?></td>
-                                                <td><?php echo $views; ?></td>
-                                                <td style="text-align:right;">
-                                                    <a class="btn"
-                                                        href="<?php echo base_url() . 'backend/post/get_edit/' . $id; ?>"><span
-                                                            class="fa fa-pencil"></span></a>
-                                                    <a class="btn" data-toggle="modal"
-                                                        data-target="#ModalHapus<?php echo $id; ?>"><span
-                                                            class="fa fa-trash"></span></a>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                                        <td><?php echo $tglpost; ?></td>
+                                                        <td><?php echo $author; ?></td>
+                                                        <td><?php echo $views; ?></td>
+                                                        <td style="text-align:right;">
+                                                            <a class="btn" href="<?php echo base_url() . 'backend/post/get_edit/' . $id; ?>"><span class="fa fa-pencil"></span></a>
+                                                            <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+
                                 </div>
-                                <!-- /.box-body -->
+                                <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                    <h3>Data Transaksi Penjualan Tiket</h3>
+                                    <!-- /.box-header -->
+                                    <div class="box-header">
+                                        <a class="btn btn-success btn-flat" href="<?php echo base_url() . 'backend/post/add_post' ?>"><span class="fa fa-plus"></span> Add Post</a>
+                                    </div>
+                                    <div class="box-body">
+                                        <table id="example1" class="table table-striped" style="font-size:13px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Gambar</th>
+                                                    <th>Judul</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Author</th>
+                                                    <th>Views</th>
+                                                    <th style="text-align:right;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 0;
+                                                foreach ($data->result_array() as $a) :
+                                                    $no++;
+                                                    $id = $a['idberita'];
+                                                    $gambar = $a['gambar'];
+                                                    $jdl = $a['judul'];
+                                                    $tglpost = $a['tglpost'];
+                                                    $last_update = $a['tgl_last_update'];
+                                                    $author = $a['user'];
+                                                    $views = $a['views'];
+                                                ?>
+                                                    <tr>
+                                                        <td><img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" style="width:90px;"></td>
+                                                        <td><?php echo $jdl; ?></td>
+
+                                                        <td><?php echo $tglpost; ?></td>
+                                                        <td><?php echo $author; ?></td>
+                                                        <td><?php echo $views; ?></td>
+                                                        <td style="text-align:right;">
+                                                            <a class="btn" href="<?php echo base_url() . 'backend/post/get_edit/' . $id; ?>"><span class="fa fa-pencil"></span></a>
+                                                            <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+
                             </div>
-                            <!-- /.box -->
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
+                </div>
+
+
             </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -284,42 +399,39 @@ $jum_konfirmasi = $query4->num_rows();
 
 
     <?php
-  $no = 0;
-  foreach ($data->result_array() as $a) :
-    $no++;
-    $id = $a['idberita'];
-    $gambar = $a['gambar'];
-    $jdl = $a['judul'];
-    $tglpost = $a['tglpost'];
-    $last_update = $a['tgl_last_update'];
-    $author = $a['user'];
-    $views = $a['views'];
+    $no = 0;
+    foreach ($data->result_array() as $a) :
+        $no++;
+        $id = $a['idberita'];
+        $gambar = $a['gambar'];
+        $jdl = $a['judul'];
+        $tglpost = $a['tglpost'];
+        $last_update = $a['tgl_last_update'];
+        $author = $a['user'];
+        $views = $a['views'];
     ?>
-    <!--Modal Hapus Post-->
-    <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                    <h4 class="modal-title" id="myModalLabel">Hapus Post</h4>
-                </div>
-                <form class="form-horizontal" action="<?php echo base_url() . 'backend/post/hapus_post' ?>"
-                    method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <input type="hidden" name="kode" value="<?php echo $id; ?>" />
-                        <p>Apakah Anda yakin mau menghapus Posting <b><?php echo $jdl; ?></b> ?</p>
+        <!--Modal Hapus Post-->
+        <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Post</h4>
+                    </div>
+                    <form class="form-horizontal" action="<?php echo base_url() . 'backend/post/hapus_post' ?>" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" name="kode" value="<?php echo $id; ?>" />
+                            <p>Apakah Anda yakin mau menghapus Posting <b><?php echo $jdl; ?></b> ?</p>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
 
 
@@ -343,55 +455,55 @@ $jum_konfirmasi = $query4->num_rows();
     <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
     <!-- page script -->
     <script>
-    $(function() {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
+        $(function() {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
         });
-    });
     </script>
 
     <?php if ($this->session->flashdata('msg') == 'success') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Success',
-        text: "Post Berhasil disimpan ke database.",
-        showHideTransition: 'slide',
-        icon: 'success',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#7EC857'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Success',
+                text: "Post Berhasil disimpan ke database.",
+                showHideTransition: 'slide',
+                icon: 'success',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#7EC857'
+            });
+        </script>
     <?php elseif ($this->session->flashdata('msg') == 'info') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Info',
-        text: "Post berhasil di update",
-        showHideTransition: 'slide',
-        icon: 'info',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#00C9E6'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Info',
+                text: "Post berhasil di update",
+                showHideTransition: 'slide',
+                icon: 'info',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#00C9E6'
+            });
+        </script>
     <?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Success',
-        text: "Post Berhasil dihapus.",
-        showHideTransition: 'slide',
-        icon: 'success',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#7EC857'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Success',
+                text: "Post Berhasil dihapus.",
+                showHideTransition: 'slide',
+                icon: 'success',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#7EC857'
+            });
+        </script>
     <?php else : ?>
 
     <?php endif; ?>

@@ -11,8 +11,6 @@ class Album extends CI_Controller
             redirect($url);
         };
         $this->load->model('malbum');
-        $this->load->model('mpaket');
-
         $this->load->library('upload');
         $this->load->library('pdf');
     }
@@ -20,25 +18,6 @@ class Album extends CI_Controller
     {
         if ($this->session->userdata('akses') == '1') {
             $x['data'] = $this->malbum->tampil_album();
-
-            $id = 'INV291219000002';
-            $x['data'] = $this->mpaket->booking($id)->row_array();
-
-            //File name
-            $filename = "Whatever-you-wish";
-            $this->load->library('pdf');
-            $this->load->view('nfront/email/attach', $x);
-            $html = $this->output->get_output();
-            $this->pdf->load_html($html);
-            // $customPaper = array(0,0,570,570);
-            //$this->pdf->set_paper($customPaper);
-            $this->pdf->setPaper('A4', 'potrait');
-            $this->pdf->render();
-            $this->pdf->stream($filename . ".pdf", array("Attachment" => 0));
-
-            $pdf = $this->pdf->output();
-
-            file_put_contents('assets/plugins/dompdf/' . $filename . '.pdf', $pdf);
             $this->load->view('backend/v_album', $x);
         } else {
             echo "Halaman tidak ditemukan";

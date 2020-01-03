@@ -513,7 +513,7 @@ $b = $data;
                 <p>NO INVOICE : <?php echo $b['id_order'] ?></p>
                 <p>INVOICE TO : <?php echo $b['nama'] ?></p>
                 <p> ALAMAT :<?php echo $b['alamat']; ?>, ID</p>
-                <a href="mailto:john@example.com"><?php echo $b['id'] ?></a>
+                <a href="<?php echo $b['id'] ?>"><?php echo $b['id'] ?></a>
             </div>
             <div class="data right">
                 <div class="title">Invoice <?php echo $b['id_order'] ?></div>

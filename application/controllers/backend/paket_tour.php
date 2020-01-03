@@ -112,13 +112,31 @@ class Paket_tour extends CI_Controller
 		$id_paket_tour = $this->input->post('id_paket_tour', true);
 		$jumlah_ketersedian = $this->input->post('jumlah_ketersedian', true);
 
-		$tgl1     = $this->input->post('tgl_awal');
+		$tgl1     = $this->input->post('tgl_awal', true);
 		$tgl_awal = date('Y-m-d', strtotime($tgl1));
 
-		$tgl2 = $this->input->post('tgl_akhir');
+		$tgl2 = $this->input->post('tgl_akhir', true);
 		$tgl_akhir = date('Y-m-d', strtotime($tgl2));
 
 		$this->mpaket->simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian);
+		echo $this->session->set_flashdata('msg', 'success');
+		redirect('backend/paket_tour');
+	}
+
+
+	function update_available_tour()
+	{
+
+		$jumlah_ketersedian = $this->input->post('jumlah_ketersedian', true);
+
+		$tgl1     = $this->input->post('tgl_awal', true);
+		$tgl_awal = date('Y-m-d', strtotime($tgl1));
+
+		$tgl2 = $this->input->post('tgl_akhir', true);
+		$tgl_akhir = date('Y-m-d', strtotime($tgl2));
+		$kode = $this->input->post('kode');
+
+		$this->mpaket->update_available_tour($tgl_awal, $tgl_akhir, $jumlah_ketersedian, $kode);
 		echo $this->session->set_flashdata('msg', 'success');
 		redirect('backend/paket_tour');
 	}
