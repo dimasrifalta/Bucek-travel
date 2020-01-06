@@ -61,7 +61,7 @@
 
 <div class="block-37" style="position: relative;">
   <div class="owl-carousel loop-block-31 ">
-    <div class="block-30 item" style="background-image: url('././././assets/vendors/images/kontak.jpg');">
+    <div class="block-30 item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/kontak.jpg' ?>');">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-10">

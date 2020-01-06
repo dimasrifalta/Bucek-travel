@@ -82,7 +82,7 @@
 
  <div class="block-31" style="position: relative;">
      <div class="owl-carousel loop-block-31 ">
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/home-banner.png');">
+         <div class="block-30 item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/home-banner.png' ?>');">
              <div class="container">
                  <div class="row align-items-center">
                      <div class="col-md-10">
@@ -93,7 +93,7 @@
                  </div>
              </div>
          </div>
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/self-driving-tour1.jpg');" data-stellar-background-ratio="1">
+         <div class="block-30 item img-fluid " style="background-image: url('<?php echo base_url() . 'assets/vendors/images/self-driving-tour1.jpg' ?>');" data-stellar-background-ratio="1">
              <div class="container">
                  <div class="row align-items-center">
                      <div class="col-md-10">
@@ -104,7 +104,7 @@
                  </div>
              </div>
          </div>
-         <div class="block-30 item" style="background-image: url('././././assets/vendors/images/the_journey_sm.jpg');" data-stellar-background-ratio="1">
+         <div class="block-30 item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/the_journey_sm.jpg' ?>');" data-stellar-background-ratio="1">
              <div class="container">
                  <div class="row align-items-center">
                      <div class="col-md-10">
@@ -124,23 +124,16 @@
          <div class="col-md-12">
 
              <div class="block-32">
-                 <form action="#">
+                 <form action="<?php echo site_url('welcome/search_keyword'); ?>" method="post">
                      <div class="row">
-                         <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                         <div class="col-md-6 mb-3 mb-lg-0 col-lg-5">
                              <label for="checkin">Check In</label>
                              <div class="field-icon-wrap">
                                  <div class="icon"><span class="icon-calendar"></span></div>
-                                 <input type="text" id="checkin_date" class="form-control">
+                                 <input type="text" id="checkin_date" name="cari" class="form-control" autocomplete="off">
                              </div>
                          </div>
-                         <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                             <label for="checkin">Check Out</label>
-                             <div class="field-icon-wrap">
-                                 <div class="icon"><span class="icon-calendar"></span></div>
-                                 <input type="text" id="checkout_date" class="form-control">
-                             </div>
-                         </div>
-                         <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
+                         <div class="col-md-6 mb-3 mb-md-0 col-lg-4">
                              <div class="row">
                                  <div class="col-md-6 mb-3 mb-md-0">
                                      <label for="checkin">Adults</label>
@@ -169,13 +162,14 @@
                              </div>
                          </div>
                          <div class="col-md-6 col-lg-3 align-self-end">
-                             <button class="btn btn-primary btn-block">Check Availabilty</button>
+                             <button type="sumbit" class="btn btn-primary btn-block">Check Availabilty</button>
                          </div>
                      </div>
                  </form>
              </div>
          </div>
      </div>
+
 
 
 
@@ -201,16 +195,7 @@
                              </div>
                          </div>
                      </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-wifi"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Fast &amp; Free Wifi</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
+
                      <div class="col-md-6 col-sm-4">
                          <div class="media block-6">
                              <div class="icon"><span class="flaticon-customer-service"></span></div>
@@ -232,16 +217,7 @@
                              </div>
                          </div>
                      </div>
-                     <div class="col-md-6 col-sm-4">
-                         <div class="media block-6">
-                             <div class="icon"><span class="flaticon-credit-card"></span></div>
-                             <div class="media-body">
-                                 <h3 class="heading">Accepts Credit Card</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
-                             </div>
-                         </div>
-                     </div>
+
                      <div class="col-md-6 col-sm-4">
                          <div class="media block-6">
                              <div class="icon"><span class="flaticon-dinner"></span></div>

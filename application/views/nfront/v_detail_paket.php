@@ -168,7 +168,7 @@
 </style>
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/the_journey_sm.jpg');" data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/the_journey_sm.jpg' ?>');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -239,8 +239,37 @@ $n = $news->row_array();
             </div>
 
             <img src="<?php echo base_url() . 'assets/gambars/' . $n['gambar']; ?>" alt="Image placeholder" class="img-fluid img-shadow">
+            <?php if ($ketersediaan->num_rows() > 0) { ?>
+                <ul class="list-group">
+                    <li class="list-group-item active">Tanggal Tersedia</li>
+                    <?php foreach ($ketersediaan->result_array() as $i) :
+                        $kode = $i['id'];
+                        $tgl_awal = $i['tgl_awal'];
+                        $tgl_akhir = $i['tgl_akhir'];
+                    ?>
+
+                        <li class="list-group-item"><?= tanggal($tgl_awal); ?> - <?= tanggal($tgl_akhir); ?></li>
+
+                    <?php endforeach; ?>
+                <?php } else { ?>
+
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Jadwal Belum Tersedia!</h4>
+                        <p>Mohon maaf, atas ketidaknyamanan. Untuk saat ini jadwal paket tour belum tersedia.</p>
+
+                    </div>
+                <?php } ?>
+                </ul>
         </div>
         <!-- Grid column -->
+        <style>
+            a.disabled {
+                /* Make the disabled links grayish*/
+                color: gray;
+                /* And disable the pointer events */
+                pointer-events: none;
+            }
+        </style>
         <div class="col-md-6 sm-5">
 
             <!-- Exaple 1 -->
@@ -265,7 +294,14 @@ $n = $news->row_array();
                                 <p><?php echo $n['deskripsi']; ?>.</p>
 
 
-                                <p><a href="<?php echo base_url() . 'paket_tour/pesan_paket/' . $n['idpaket']; ?>" class="btn btn-primary py-3 px-5">Pesan Sekarang</a></p>
+                                <p>
+                                    <?php if ($ketersediaan->num_rows() < 1) { ?>
+                                        <a href="<?php echo base_url() . 'paket_tour/pesan_paket/' . $n['idpaket']; ?>" class="btn btn-primary py-3 px-5 disabled">Pesan Sekarang</a>
+                                    <?php } else { ?>
+                                        <a href="<?php echo base_url() . 'paket_tour/pesan_paket/' . $n['idpaket']; ?>" class="btn btn-primary py-3 px-5">Pesan Sekarang</a>
+
+                                    <?php } ?>
+                                </p>
                             </div>
                         </div>
 

@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BUCEK-TRAVEL | Paket Tour</title>
+  <title>Sumbawa-Travel | Paket Tour</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -53,6 +53,11 @@ function limit_words($string, $word_limit)
 
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
+    <style>
+      .datepicker {
+        z-index: 1151 !important;
+      }
+    </style>
 
     <?php
     $this->load->view('backend/v_header');
@@ -393,7 +398,7 @@ function limit_words($string, $word_limit)
       <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
       </div>
-      <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
     </footer>
 
     <div class="control-sidebar-bg"></div>
@@ -664,14 +669,14 @@ function limit_words($string, $word_limit)
               <div class="form-group">
                 <label class="control-label col-xs-2">Tanggal Awal</label>
                 <div class="col-xs-8">
-                  <input type="text" class="form-control" id="datepicker3" name="tgl_awal" autocomplete="off" value="<?php echo $tgl_awal; ?>" required>
+                  <input type="text" class="form-control" data-toggle="datepicker2" name="tgl_awal" autocomplete="off" value="<?php echo $tgl_awal; ?>" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-xs-2">Tanggal Akhir</label>
                 <div class="col-xs-8">
-                  <input name="tgl_akhir" id="datepicker4" value="<?php echo $tgl_akhir; ?>" class="form-control" type="text" placeholder="Tanggal Akhir" required>
+                  <input name="tgl_akhir" value="<?php echo $tgl_akhir; ?>" class="form-control datepicker" type="text" placeholder="Tanggal Akhir" data-toggle="datepicker" required>
                 </div>
               </div>
 
@@ -758,32 +763,25 @@ function limit_words($string, $word_limit)
   <script src="<?php echo base_url() . 'assets/plugins/select2/select2.min.js' ?>"></script>
   <!-- page script -->
   <script>
-    $(document).ready(function() {
-      $("#foto").select2({
-        dropdownParent: $("#my-tour")
-
+    $(function() {
+      $('[data-toggle="datepicker"]').datepicker({
+        autoHide: true,
+        zIndex: 2048,
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        todayHighlight: true
       });
 
-    });
-
-    $(document).ready(function() {
-      $("#paket").select2({
-        dropdownParent: $("#my-tour")
+      $('[data-toggle="datepicker2t"]').datepicker({
+        autoHide: true,
+        zIndex: 2048,
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        calendarWeeks: true,
+        todayHighlight: true
       });
-
     });
-
-    $(document).ready(function() {
-      $("#foto_edit").select2();
-
-    });
-
-    $(document).ready(function() {
-      $("#paket_edit").select2();
-
-    });
-  </script>
-  <script>
     $(function() {
       $('#datepicker').datepicker({
         autoclose: true,
@@ -818,6 +816,33 @@ function limit_words($string, $word_limit)
       $('#example2').DataTable();
       CKEDITOR.replace('ckeditor');
 
+
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $("#foto").select2({
+        dropdownParent: $("#my-tour")
+
+      });
+
+    });
+
+    $(document).ready(function() {
+      $("#paket").select2({
+        dropdownParent: $("#my-tour")
+      });
+
+    });
+
+    $(document).ready(function() {
+      $("#foto_edit").select2();
+
+    });
+
+    $(document).ready(function() {
+      $("#paket_edit").select2();
 
     });
   </script>

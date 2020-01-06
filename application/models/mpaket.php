@@ -70,7 +70,16 @@ class Mpaket extends CI_Model
 
     public function get_ketersediaan($kode)
     {
-        $hasil = $this->db->query("select * from available_tour where id_paket_tour='$kode'");
+
+        $date = date('Y-m-d');
+        $hasil = $this->db->query("select * from available_tour where tgl_awal <'$date' AND id_paket_tour='$kode'");
+        return $hasil;
+    }
+
+    public function get_ketersediaan_all($kode)
+    {
+        $date = date('Y-m-d');
+        $hasil = $this->db->query("SELECT paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$date' AND idpaket='$kode' order BY idpaket");
         return $hasil;
     }
     public function updatedenganimg($kode, $nama_paket, $kategori, $deskripsi, $hrg_dewasa, $hrg_anak, $gambar)
@@ -104,7 +113,7 @@ class Mpaket extends CI_Model
     }
     public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id_paket_tour)
     {
-        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal,status, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email',(SELECT tgl_awal from  available_tour where 	id_paket_tour = '$id_paket_tour'),(SELECT tgl_akhir from  available_tour where 	id_paket_tour = '$id_paket_tour'),'$dewasa','$anak2','$paket','$ket',CURDATE(),'belum_bayar', '$no_ktp')");
+        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal,status, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email',(SELECT tgl_awal from  available_tour where 	id = '$id_paket_tour'),(SELECT tgl_akhir from  available_tour where id = '$id_paket_tour'),'$dewasa','$anak2','$paket','$ket',CURDATE(),'belum_bayar', '$no_ktp')");
         return $hasil;
     }
 
@@ -179,6 +188,12 @@ class Mpaket extends CI_Model
     function paket_populer()
     {
         $hasil = $this->db->query("SELECT * FROM paket ORDER BY views DESC limit 5");
+        return $hasil;
+    }
+
+    function search($tgl_awal)
+    {
+        $hasil = $this->db->query("SELECT paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$tgl_awal'GROUP BY idpaket");
         return $hasil;
     }
 }

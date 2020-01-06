@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BUCEK-TRAVEL | ALBUM</title>
+  <title>Sumbawa-Travel | ALBUM</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -224,7 +224,7 @@ $jum_konfirmasi = $query4->num_rows();
                         $id = $a['idalbum'];
                         $judul = $a['jdl_album'];
                         $cover = $a['cover'];
-                        ?>
+                      ?>
                         <tr>
                           <td><img class="img-thumbnail" width="90" height="80" src="<?php echo base_url() . 'assets/gambars/' . $cover; ?>">
                           </td>
@@ -253,7 +253,7 @@ $jum_konfirmasi = $query4->num_rows();
       <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
       </div>
-      <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Add the sidebar's background. This div must be placed
@@ -306,7 +306,7 @@ $jum_konfirmasi = $query4->num_rows();
     $id = $a['idalbum'];
     $judul = $a['jdl_album'];
     $cover = $a['cover'];
-    ?>
+  ?>
     <!-- ============ MODAL UPDATE ALBUM =============== -->
     <div class="modal fade" id="ModalUpdate<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
       <div class="modal-dialog">
@@ -353,7 +353,7 @@ $jum_konfirmasi = $query4->num_rows();
     $id = $a['idalbum'];
     $judul = $a['jdl_album'];
     $cover = $a['cover'];
-    ?>
+  ?>
     <!--Modal Hapus ALBUM-->
     <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

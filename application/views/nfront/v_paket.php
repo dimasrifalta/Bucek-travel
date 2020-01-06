@@ -70,7 +70,7 @@
 
 
 
- <div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/the_journey_sm.jpg');" data-stellar-background-ratio="0.5">
+ <div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/the_journey_sm.jpg' ?>');" data-stellar-background-ratio="0.5">
      <div class="container">
          <div class="row align-items-center">
              <div class="col-md-10">
@@ -97,7 +97,7 @@
                     $hargadewasa = $b['hrg_dewasa'];
                     $gbr = $b['gambar'];
                     $hrg_anak = $b['hrg_anak'];
-                    ?>
+                ?>
                  <div class="col-md-12 mb-5">
                      <div class="block-3 d-md-flex">
                          <div class="image" style="background-image: url('<?php echo base_url() . 'assets/gambars/' . $gbr; ?>')">
@@ -115,7 +115,10 @@
                                      </strong></li>
                                  <li><strong>Categories:</strong> Single</li>
 
+
+
                              </ul>
+
                              <p><?php echo $isi; ?>... </p>
                              <p><a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>" class="btn btn-primary py-3 px-5">Read More</a></p>
                          </div>

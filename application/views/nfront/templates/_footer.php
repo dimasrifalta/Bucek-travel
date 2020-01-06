@@ -18,67 +18,43 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-6 col-lg-4">
-                <h3 class="heading-section">About Us</h3>
-                <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse
-                    veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore
-                    accusantium tempore dolores sunt.</p>
+                <h3 class="heading-section">WHO WE ARE</h3>
+                <p class="mb-5">Sumbawa Tour adalah platform perjalanan berbasis pengalaman yang meyakini bahwa perjalanan adalah cara hidup. Bagi kami, bepergian adalah menemukan beberapa pelajaran terbesar dalam hidup. Ini tentang menentukan momen yang mengubah hidup Anda. Ini tentang bertemu orang-orang yang mengubah seluruh perspektif Anda. Mengakui bahwa Anda hanya hidup sekali, tetapi jika Anda melakukannya dengan benar, itu saja yang Anda butuhkan.</p>
                 <p><a href="#" class="btn btn-primary px-4">Button</a></p>
             </div>
             <div class="col-md-6 col-lg-4">
-                <h3 class="heading-section">Blog</h3>
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="<?= base_url('assets/vendors/'); ?>/images/img_1.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
+                <h3 class="heading-section">Wisata</h3>
+                <?php
+                foreach ($berita->result_array() as $p) :
+                    $nama_wisata = $p['nama_wisata'];
+                    $deskripsi = $p['deskripsi'];
+                    $gambar = $p['gambar'];
+                    $idberita = $p['idwisata'];
+                ?>
+                    <div class="block-21 d-flex mb-4">
+                        <figure class="mr-3">
+                            <img src="<?php echo base_url() . 'assets/gambars/' . $gambar; ?>" alt="" class="img-fluid">
+                        </figure>
+                        <div class="text">
+                            <h3 class="heading"><a href="<?php echo base_url() . 'wisata_post/detail_wisata/' . $idberita; ?>"><?= $nama_wisata; ?></a></h3>
 
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="<?= base_url('assets/vendors/'); ?>/images/img_2.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach ?>
 
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="<?= base_url('assets/vendors/'); ?>/images/img_3.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
             <div class="col-md-6 col-lg-4">
                 <div class="block-23">
                     <h3 class="heading-section">Contact Info</h3>
                     <ul>
-                        <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San
-                                Francisco, California, USA</span></li>
+                        <li><span class="icon icon-map-marker"></span><span class="text">Jln. Lintas Seteluk Poto Tano, 84454 Indonesia</span></li>
                         <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929
                                     210</span></a></li>
-                        <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-                        <li><span class="icon icon-clock-o"></span><span class="text">Monday &mdash; Friday 8:00am -
-                                5:00pm</span></li>
+                        <li><a href="#"><span class="icon icon-envelope"></span><span class="text">sumbawatour@gmal.com</span></a></li>
+                        <li><span class="icon icon-clock-o"></span><span class="text">Senin &mdash; Jum'at 8:00pagi -
+                                5:00sore</span></li>
                     </ul>
                 </div>
             </div>

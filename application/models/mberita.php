@@ -50,7 +50,7 @@ class Mberita extends CI_Model
 	}
 	function berita_footer()
 	{
-		$hasil = $this->db->query("select * from berita order by tglpost asc limit 3");
+		$hasil = $this->db->query("select * from wisata order by idwisata asc limit 4");
 		return $hasil;
 	}
 	function paket_footer()

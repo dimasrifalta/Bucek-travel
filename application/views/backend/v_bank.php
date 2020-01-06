@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BUCEK-TRAVEL | BANK</title>
+    <title>Sumbawa-Travel | BANK</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -35,8 +35,7 @@ $jum_konfirmasi = $query4->num_rows();
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/skins/_all-skins.min.css' ?>">
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
 
 </head>
 
@@ -44,8 +43,8 @@ $jum_konfirmasi = $query4->num_rows();
     <div class="wrapper">
 
         <?php
-    $this->load->view('backend/v_header');
-    ?>
+        $this->load->view('backend/v_header');
+        ?>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
@@ -72,8 +71,7 @@ $jum_konfirmasi = $query4->num_rows();
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i
-                                        class="fa fa-thumb-tack"></i> Add New</a></li>
+                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i class="fa fa-thumb-tack"></i> Add New</a></li>
                             <li><a href="<?php echo base_url() . 'backend/post' ?>"><i class="fa fa-list"></i> Post
                                     List</a></li>
                         </ul>
@@ -206,8 +204,7 @@ $jum_konfirmasi = $query4->num_rows();
 
                             <div class="box">
                                 <div class="box-header">
-                                    <a class="btn btn-success btn-flat" data-toggle="modal"
-                                        data-target="#ModalAddNew"><span class="fa fa-plus"></span> Add New</a>
+                                    <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#ModalAddNew"><span class="fa fa-plus"></span> Add New</a>
                                 </div>
 
                                 <!-- /.box-header -->
@@ -224,30 +221,26 @@ $jum_konfirmasi = $query4->num_rows();
                                         </thead>
                                         <tbody>
                                             <?php
-                      $no = 0;
-                      foreach ($data->result_array() as $i) :
-                        $no++;
-                        $id = $i['id_metode'];
-                        $metode = $i['metode'];
-                        $bank = $i['bank'];
-                        $norek = $i['norek'];
-                        $atasnama = $i['atasnama'];
+                                            $no = 0;
+                                            foreach ($data->result_array() as $i) :
+                                                $no++;
+                                                $id = $i['id_metode'];
+                                                $metode = $i['metode'];
+                                                $bank = $i['bank'];
+                                                $norek = $i['norek'];
+                                                $atasnama = $i['atasnama'];
 
-                        ?>
-                                            <tr>
-                                                <td><b><?php echo $metode; ?></b></td>
-                                                <td><?php echo $norek; ?></td>
-                                                <td><?php echo $bank; ?></td>
-                                                <td><?php echo $atasnama; ?></td>
-                                                <td style="text-align:right;">
-                                                    <a class="btn" data-toggle="modal"
-                                                        data-target="#ModalEdit<?php echo $id; ?>"><span
-                                                            class="fa fa-pencil"></span></a>
-                                                    <a class="btn" data-toggle="modal"
-                                                        data-target="#ModalHapus<?php echo $id; ?>"><span
-                                                            class="fa fa-trash"></span></a>
-                                                </td>
-                                            </tr>
+                                            ?>
+                                                <tr>
+                                                    <td><b><?php echo $metode; ?></b></td>
+                                                    <td><?php echo $norek; ?></td>
+                                                    <td><?php echo $bank; ?></td>
+                                                    <td><?php echo $atasnama; ?></td>
+                                                    <td style="text-align:right;">
+                                                        <a class="btn" data-toggle="modal" data-target="#ModalEdit<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
+                                                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                                                    </td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -267,7 +260,7 @@ $jum_konfirmasi = $query4->num_rows();
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0
             </div>
-            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
         </footer>
 
 
@@ -280,12 +273,10 @@ $jum_konfirmasi = $query4->num_rows();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
                     <h4 class="modal-title" id="myModalLabel">Add New</h4>
                 </div>
-                <form class="form-horizontal" action="<?php echo base_url() . 'backend/bank/simpan_rekening' ?>"
-                    method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="<?php echo base_url() . 'backend/bank/simpan_rekening' ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                         <div class="form-group">
@@ -305,8 +296,7 @@ $jum_konfirmasi = $query4->num_rows();
                         <div class="form-group">
                             <label class="control-label col-xs-3">Atas Nama</label>
                             <div class="col-xs-8">
-                                <input name="atasnama" class="form-control" type="text" placeholder="Atas Nama"
-                                    required>
+                                <input name="atasnama" class="form-control" type="text" placeholder="Atas Nama" required>
                             </div>
                         </div>
 
@@ -321,93 +311,85 @@ $jum_konfirmasi = $query4->num_rows();
     </div>
 
     <?php foreach ($data->result_array() as $i) :
-    $id = $i['id_metode'];
-    $metode = $i['metode'];
-    $bank = $i['bank'];
-    $norek = $i['norek'];
-    $atasnama = $i['atasnama'];
+        $id = $i['id_metode'];
+        $metode = $i['metode'];
+        $bank = $i['bank'];
+        $norek = $i['norek'];
+        $atasnama = $i['atasnama'];
     ?>
-    <!--Modal Add New Rekening-->
-    <div class="modal fade" id="ModalEdit<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                    <h4 class="modal-title" id="myModalLabel">Update Rekening</h4>
+        <!--Modal Add New Rekening-->
+        <div class="modal fade" id="ModalEdit<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                        <h4 class="modal-title" id="myModalLabel">Update Rekening</h4>
+                    </div>
+                    <form class="form-horizontal" action="<?php echo base_url() . 'backend/bank/update_rekening' ?>" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">No Rek.</label>
+                                <div class="col-xs-8">
+                                    <input name="norek" value="<?php echo $norek; ?>" class="form-control" type="text" placeholder="No Rek." required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">Bank</label>
+                                <div class="col-xs-8">
+                                    <input name="bank" value="<?php echo $bank; ?>" class="form-control" type="text" placeholder="Bank" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">Atas Nama</label>
+                                <div class="col-xs-8">
+                                    <input name="atasnama" value="<?php echo $atasnama; ?>" class="form-control" type="text" placeholder="Atas Nama" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="kode" value="<?php echo $id; ?>">
+                            <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-flat">Update</button>
+                        </div>
+                    </form>
                 </div>
-                <form class="form-horizontal" action="<?php echo base_url() . 'backend/bank/update_rekening' ?>"
-                    method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <label class="control-label col-xs-3">No Rek.</label>
-                            <div class="col-xs-8">
-                                <input name="norek" value="<?php echo $norek; ?>" class="form-control" type="text"
-                                    placeholder="No Rek." required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-xs-3">Bank</label>
-                            <div class="col-xs-8">
-                                <input name="bank" value="<?php echo $bank; ?>" class="form-control" type="text"
-                                    placeholder="Bank" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-xs-3">Atas Nama</label>
-                            <div class="col-xs-8">
-                                <input name="atasnama" value="<?php echo $atasnama; ?>" class="form-control" type="text"
-                                    placeholder="Atas Nama" required>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="kode" value="<?php echo $id; ?>">
-                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat">Update</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
 
     <?php foreach ($data->result_array() as $i) :
-    $id = $i['id_metode'];
-    $metode = $i['metode'];
-    $bank = $i['bank'];
-    $norek = $i['norek'];
-    $atasnama = $i['atasnama'];
+        $id = $i['id_metode'];
+        $metode = $i['metode'];
+        $bank = $i['bank'];
+        $norek = $i['norek'];
+        $atasnama = $i['atasnama'];
     ?>
-    <!--Modal Hapus Rekening-->
-    <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                    <h4 class="modal-title" id="myModalLabel">Hapus Bank</h4>
-                </div>
-                <form class="form-horizontal" action="<?php echo base_url() . 'backend/bank/hapus_rekening' ?>"
-                    method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <input type="hidden" name="kode" value="<?php echo $id; ?>" />
-                        <p>Apakah Anda yakin mau menghapus rekening bank <b><?php echo $bank; ?></b>?</p>
+        <!--Modal Hapus Rekening-->
+        <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Bank</h4>
+                    </div>
+                    <form class="form-horizontal" action="<?php echo base_url() . 'backend/bank/hapus_rekening' ?>" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" name="kode" value="<?php echo $id; ?>" />
+                            <p>Apakah Anda yakin mau menghapus rekening bank <b><?php echo $bank; ?></b>?</p>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
 
 
@@ -434,76 +416,76 @@ $jum_konfirmasi = $query4->num_rows();
     <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
     <!-- page script -->
     <script>
-    $(function() {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
-        });
+        $(function() {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
 
-        $('#datepicker').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $('#datepicker2').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $('.datepicker3').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $('.datepicker4').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $(".timepicker").timepicker({
-            showInputs: true
-        });
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('#datepicker2').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('.datepicker3').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('.datepicker4').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $(".timepicker").timepicker({
+                showInputs: true
+            });
 
-    });
+        });
     </script>
     <?php if ($this->session->flashdata('msg') == 'success') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Success',
-        text: "Rekening berhasil di simpan ke database.",
-        showHideTransition: 'slide',
-        icon: 'success',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#7EC857'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Success',
+                text: "Rekening berhasil di simpan ke database.",
+                showHideTransition: 'slide',
+                icon: 'success',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#7EC857'
+            });
+        </script>
 
     <?php elseif ($this->session->flashdata('msg') == 'info') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Info',
-        text: "Rekening berhasil di update",
-        showHideTransition: 'slide',
-        icon: 'info',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#00C9E6'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Info',
+                text: "Rekening berhasil di update",
+                showHideTransition: 'slide',
+                icon: 'info',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#00C9E6'
+            });
+        </script>
     <?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Success',
-        text: "Rekening Berhasil dihapus.",
-        showHideTransition: 'slide',
-        icon: 'success',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#7EC857'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Success',
+                text: "Rekening Berhasil dihapus.",
+                showHideTransition: 'slide',
+                icon: 'success',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#7EC857'
+            });
+        </script>
     <?php else : ?>
 
     <?php endif; ?>

@@ -63,7 +63,7 @@
 
 
 
- <div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/home-banner.png');" data-stellar-background-ratio="1">
+ <div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/home-banner.png' ?>');" data-stellar-background-ratio="1">
      <div class="container">
          <div class="row align-items-center">
              <div class="col-md-10">
@@ -124,7 +124,7 @@
                              <?php foreach ($bnk->result_array() as $i) {
                                     $id = $i['id_metode'];
                                     $mtd = $i['bank'];
-                                    ?>
+                                ?>
                                  <option value="<?php echo $id; ?>"><?php echo $mtd; ?></option>
                              <?php } ?>
                          </select>

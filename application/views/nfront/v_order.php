@@ -61,7 +61,7 @@
 
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/the_journey_sm.jpg');" data-stellar-background-ratio="1">
+<div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/the_journey_sm.jpg' ?>');" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -85,15 +85,12 @@ $b = $pkt->row_array();
             <div class="col-md-6">
                 <p> 1. Isi Data-data Di Form pemesanan Dengan Lengkap dan Benar </p>
                 <p> 2. Jika anda memimliki Permintaan Khusus, masukan di Form bagian *Permintaan Khusus.</p>
-                <p> 3. Jika anda ingin melakukan pembayar DP Pemesanan ketik( Down payment ) di From bagian *Permintaan
-                    Khusus.</p>
-                <p> 4. Jika anda ingin membayaran penuh Pemesanan ketik(Full payment) di Form bagian *Permintaan khusus.
+
+                <p> 3. Setelah semua data-data di form pemesanan tersisi dengan lengkap maka akan keluar Invoice anda
                 </p>
-                <p> 5. Setelah semua data-data di form pemesanan tersisi dengan lengkap maka akan keluar Invoice anda
-                </p>
-                <p> 6. Setelah itu silahkan Lakukan pembayaran tangihan anda sesuai dengan Invoice</p>
-                <p> 7. setelah melakukan pembayaran maka anda diwajibkan Menkorfirmasi kami melalui Menu Komfirmasi.</p>
-                <p> 8. setelah itu kami akan Menvalidasi bukti Pemesanan anda</p>
+                <p> 4. Setelah itu silahkan Lakukan pembayaran tangihan anda sesuai dengan Invoice</p>
+                <p> 5. setelah melakukan pembayaran maka anda diwajibkan Menkorfirmasi kami melalui Menu Komfirmasi.</p>
+                <p> 6. setelah itu kami akan Menvalidasi bukti Pemesanan anda dan mengirim Tiket ke alamat E-mail anda</p>
 
             </div>
 
@@ -104,12 +101,12 @@ $b = $pkt->row_array();
 
 
                     <div class="mb-3">
-                        <label>Nama Lengkap</label>
+                        <label>Nama Lengkap (Traveler Utama)</label>
                         <input type="text" class="form-control" id="firstname" name="nama" value="" required />
                     </div>
 
                     <div class="mb-3">
-                        <label>NO KTP/SIM</label>
+                        <label>NO KTP/SIM (Traveler Utama)</label>
                         <input type="text" class="form-control" maxlength="16" id="no_ktp" name="no_ktp" value="" required />
                     </div>
 
@@ -129,12 +126,12 @@ $b = $pkt->row_array();
                     </div>
 
                     <div class="mb-3">
-                        <label for="notelp">No Handphone</label>
+                        <label for="notelp">No Handphone (Traveler Utama)</label>
                         <input type="number" class="form-control" name="notelp" id="notelp" placeholder="Example: 082345126678" value="">
                     </div>
 
                     <div class="mb-3">
-                        <label for="jml_bayar">Email</label>
+                        <label for="jml_bayar">Email (Traveler Utama)</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Contoh: mahakaryapromosindo@gmail.com" required>
                     </div>
                     <div class="mb-4 mt-4">
@@ -182,29 +179,32 @@ $b = $pkt->row_array();
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="payment">Tanggal Tersedia</label>
-                        <?php if ($ketersediaan->num_rows() >= 1) { ?>
-                            <select name="id_paket_tour" id="paket" data-width="100%" class="form-control select2" required>
+                        <div class="field-icon-wrap">
+                            <label for="payment">Tanggal Tersedia</label>
+                            <?php if ($ketersediaan->num_rows() >= 1) { ?>
+                                <select name="id" id="paket" data-width="100%" class="form-control select2" required>
 
-                                <option>Pilih</option>
-                                <?php
-                                foreach ($ketersediaan->result_array() as $i) {
-                                    $kode = $i['id_paket_tour'];
-                                    $tgl_awal = $i['tgl_awal'];
-                                    $tgl_akhir = $i['tgl_akhir'];
-                                ?>
-                                    <option value='<?php echo $kode ?>'><?php echo tanggal($tgl_awal) ?> - <?php echo tanggal($tgl_akhir) ?></option>
+                                    <option>Pilih</option>
+                                    <?php
+                                    foreach ($ketersediaan->result_array() as $i) {
+                                        $kode = $i['id'];
+                                        $tgl_awal = $i['tgl_awal'];
+                                        $tgl_akhir = $i['tgl_akhir'];
+                                    ?>
+                                        <option value='<?php echo $kode ?>'><?php echo tanggal($tgl_awal) ?> - <?php echo tanggal($tgl_akhir) ?></option>
+                                    <?php } ?>
+                                <?php } else { ?>
+
+                                    <div class="alert alert-success" role="alert">
+                                        <h4 class="alert-heading">Jadwal Belum Tersedia!</h4>
+                                        <p>Mohon maaf, atas ketidaknyamanan. Untuk saat ini jadwal paket tour belum tersedia.</p>
+                                        <hr>
+                                        <p class="mb-0">Kami akan secepatnya mengupdate jadwal paket tour. Terima kasih atas perhatiannya. -Sumbawa Tour Travel.</p>
+                                    </div>
                                 <?php } ?>
-                            <?php } else { ?>
-                                <div class="alert alert-success" role="alert">
-                                    <h4 class="alert-heading">Jadwal Belum Tersedia!</h4>
-                                    <p>Mohon maaf, atas ketidaknyamanan. Untuk saat ini jadwal paket tour belum tersedia.</p>
-                                    <hr>
-                                    <p class="mb-0">Kami akan secepatnya mengupdate jadwal paket tour. Terima kasih atas perhatiannya. -Sumbawa Tour Travel.</p>
-                                </div>
-                            <?php } ?>
 
-                            </select>
+                                </select>
+                        </div>
 
                     </div>
                     <div class="mb-3">

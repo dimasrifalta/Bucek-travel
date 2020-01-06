@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BUCEK-TRAVEL | Edit Posting</title>
+    <title>Sumbawa-Travel | Edit Posting</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -48,8 +48,8 @@ $jum_konfirmasi = $query4->num_rows();
     <div class="wrapper">
 
         <?php
-    $this->load->view('backend/v_header');
-    ?>
+        $this->load->view('backend/v_header');
+        ?>
 
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
@@ -77,8 +77,7 @@ $jum_konfirmasi = $query4->num_rows();
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i
-                                        class="fa fa-thumb-tack"></i> Add New</a></li>
+                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i class="fa fa-thumb-tack"></i> Add New</a></li>
                             <li><a href="<?php echo base_url() . 'backend/post' ?>"><i class="fa fa-list"></i> Post
                                     List</a></li>
                         </ul>
@@ -210,24 +209,21 @@ $jum_konfirmasi = $query4->num_rows();
                         <h3 class="box-title">Judul</h3>
                     </div>
 
-                    <form action="<?php echo base_url() . 'backend/post/update_post' ?>" method="post"
-                        enctype="multipart/form-data">
+                    <form action="<?php echo base_url() . 'backend/post/update_post' ?>" method="post" enctype="multipart/form-data">
                         <?php
-            $b = $data->row_array();
-            ?>
+                        $b = $data->row_array();
+                        ?>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-10">
                                     <input type="hidden" name="kode" value="<?php echo $b['idberita']; ?>">
-                                    <input type="text" name="judul" value="<?php echo $b['judul']; ?>"
-                                        class="form-control" placeholder="Judul berita atau artikel" required />
+                                    <input type="text" name="judul" value="<?php echo $b['judul']; ?>" class="form-control" placeholder="Judul berita atau artikel" required />
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-flat pull-right"><span
-                                                class="fa fa-upload"></span> Update</button>
+                                        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-upload"></span> Update</button>
                                         <!-- /.form-group -->
                                     </div>
                                     <!-- /.col -->
@@ -290,7 +286,7 @@ $jum_konfirmasi = $query4->num_rows();
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0
             </div>
-            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
         </footer>
 
 
@@ -331,91 +327,91 @@ $jum_konfirmasi = $query4->num_rows();
     <script src="<?php echo base_url() . 'assets/ckeditor/ckeditor.js' ?>"></script>
 
     <script>
-    $(function() {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
+        $(function() {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
 
-        CKEDITOR.replace('ckeditor');
+            CKEDITOR.replace('ckeditor');
 
 
-    });
+        });
     </script>
 
     <script>
-    $(function() {
-        //Initialize Select2 Elements
-        $(".select2").select2();
+        $(function() {
+            //Initialize Select2 Elements
+            $(".select2").select2();
 
-        //Datemask dd/mm/yyyy
-        $("#datemask").inputmask("dd/mm/yyyy", {
-            "placeholder": "dd/mm/yyyy"
-        });
-        //Datemask2 mm/dd/yyyy
-        $("#datemask2").inputmask("mm/dd/yyyy", {
-            "placeholder": "mm/dd/yyyy"
-        });
-        //Money Euro
-        $("[data-mask]").inputmask();
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd/mm/yyyy", {
+                "placeholder": "dd/mm/yyyy"
+            });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm/dd/yyyy", {
+                "placeholder": "mm/dd/yyyy"
+            });
+            //Money Euro
+            $("[data-mask]").inputmask();
 
-        //Date range picker
-        $('#reservation').daterangepicker();
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            format: 'MM/DD/YYYY h:mm A'
-        });
-        //Date range as a button
-        $('#daterange-btn').daterangepicker({
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
-                        'month').endOf('month')]
+            //Date range picker
+            $('#reservation').daterangepicker();
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                format: 'MM/DD/YYYY h:mm A'
+            });
+            //Date range as a button
+            $('#daterange-btn').daterangepicker({
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                            'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
                 },
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment()
-            },
-            function(start, end) {
-                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
-                    'MMMM D, YYYY'));
-            }
-        );
+                function(start, end) {
+                    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
+                        'MMMM D, YYYY'));
+                }
+            );
 
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        });
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true
+            });
 
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass: 'iradio_minimal-blue'
-        });
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            checkboxClass: 'icheckbox_minimal-red',
-            radioClass: 'iradio_minimal-red'
-        });
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass: 'iradio_flat-green'
-        });
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
 
-        //Colorpicker
-        $(".my-colorpicker1").colorpicker();
-        //color picker with addon
-        $(".my-colorpicker2").colorpicker();
+            //Colorpicker
+            $(".my-colorpicker1").colorpicker();
+            //color picker with addon
+            $(".my-colorpicker2").colorpicker();
 
-        //Timepicker
-        $(".timepicker").timepicker({
-            showInputs: false
+            //Timepicker
+            $(".timepicker").timepicker({
+                showInputs: false
+            });
         });
-    });
     </script>
 </body>
 

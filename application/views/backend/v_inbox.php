@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BUCEK-TRAVEL | Inbox</title>
+    <title>Sumbawa-Travel | Inbox</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -35,8 +35,7 @@ $jum_konfirmasi = $query4->num_rows();
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/skins/_all-skins.min.css' ?>">
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
 
 </head>
 
@@ -44,8 +43,8 @@ $jum_konfirmasi = $query4->num_rows();
     <div class="wrapper">
 
         <?php
-    $this->load->view('backend/v_header');
-    ?>
+        $this->load->view('backend/v_header');
+        ?>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
@@ -72,8 +71,7 @@ $jum_konfirmasi = $query4->num_rows();
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i
-                                        class="fa fa-thumb-tack"></i> Add New</a></li>
+                            <li><a href="<?php echo base_url() . 'backend/post/add_post' ?>"><i class="fa fa-thumb-tack"></i> Add New</a></li>
                             <li><a href="<?php echo base_url() . 'backend/post' ?>"><i class="fa fa-list"></i> Post
                                     List</a></li>
                         </ul>
@@ -219,27 +217,25 @@ $jum_konfirmasi = $query4->num_rows();
                                         </thead>
                                         <tbody>
                                             <?php
-                      $no = 0;
-                      foreach ($data->result_array() as $i) :
-                        $no++;
-                        $inbox_id = $i['inbox_id'];
-                        $inbox_nama = $i['inbox_nama'];
-                        $inbox_email = $i['inbox_email'];
-                        $inbox_msg = $i['inbox_pesan'];
-                        $tanggal = $i['tanggal'];
+                                            $no = 0;
+                                            foreach ($data->result_array() as $i) :
+                                                $no++;
+                                                $inbox_id = $i['inbox_id'];
+                                                $inbox_nama = $i['inbox_nama'];
+                                                $inbox_email = $i['inbox_email'];
+                                                $inbox_msg = $i['inbox_pesan'];
+                                                $tanggal = $i['tanggal'];
 
-                        ?>
-                                            <tr>
-                                                <td><?php echo $tanggal; ?></td>
-                                                <td><?php echo $inbox_nama; ?></td>
-                                                <td><?php echo $inbox_email; ?></td>
-                                                <td><?php echo $inbox_msg; ?></td>
-                                                <td style="text-align:right;">
-                                                    <a class="btn" data-toggle="modal"
-                                                        data-target="#ModalHapus<?php echo $inbox_id; ?>"><span
-                                                            class="fa fa-trash"></span></a>
-                                                </td>
-                                            </tr>
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $tanggal; ?></td>
+                                                    <td><?php echo $inbox_nama; ?></td>
+                                                    <td><?php echo $inbox_email; ?></td>
+                                                    <td><?php echo $inbox_msg; ?></td>
+                                                    <td style="text-align:right;">
+                                                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $inbox_id; ?>"><span class="fa fa-trash"></span></a>
+                                                    </td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -259,7 +255,7 @@ $jum_konfirmasi = $query4->num_rows();
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0
             </div>
-            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
         </footer>
 
 
@@ -269,37 +265,34 @@ $jum_konfirmasi = $query4->num_rows();
 
 
     <?php foreach ($data->result_array() as $i) :
-    $inbox_id = $i['inbox_id'];
-    $inbox_nama = $i['inbox_nama'];
-    $inbox_email = $i['inbox_email'];
-    $inbox_msg = $i['inbox_pesan'];
-    $tanggal = $i['tanggal'];
+        $inbox_id = $i['inbox_id'];
+        $inbox_nama = $i['inbox_nama'];
+        $inbox_email = $i['inbox_email'];
+        $inbox_msg = $i['inbox_pesan'];
+        $tanggal = $i['tanggal'];
     ?>
-    <!--Modal Hapus Inbox-->
-    <div class="modal fade" id="ModalHapus<?php echo $inbox_id; ?>" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true"><span class="fa fa-close"></span></span></button>
-                    <h4 class="modal-title" id="myModalLabel">Hapus Inbox</h4>
-                </div>
-                <form class="form-horizontal" action="<?php echo base_url() . 'backend/inbox/hapus_inbox' ?>"
-                    method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <input type="hidden" name="kode" value="<?php echo $inbox_id; ?>" />
-                        <p>Apakah Anda yakin mau menghapus pesan dari <b><?php echo $inbox_nama; ?></b>?</p>
+        <!--Modal Hapus Inbox-->
+        <div class="modal fade" id="ModalHapus<?php echo $inbox_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Inbox</h4>
+                    </div>
+                    <form class="form-horizontal" action="<?php echo base_url() . 'backend/inbox/hapus_inbox' ?>" method="post" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" name="kode" value="<?php echo $inbox_id; ?>" />
+                            <p>Apakah Anda yakin mau menghapus pesan dari <b><?php echo $inbox_nama; ?></b>?</p>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
 
 
@@ -326,76 +319,76 @@ $jum_konfirmasi = $query4->num_rows();
     <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
     <!-- page script -->
     <script>
-    $(function() {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
-        });
+        $(function() {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
 
-        $('#datepicker').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $('#datepicker2').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $('.datepicker3').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $('.datepicker4').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        });
-        $(".timepicker").timepicker({
-            showInputs: true
-        });
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('#datepicker2').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('.datepicker3').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $('.datepicker4').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd'
+            });
+            $(".timepicker").timepicker({
+                showInputs: true
+            });
 
-    });
+        });
     </script>
     <?php if ($this->session->flashdata('msg') == 'error') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Error',
-        text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
-        showHideTransition: 'slide',
-        icon: 'error',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#FF4859'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Error',
+                text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
+                showHideTransition: 'slide',
+                icon: 'error',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#FF4859'
+            });
+        </script>
 
     <?php elseif ($this->session->flashdata('msg') == 'info') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Info',
-        text: "Agenda berhasil di update",
-        showHideTransition: 'slide',
-        icon: 'info',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#00C9E6'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Info',
+                text: "Agenda berhasil di update",
+                showHideTransition: 'slide',
+                icon: 'info',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#00C9E6'
+            });
+        </script>
     <?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
-    <script type="text/javascript">
-    $.toast({
-        heading: 'Success',
-        text: "Pesan Berhasil dihapus.",
-        showHideTransition: 'slide',
-        icon: 'success',
-        hideAfter: false,
-        position: 'bottom-right',
-        bgColor: '#7EC857'
-    });
-    </script>
+        <script type="text/javascript">
+            $.toast({
+                heading: 'Success',
+                text: "Pesan Berhasil dihapus.",
+                showHideTransition: 'slide',
+                icon: 'success',
+                hideAfter: false,
+                position: 'bottom-right',
+                bgColor: '#7EC857'
+            });
+        </script>
     <?php else : ?>
 
     <?php endif; ?>

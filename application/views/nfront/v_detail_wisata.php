@@ -60,7 +60,7 @@
 
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/25.jpg');" data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/25.jpg' ?>');" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -116,7 +116,7 @@ $n = $news->row_array();
                         $name = $j['nama'];
                         $tgl_post = $j['tgl_post'];
                         $pesan = $j['pesan'];
-                        ?>
+                    ?>
                         <ul class="comment-list">
                             <li class="comment">
                                 <div class="vcard bio">
@@ -182,7 +182,7 @@ $n = $news->row_array();
                             $judul = $b['nama_wisata'];
                             $isi = $b['deskripsi'];
                             $gbr = $b['gambar'];
-                            ?>
+                        ?>
                             <li><a href="<?php echo base_url() . 'wisata_post/detail_wisata/' . $idberita; ?>"><img width="50" height="50" src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" alt="" /> <span class="text-primary"><?php echo $judul; ?></span></a></li>
                         <?php
                         }

@@ -60,7 +60,7 @@
 <!-- END nav -->
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/home-banner.png');" data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/home-banner.png' ?>');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -88,7 +88,7 @@
                 $judul = $b['jdl_album'];
                 $cover = $b['cover'];
                 $jumlah = $b['jml'];
-                ?>
+            ?>
                 <div class="col-12 col-md-6 col-lg-3 no-padding">
                     <div class="portfolio-content">
                         <figure>

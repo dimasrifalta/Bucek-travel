@@ -38,7 +38,7 @@ class Welcome extends CI_Controller
 			$x['news'] = $this->mberita->berita();
 			$this->load->view('nfront/templates/f_header');
 			$this->load->view('nfront/v_home', $x);
-			$this->load->view('nfront/templates/_footer');
+			$this->load->view('nfront/templates/_footer', $x);
 		} else {
 			$this->m_pengunjung->simpan_user_agent($user_ip, $agent);
 
@@ -51,7 +51,23 @@ class Welcome extends CI_Controller
 			$x['news'] = $this->mberita->berita();
 			$this->load->view('nfront/templates/f_header');
 			$this->load->view('nfront/v_home', $x);
-			$this->load->view('nfront/templates/_footer');
+			$this->load->view('nfront/templates/_footer', $x);
 		}
+	}
+
+	public function search_keyword()
+	{
+		$tgl1     = $this->input->post('cari', true);
+		$tgl_awal = date('Y-m-d', strtotime($tgl1));
+
+		$x['paket'] = $this->mberita->paket_footer();
+		$x['berita'] = $this->mberita->berita_footer();
+		$x['photo'] = $this->mberita->get_photo();
+		$x['results']    =   $this->mpaket->search($tgl_awal);
+
+
+		$this->load->view('nfront/templates/f_header');
+		$this->load->view('nfront/v_pencarian', $x);
+		$this->load->view('nfront/templates/_footer', $x);
 	}
 }

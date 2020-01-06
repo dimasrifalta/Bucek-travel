@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BUCEK-TRAVEL | Testimonial</title>
+    <title>Sumbawa-Travel | Testimonial</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -304,7 +304,7 @@ $jum_konfirmasi = $query4->num_rows();
                                                     $pesan = $a['pesan'];
                                                     $status = $a['status'];
                                                     $tglpost = $a['tgl_post'];
-                                                    ?>
+                                                ?>
                                                     <tr>
                                                         <td><?php echo $no; ?></td>
                                                         <td><?php echo $nama; ?></td>
@@ -345,7 +345,7 @@ $jum_konfirmasi = $query4->num_rows();
                                                     $pesan = $a['pesan'];
                                                     $status = $a['status'];
                                                     $tglpost = $a['tgl_post'];
-                                                    ?>
+                                                ?>
                                                     <tr>
                                                         <td><?php echo $no; ?></td>
                                                         <td><?php echo $nama; ?></td>
@@ -376,7 +376,7 @@ $jum_konfirmasi = $query4->num_rows();
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0
             </div>
-            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
         </footer>
 
 
@@ -392,7 +392,7 @@ $jum_konfirmasi = $query4->num_rows();
         $pesan = $a['pesan'];
         $status = $a['status'];
         $tglpost = $a['tgl_post'];
-        ?>
+    ?>
         <!--Modal Hapus Inbox-->
         <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -426,7 +426,7 @@ $jum_konfirmasi = $query4->num_rows();
         $pesan = $a['pesan'];
         $status = $a['status'];
         $tglpost = $a['tgl_post'];
-        ?>
+    ?>
         <!--Modal Hapus Inbox-->
         <div class="modal fade" id="ModalHapus2<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">

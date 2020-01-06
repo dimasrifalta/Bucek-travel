@@ -61,7 +61,7 @@
 
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/25.jpg');" data-stellar-background-ratio="1">
+<div class="block-30 block-30-sm item fluid" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/25.jpg' ?>');" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -89,7 +89,7 @@
                 $judul = $b['nama_wisata'];
                 $isi = limit_words($b['deskripsi'], 25);
                 $gbr = $b['gambar'];
-                ?>
+            ?>
                 <div class="swiper-slide">
                     <div class="image-wrap">
                         <div class="image-info">
@@ -97,7 +97,7 @@
                             <h2 class="mb-3"><?php echo $judul; ?></h2>
                             <a href="<?php echo base_url() . 'wisata_post/detail_wisata/' . $idberita; ?>" class="btn btn-outline-white py-2 px-4">More Info</a>
                         </div>
-                        <img src="http://localhost/bucektravel/assets/gambars/<?= $gbr; ?>" alt="Image">
+                        <img src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" alt="Image" class="img-fluid">
                     </div>
                 </div>
             <?php

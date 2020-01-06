@@ -54,6 +54,7 @@ class Paket_tour extends CI_Controller
         // End style pagination
         // End style pagination
         $this->pagination->initialize($config);
+
         $x['page'] = $this->pagination->create_links();
         $x['news'] = $this->mpaket->get_paket($offset, $limit);
         $x['brt'] = $this->mpaket->tampil_paket();
@@ -69,10 +70,13 @@ class Paket_tour extends CI_Controller
         $x['berita'] = $this->mberita->berita_footer();
         $x['photo'] = $this->mberita->get_photo();
 
-        $kode = $this->uri->segment(3);
+        $kode = 5;
         $x['brt'] = $this->mpaket->tampil_paket();
         $x['news'] = $this->mpaket->getpaket($kode);
         $x['foto'] = $this->mwisata->get_foto($kode);
+
+        $x['ketersediaan'] = $this->mpaket->get_ketersediaan_all($kode);
+
         $this->load->view('nfront/templates/f_header', $x);
         $this->load->view('nfront/v_detail_paket', $x);
         $this->load->view('nfront/templates/_footer', $x);
@@ -85,7 +89,7 @@ class Paket_tour extends CI_Controller
         $x['photo'] = $this->mberita->get_photo();
         $kode = $this->uri->segment(3);
         $x['pkt'] = $this->mpaket->getpaket($kode);
-        $x['ketersediaan'] = $this->mpaket->get_ketersediaan($kode);
+        $x['ketersediaan'] = $this->mpaket->get_ketersediaan_all($kode);
 
         $x['byr'] = $this->mpaket->get_metode_pembayaran();
         $this->load->view('nfront/templates/f_header', $x);
@@ -107,7 +111,7 @@ class Paket_tour extends CI_Controller
         $email = strip_tags(str_replace("'", "", $this->input->post('email')));
         $paket = strip_tags(str_replace("'", "", $this->input->post('paket')));
         $no_ktp = strip_tags(str_replace("'", "", $this->input->post('no_ktp')));
-        $id_paket_tour = $this->input->post('id_paket_tour');
+        $id = $this->input->post('id');
 
 
 
@@ -117,7 +121,7 @@ class Paket_tour extends CI_Controller
 
         $ket = htmlspecialchars($this->input->post('notebox', true));
         $id_user = $this->session->userdata('id');
-        $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id_paket_tour);
+        $this->mpaket->simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id);
         $this->session->set_userdata('invoices', $no_order);
         $x['photo'] = $this->mberita->get_photo();
         $x['data'] = $this->mpaket->get_metode();

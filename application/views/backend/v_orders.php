@@ -15,7 +15,7 @@ $jum_konfirmasi = $query4->num_rows();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BUCEK-TRAVEL | Orders List</title>
+  <title>Sumbawa-Travel | Orders List</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="shorcut icon" type="text/css" href="<?php echo base_url() . 'assets/images/favicon.png' ?>">
@@ -310,7 +310,7 @@ $jum_konfirmasi = $query4->num_rows();
                           $status = $a['status'];
                           $pembatalan = $a['pembatalan'];
 
-                          ?>
+                        ?>
                           <tr>
                             <td style="vertical-align: middle;"><?php echo $id; ?></td>
                             <td style="vertical-align: middle;"><?php echo $tgl; ?></td>
@@ -322,7 +322,7 @@ $jum_konfirmasi = $query4->num_rows();
                             <td style="text-align: right;vertical-align: middle;"><?php echo 'Rp ' . number_format($total); ?></td>
                             <td style="text-align: center;vertical-align: middle;">
                               <?php
-                                if ($status == 'LUNAS') : ?>
+                              if ($status == 'LUNAS') : ?>
                                 <label class="label label-success">LUNAS</label>
                               <?php elseif ($status == 'BATAL') : ?>
                                 <label class="label label-danger">BATAL</label>
@@ -381,7 +381,7 @@ $jum_konfirmasi = $query4->num_rows();
 
 
 
-                          ?>
+                        ?>
                           <tr>
                             <td style="vertical-align: middle;"><?php echo $id; ?></td>
                             <td style="vertical-align: middle;"><?php echo tanggal($tgl); ?></td>
@@ -414,7 +414,7 @@ $jum_konfirmasi = $query4->num_rows();
       <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
       </div>
-      <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Bucektravel</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; <?php echo date("Y"); ?> <a href="">Sumbawa Tour</a>.</strong> All rights reserved.
     </footer>
 
 
@@ -471,7 +471,7 @@ $jum_konfirmasi = $query4->num_rows();
     $kembali = $a['kembali'];
     $dewasa = $a['adult'];
     $anak = $a['kids'];
-    ?>
+  ?>
     <div id="modalEdit<?php echo $id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -522,7 +522,7 @@ $jum_konfirmasi = $query4->num_rows();
     $dewasa = $a['adult'];
     $anak = $a['kids'];
     $status = $a['status'];
-    ?>
+  ?>
     <!--Modal Hapus Order-->
     <div class="modal fade" id="ModalHapus<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

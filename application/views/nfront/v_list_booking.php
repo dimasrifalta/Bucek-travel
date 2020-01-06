@@ -58,7 +58,7 @@
     </div>
 </nav>
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/travel.jpg');" data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/travel.jpg' ?>');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -111,7 +111,7 @@
                                 <?php
                                 foreach ($data as $b) {
 
-                                    ?>
+                                ?>
                                     <th scope="row" class="border-0">
                                         <div class="p-2">
                                             <img src="http://localhost/bucektravel/assets/gambars/<?= $b['gambar'] ?> " alt="" width="50" class="img-fluid rounded shadow-sm">
@@ -123,15 +123,15 @@
                                     <td class="border-0 align-middle"><strong><?php echo $b['berangkat'] ?></strong></td>
                                     <td class="border-0 align-middle"><strong><?php echo $b['alamat'] ?></strong></td>
                                     <td class="border-0 align-middle"><a href="<?php echo base_url() . 'paket_tour/Detail_booking/' . $b['id_order']; ?>" class="text-dark"><?php
-                                                                                                                                                                                if ($b['pembatalan'] ==                                                                                                     "CANCEL" or $b['pembatalan'] ==                                                                                                     "BATAL") {
-                                                                                                                                                                                    echo "<i class='fa fa-window-close'>CANCELED</i>";
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    echo "<i class='fa fa-trash'>Batalkan</i>";
-                                                                                                                                                                                }; ?></a></td>
+                                                                                                                                                                            if ($b['pembatalan'] ==                                                                                                     "CANCEL" or $b['pembatalan'] ==                                                                                                     "BATAL") {
+                                                                                                                                                                                echo "<i class='fa fa-window-close'>CANCELED</i>";
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo "<i class='fa fa-trash'>Batalkan</i>";
+                                                                                                                                                                            }; ?></a></td>
                             </tr>
 
                         <?php
-                        }
+                                }
                         ?>
 
                         </tbody>

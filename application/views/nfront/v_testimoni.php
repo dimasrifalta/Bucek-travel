@@ -59,7 +59,7 @@
     </div>
 </nav>
 
-<div class="block-30 block-30-sm item" style="background-image: url('http://localhost/bucektravel/assets/vendors/images/post.jpg');" data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" style="background-image: url('<?php echo base_url() . 'assets/vendors/images/post.jpg' ?>');" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
@@ -123,7 +123,7 @@
                         $pesan = $a['pesan'];
                         $status = $a['status'];
                         $tglpost = $a['tgl_post'];
-                        ?>
+                    ?>
                         <div class="item">
                             <div class="block-33">
                                 <div class="vcard d-flex mb-3">
