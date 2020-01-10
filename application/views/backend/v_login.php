@@ -27,7 +27,7 @@
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg"> <img src="<?php echo base_url() . 'assets/images/mylogo.png' ?>"></p>
+            <p class="login-box-msg"> <img src="<?php echo base_url() . 'assets/vendors/images/logo company.png' ?>"></p>
             <hr />
 
             <form action="<?php echo base_url() . 'administrator/auth' ?>" method="post">

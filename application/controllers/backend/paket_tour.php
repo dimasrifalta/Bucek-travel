@@ -118,7 +118,12 @@ class Paket_tour extends CI_Controller
 		$tgl2 = $this->input->post('tgl_akhir', true);
 		$tgl_akhir = date('Y-m-d', strtotime($tgl2));
 
-		$this->mpaket->simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian);
+		$min_group = $this->input->post('min_group', true);
+		$max_group = $this->input->post('max_group', true);
+
+
+
+		$this->mpaket->simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $min_group, $max_group);
 		echo $this->session->set_flashdata('msg', 'success');
 		redirect('backend/paket_tour');
 	}

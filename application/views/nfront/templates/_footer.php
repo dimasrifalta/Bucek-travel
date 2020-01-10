@@ -49,12 +49,12 @@
                 <div class="block-23">
                     <h3 class="heading-section">Contact Info</h3>
                     <ul>
-                        <li><span class="icon icon-map-marker"></span><span class="text">Jln. Lintas Seteluk Poto Tano, 84454 Indonesia</span></li>
+                        <li><span class="icon icon-map-marker"></span><span class="text">Jln. Lintas Seteluk Poto Tano, 84454 Kab.Sumbawa NTB Indonesia</span></li>
                         <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929
                                     210</span></a></li>
                         <li><a href="#"><span class="icon icon-envelope"></span><span class="text">sumbawatour@gmal.com</span></a></li>
-                        <li><span class="icon icon-clock-o"></span><span class="text">Senin &mdash; Jum'at 8:00pagi -
-                                5:00sore</span></li>
+                        <li><span class="icon icon-clock-o"></span><span class="text">Senin &mdash; Jum'at 8:00 pagi -
+                                5:00 sore</span></li>
                     </ul>
                 </div>
             </div>

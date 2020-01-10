@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
+        <a class="navbar-brand" href="<?= base_url(''); ?>">SumbawaTour</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -73,7 +73,7 @@
 </div>
 
 <?php
-$b = $pkt->row_array();
+$b = $ketersediaan->row_array();
 ?>
 
 <div class="site-section">
@@ -144,37 +144,16 @@ $b = $pkt->row_array();
                         <input type="text" name="nama_paket" class="form-control" value="<?php echo $b['nama_paket'] ?>" readonly="readonly" required />
                     </div>
 
-                    <!-- 
-                    <div class="mb-3">
-                        <label for="checkin">Keberangkatan</label>
-                        <div class="field-icon-wrap">
-                            <div class="icon"><span class="icon-calendar"></span>
-                            </div>
-                            <input type="text" id="checkin_date" class="form-control datepicker" data-date-format="yyyy-mm-dd" autocomplete="off" name="berangkat" required />
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="checkout_date">Kepulangan</label>
-                        <div class="field-icon-wrap">
-                            <div class="icon"><span class="icon-calendar"></span>
-                            </div>
-                            <input type="text" id="checkout_date" class="form-control datepicker" data-date-format="yyyy-mm-dd" autocomplete="off" name="kembali" required />
-                        </div>
-                    </div> -->
-
-
-
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="th_sewa">Dewasa</label>
-                            <input type="number" class="form-control" id="adultamt" name="adultamt" value="1">
+                            <input type="number" min="<?= $b['min_group']; ?>" max="<?= $b['max_group']; ?>" class="form-control" id="adultamt" name="adultamt" value="1">
                         </div>
 
 
                         <div class="col-md-6 mb-3">
-                            <label for="th_sewa">Anak-Anak</label>
+                            <label for="th_sewa">Anak-Anak 12th</label>
                             <input type="number" class="form-control" id="childrenamt" name="childrenamt" value="0" class="spinner-min0" />
                         </div>
                     </div>

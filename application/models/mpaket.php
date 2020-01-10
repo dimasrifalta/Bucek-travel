@@ -34,9 +34,9 @@ class Mpaket extends CI_Model
         return $hasil;
     }
 
-    public function simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian)
+    public function simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $min_group, $max_group)
     {
-        $hasil = $this->db->query("INSERT INTO available_tour(id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian) VALUES ('$id_paket_tour','$tgl_awal','$tgl_akhir','$jumlah_ketersedian')");
+        $hasil = $this->db->query("INSERT INTO available_tour(id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian,min_group,max_group) VALUES ('$id_paket_tour','$tgl_awal','$tgl_akhir','$jumlah_ketersedian','$min_group','$max_group')");
         return $hasil;
     }
 
@@ -54,7 +54,7 @@ class Mpaket extends CI_Model
     }
     public function tampil_availible_tour()
     {
-        $hasil = $this->db->query("select available_tour.id, gambar,nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,available_tour.id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian from paket INNER JOIN available_tour WHERE paket.idpaket=available_tour.id_paket_tour");
+        $hasil = $this->db->query("select min_group,max_group,available_tour.id, gambar,nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,available_tour.id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian from paket INNER JOIN available_tour WHERE paket.idpaket=available_tour.id_paket_tour");
         return $hasil;
     }
     public function berita()
@@ -79,7 +79,7 @@ class Mpaket extends CI_Model
     public function get_ketersediaan_all($kode)
     {
         $date = date('Y-m-d');
-        $hasil = $this->db->query("SELECT paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$date' AND idpaket='$kode' order BY idpaket");
+        $hasil = $this->db->query("SELECT max_group,min_group,paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$date' AND idpaket='$kode' order BY idpaket");
         return $hasil;
     }
     public function updatedenganimg($kode, $nama_paket, $kategori, $deskripsi, $hrg_dewasa, $hrg_anak, $gambar)

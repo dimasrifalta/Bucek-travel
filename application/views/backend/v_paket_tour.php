@@ -509,12 +509,7 @@ function limit_words($string, $word_limit)
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-xs-2">Jumlah Ketersedian</label>
-              <div class="col-xs-8">
-                <input name="jumlah_ketersedian" class="form-control" type="number" placeholder="Jumlah Ketersedian" required>
-              </div>
-            </div>
+
 
             <div class="form-group">
               <label class="control-label col-xs-2">Tanggal Awal</label>
@@ -528,6 +523,26 @@ function limit_words($string, $word_limit)
               <div class="col-xs-8">
 
                 <input type="text" class="form-control" id="datepicker2" name="tgl_akhir" autocomplete="off" value="" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-xs-2">Group Minimal</label>
+              <div class="col-xs-8">
+                <input name="min_group" class="form-control" type="number" placeholder="Group Minimal" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-xs-2">Group Maksimal</label>
+              <div class="col-xs-8">
+                <input name="max_group" class="form-control" type="number" placeholder="Group Minimal" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-xs-2">Jumlah Ketersedian</label>
+              <div class="col-xs-8">
+                <input name="jumlah_ketersedian" class="form-control" type="number" placeholder="Jumlah Ketersedian" required>
               </div>
             </div>
 
@@ -645,6 +660,9 @@ function limit_words($string, $word_limit)
     $tgl_awal = $a['tgl_awal'];
     $tgl_akhir = $a['tgl_akhir'];
     $jumlah_ketersedian = $a['jumlah_ketersedian'];
+    $min_group = $a['min_group'];
+    $max_group = $a['max_group'];
+
   ?>
     <!-- ============ MODAL EDIT AVAILABLE TOUR =============== -->
     <div class="modal fade" id="available_tour<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
@@ -677,6 +695,20 @@ function limit_words($string, $word_limit)
                 <label class="control-label col-xs-2">Tanggal Akhir</label>
                 <div class="col-xs-8">
                   <input name="tgl_akhir" value="<?php echo $tgl_akhir; ?>" class="form-control datepicker" type="text" placeholder="Tanggal Akhir" data-toggle="datepicker" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">Minimal Group</label>
+                <div class="col-xs-8">
+                  <input name="min_group" value="<?php echo $min_group; ?>" class="form-control" type="number" max="40" placeholder="Minimal Group" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">Maksimal Group</label>
+                <div class="col-xs-8">
+                  <input name="min_group" value="<?php echo $max_group; ?>" class="form-control" type="number" max="40" placeholder="Maksimal Group" required>
                 </div>
               </div>
 
@@ -763,6 +795,12 @@ function limit_words($string, $word_limit)
   <script src="<?php echo base_url() . 'assets/plugins/select2/select2.min.js' ?>"></script>
   <!-- page script -->
   <script>
+    $(document).ready(function() {
+      $("#paket").select2({
+        dropdownParent: $("#my-tour")
+      });
+
+    });
     $(function() {
       $('[data-toggle="datepicker"]').datepicker({
         autoHide: true,
@@ -773,7 +811,7 @@ function limit_words($string, $word_limit)
         todayHighlight: true
       });
 
-      $('[data-toggle="datepicker2t"]').datepicker({
+      $('[data-toggle="datepicker2"]').datepicker({
         autoHide: true,
         zIndex: 2048,
         autoclose: true,

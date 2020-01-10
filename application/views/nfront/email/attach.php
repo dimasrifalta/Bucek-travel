@@ -36,7 +36,7 @@ $b = $data->row_array();
         <div id="details" class="clearfix">
             <div id="client">
                 <div class="to">NO INVOICE : <?php echo $b['id_order'] ?></div>
-                <h2 class="name">John Doe</h2>
+                <h2 class="name"><?php echo $b['nama'] ?></h2>
                 <div class="address"> ALAMAT :<?php echo $b['alamat']; ?>, ID</div>
                 <div class="email"><a href="<?php echo $b['id'] ?>"><?php echo $b['id'] ?></a></div>
             </div>

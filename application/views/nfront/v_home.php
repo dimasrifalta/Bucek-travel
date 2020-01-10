@@ -19,7 +19,7 @@
  </style>
  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
      <div class="container">
-         <a class="navbar-brand" href="<?= base_url(''); ?>">Bucektravel</a>
+         <a class="navbar-brand" href="<?= base_url(''); ?>">SumbawaTour</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
              <span class="oi oi-menu"></span> Menu
          </button>
@@ -261,8 +261,8 @@
                         ?>
                          <div class="item">
                              <div class="block-34">
-                                 <div class="image">
-                                     <a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><img src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" alt="Image placeholder"></a>
+                                 <div class="image ">
+                                     <a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><img src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" class="img-fluid" style="height: 250px;" alt="Image placeholder"></a>
                                  </div>
                                  <div class="text">
                                      <h2 class="heading"><a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><?= $judul; ?>g</a></h2>
