@@ -1,3 +1,27 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+    }
+
+    .my-float {
+        margin-top: 16px;
+    }
+</style>
+<a href="https://api.whatsapp.com/send?phone=+6285738601017&text=Hallo%20Kak!%20saya%20mau%20pesan%20paket%20tour%20wisatanya%20." class="float" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+</a>
 <div class="block-22">
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -56,6 +80,13 @@
                         <li><span class="icon icon-clock-o"></span><span class="text">Senin &mdash; Jum'at 8:00 pagi -
                                 5:00 sore</span></li>
                     </ul>
+                    <br>
+                    <h3 class="heading-section"><a href="<?php echo base_url() . 'kontak/faq' ?>">
+                            FAQ
+                        </a></h3>
+                    <h3 class="heading-section"><a href="<?php echo base_url() . 'kontak/terms' ?>">
+                            Terms Of Services
+                        </a></h3><br>
                 </div>
             </div>
 

@@ -99,78 +99,30 @@
         <?php echo $this->session->flashdata('msg'); ?>
       </div>
 
-      <div class="col-md-6" id="map">
+      <style>
+        .map-container2 {
+          overflow: hidden;
+          padding-bottom: 56.25%;
+          position: relative;
+          height: 0;
+        }
 
+        .map-container2 iframe {
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+        }
+      </style>
+
+      <!--Google map-->
+      <div id="map-container2-google-1" class="z-depth-1-half map-container" style="height: 500px">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1971.7003207401367!2d116.8578766040248!3d-8.748321412325117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc66e88d41d115%3A0x61af362a217aa7a0!2sSekretariat%20HMI%20cabang%20Sumbawa%20barat!5e0!3m2!1sid!2sid!4v1578932899514!5m2!1sid!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
       </div>
+
+      <!--Google Maps-->
     </div>
   </div>
 </div>
-
-
-
-<div class="site-section bg-light">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-md-7 section-heading">
-        <span class="subheading-sm">Reviews</span>
-        <h2 class="heading">Customer Reviews</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-4">
-
-        <div class="block-33">
-          <div class="vcard d-flex mb-3">
-            <div class="image align-self-center"><img src="images/person_3.jpg" alt="Person here"></div>
-            <div class="name-text align-self-center">
-              <h2 class="heading">Martin Newmansfield</h2>
-              <span class="meta">Satisfied Customer</span>
-            </div>
-          </div>
-          <div class="text">
-            <blockquote>
-              <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-            </blockquote>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-md-6 col-lg-4">
-
-        <div class="block-33">
-          <div class="vcard d-flex mb-3">
-            <div class="image align-self-center"><img src="images/person_2.jpg" alt="Person here"></div>
-            <div class="name-text align-self-center">
-              <h2 class="heading">Nancy Green</h2>
-              <span class="meta">Satisfied Customer</span>
-            </div>
-          </div>
-          <div class="text">
-            <blockquote>
-              <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-            </blockquote>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-md-6 col-lg-4">
-
-        <div class="block-33">
-          <div class="vcard d-flex mb-3">
-            <div class="image align-self-center"><img src="images/person_1.jpg" alt="Person here"></div>
-            <div class="name-text align-self-center">
-              <h2 class="heading">Elizabeth Charles</h2>
-              <span class="meta">Satisfied Customer</span>
-            </div>
-          </div>
-          <div class="text">
-            <blockquote>
-              <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-            </blockquote>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 </div>

@@ -29,6 +29,11 @@ class Mpengguna extends CI_Model
         $query = $this->db->query("delete from admin where idadmin='$id'");
         return $query;
     }
+    function nonaktifkan($id)
+    {
+        $query = $this->db->query("update user set is_active='0' where id='$id'");
+        return $query;
+    }
 
     function edit_user($id, $nama, $username, $password, $level)
     {

@@ -25,6 +25,10 @@ $jum_konfirmasi = $query4->num_rows();
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/font-awesome/css/font-awesome.min.css' ?>">
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/datatables/dataTables.bootstrap.css' ?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/datatables/rowReorder.dataTables.min.css' ?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/datatables/responsive.dataTables.min.css' ?>">
+    <link rel="stylesheet" href="<?php echo base_url() . 'assets/plugins/datatables/buttons.dataTables.min.css' ?>">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/AdminLTE.min.css' ?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -182,81 +186,217 @@ $jum_konfirmasi = $query4->num_rows();
             </section>
             <!-- /.sidebar -->
         </aside>
+        <style>
+            .tab {
+                margin-top: 30px;
+            }
 
+            .tab .nav-tabs {
+                border: none;
+                border-bottom: 1px solid #e4e4e4;
+            }
+
+            .nav-tabs li a {
+                padding: 15px 40px;
+                border: 1px solid #ededed;
+                border-top: 2px solid #ededed;
+                border-right: 0px none;
+                background: #7a81f4;
+                color: #fff;
+                border-radius: 0px;
+                margin-right: 0px;
+                font-weight: bold;
+                transition: all 0.3s ease-in 0s;
+            }
+
+            .nav-tabs li a:hover {
+                border-bottom-color: #ededed;
+                border-right: 0px none;
+                background: #00b0ad;
+                color: #fff;
+            }
+
+            .nav-tabs li a i {
+                display: inline-block;
+                text-align: center;
+                margin-right: 10px;
+            }
+
+            .nav-tabs li:last-child {
+                border-right: 1px solid #ededed;
+            }
+
+            .nav-tabs li.active a,
+            .nav-tabs li.active a:focus,
+            .nav-tabs li.active a:hover {
+                border-top: 3px solid #00b0ad;
+                border-right: 1px solid #d3d3d3;
+                margin-top: -15px;
+                color: #444;
+                padding: 22px 40px;
+            }
+
+            .tab .tab-content {
+                padding: 20px;
+                line-height: 22px;
+                box-shadow: 0px 1px 0px #808080;
+            }
+
+            .tab .tab-content h3 {
+                margin-top: 0;
+            }
+
+            @media only screen and (max-width: 767px) {
+                .nav-tabs li {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                .nav-tabs li a {
+                    padding: 15px;
+                }
+
+                .nav-tabs li.active a,
+                .nav-tabs li.active a:focus,
+                .nav-tabs li.active a:hover {
+                    padding: 15px;
+                    margin-top: 0;
+                }
+            }
+        </style>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Pengguna
-                    <small></small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Pengguna</li>
-                </ol>
-            </section>
+
+
 
             <!-- Main content -->
             <section class="content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
 
-                            <div class="box">
-                                <div class="box-header">
-                                    <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Add New</a>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tab" role="tabpanel">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user"></i>Data Customer</a></li>
+                                        <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>Data Operator</a></li>
+
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content tabs">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+
+                                            <div class="box-header">
+
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <table id="example" class="table table-bordered table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Nama</th>
+                                                            <th>Email</th>
+                                                            <th>Status</th>
+
+                                                            <th style="text-align:right;">Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $no = 0;
+                                                        foreach ($customer->result_array() as $a) :
+                                                            $no++;
+                                                            $id = $a['id'];
+                                                            $nama = $a['name'];
+                                                            $email = $a['email'];
+                                                            $is_active = $a['is_active'];
+
+                                                        ?>
+                                                            <tr>
+
+                                                                <td><?php echo $nama; ?></td>
+                                                                <td><?php echo $email; ?></td>
+                                                                <td>
+                                                                    <?php if ($is_active == 1) {
+                                                                        echo "Active";
+                                                                    } else {
+                                                                        echo "NonAktive";
+                                                                    } ?></td>
+
+                                                                <td style="text-align:right;">
+
+                                                                    <a class="btn" href="<?php echo base_url() . 'backend/pengguna/nonaktifkan/' . $id; ?>"><span class="fa fa-refresh" title="Nonaktifkan"></span></a>
+
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.box-body -->
+
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="Section2">
+
+                                            <!-- /.box-header -->
+                                            <div class="box-header">
+                                                <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#largeModal"><span class="fa fa-plus"></span> Add New</a>
+                                            </div>
+                                            <div class="box-body">
+                                                <table id="example2" class="table table-striped" style="font-size:13px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th>Photo</th> -->
+                                                            <th>Nama</th>
+                                                            <th>Username</th>
+                                                            <th>Password</th>
+                                                            <th>Level</th>
+                                                            <th style="text-align:right;">Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $no = 0;
+                                                        foreach ($data->result_array() as $a) :
+                                                            $no++;
+                                                            $id = $a['idadmin'];
+                                                            $nama = $a['nama'];
+                                                            $username = $a['username'];
+                                                            $password = $a['password'];
+                                                            $level = $a['level'];
+                                                            $photo = $a['photo'];
+                                                        ?>
+                                                            <tr>
+                                                                <!-- <td><img src="<?php echo base_url() . 'assets/images/' . $photo; ?>" class="img-circle" style="width:60px;"></td> -->
+                                                                <td><?php echo $nama; ?></td>
+                                                                <td><?php echo $username; ?></td>
+                                                                <td><?php echo $password; ?></td>
+                                                                <td><?php echo $level; ?></td>
+                                                                <td style="text-align:right;">
+                                                                    <a class="btn" data-toggle="modal" data-target="#ModalUpdate<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
+                                                                    <a class="btn" href="<?php echo base_url() . 'backend/pengguna/reset_password/' . $id; ?>"><span class="fa fa-refresh"></span></a>
+                                                                    <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table id="example1" class="table table-striped" style="font-size:13px;">
-                                        <thead>
-                                            <tr>
-                                                <th>Photo</th>
-                                                <th>Nama</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Level</th>
-                                                <th style="text-align:right;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $no = 0;
-                                            foreach ($data->result_array() as $a) :
-                                                $no++;
-                                                $id = $a['idadmin'];
-                                                $nama = $a['nama'];
-                                                $username = $a['username'];
-                                                $password = $a['password'];
-                                                $level = $a['level'];
-                                                $photo = $a['photo'];
-                                            ?>
-                                                <tr>
-                                                    <td><img src="<?php echo base_url() . 'assets/images/' . $photo; ?>" class="img-circle" style="width:60px;"></td>
-                                                    <td><?php echo $nama; ?></td>
-                                                    <td><?php echo $username; ?></td>
-                                                    <td><?php echo $password; ?></td>
-                                                    <td><?php echo $level; ?></td>
-                                                    <td style="text-align:right;">
-                                                        <a class="btn" data-toggle="modal" data-target="#ModalUpdate<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
-                                                        <a class="btn" href="<?php echo base_url() . 'backend/pengguna/reset_password/' . $id; ?>"><span class="fa fa-refresh"></span></a>
-                                                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.box-body -->
                             </div>
-                            <!-- /.box -->
                         </div>
-                        <!-- /.col -->
+
                     </div>
-                    <!-- /.row -->
+                </div>
+
             </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -504,6 +644,8 @@ $jum_konfirmasi = $query4->num_rows();
     <!-- DataTables -->
     <script src="<?php echo base_url() . 'assets/plugins/datatables/jquery.dataTables.min.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.bootstrap.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.rowReorder.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.responsive.min.js' ?>"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url() . 'assets/plugins/slimScroll/jquery.slimscroll.min.js' ?>"></script>
     <!-- FastClick -->
@@ -514,21 +656,42 @@ $jum_konfirmasi = $query4->num_rows();
     <script src="<?php echo base_url() . 'assets/dist/js/demo.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/ckeditor/ckeditor.js' ?>"></script>
     <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.buttons.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/jszip.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/pdfmake.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/vfs_fonts.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/buttons.html5.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/plugins/datatables/buttons.html5.min.js' ?>"></script>
+
     <!-- page script -->
+
+
     <script>
-        $(function() {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
+        $(document).ready(function() {
+            var table = $('#example,#aaa').DataTable({
+                rowReorder: {
+                    selector: 'td:nth-child(2)'
+                },
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
             });
-            CKEDITOR.replace('ckeditor');
+
+
+
         });
     </script>
+
+
+    <!-- page script -->
+
+
+
 
     <?php if ($this->session->flashdata('msg') == 'error') : ?>
         <script type="text/javascript">

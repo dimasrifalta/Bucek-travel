@@ -58,6 +58,8 @@ class Welcome extends CI_Controller
 	public function search_keyword()
 	{
 		$tgl1     = $this->input->post('cari', true);
+
+
 		$tgl_awal = date('Y-m-d', strtotime($tgl1));
 
 		$x['paket'] = $this->mberita->paket_footer();

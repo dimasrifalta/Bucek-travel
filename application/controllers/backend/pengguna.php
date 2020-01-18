@@ -178,4 +178,16 @@ class Pengguna extends CI_Controller
         echo $this->session->set_flashdata('upass', $pass);
         redirect('backend/pengguna');
     }
+
+    function nonaktifkan()
+    {
+        if ($this->session->userdata('akses') == '1') {
+            $id = $this->uri->segment(4);
+            $this->mpengguna->nonaktifkan($id);
+            echo $this->session->set_flashdata('msg', 'success-hapus');
+            redirect('backend/pengguna');
+        } else {
+            echo "Halaman tidak ditemukan";
+        }
+    }
 }

@@ -30,13 +30,13 @@ class Mpaket extends CI_Model
     }
     public function SimpanPaket($nama_paket, $kategori, $deskripsi, $hrg_dewasa, $hrg_anak, $gambar)
     {
-        $hasil = $this->db->query("INSERT INTO paket(nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,gambar) VALUES ('$nama_paket','$hrg_dewasa','$hrg_anak','$deskripsi','$kategori','$gambar')");
+        $hasil = $this->db->query("INSERT INTO paket(nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,gambar,status) VALUES ('$nama_paket','$hrg_dewasa','$hrg_anak','$deskripsi','$kategori','$gambar','1')");
         return $hasil;
     }
 
-    public function simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $min_group, $max_group)
+    public function simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $id_operator)
     {
-        $hasil = $this->db->query("INSERT INTO available_tour(id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian,min_group,max_group) VALUES ('$id_paket_tour','$tgl_awal','$tgl_akhir','$jumlah_ketersedian','$min_group','$max_group')");
+        $hasil = $this->db->query("INSERT INTO available_tour(id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian,id_operator,status) VALUES ('$id_paket_tour','$tgl_awal','$tgl_akhir','$jumlah_ketersedian','$id_operator','1')");
         return $hasil;
     }
 
@@ -49,12 +49,19 @@ class Mpaket extends CI_Model
 
     public function tampil_paket()
     {
-        $hasil = $this->db->query("select * from paket");
+        $hasil = $this->db->query("select * from paket where status='1'");
         return $hasil;
     }
+
+    public function tampil_tourget()
+    {
+        $hasil = $this->db->query("select * from admin where level='2' ");
+        return $hasil;
+    }
+
     public function tampil_availible_tour()
     {
-        $hasil = $this->db->query("select min_group,max_group,available_tour.id, gambar,nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,available_tour.id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian from paket INNER JOIN available_tour WHERE paket.idpaket=available_tour.id_paket_tour");
+        $hasil = $this->db->query("select id_operator,available_tour.id, gambar,nama_paket,hrg_dewasa,hrg_anak,deskripsi,kategori_id,available_tour.id_paket_tour,tgl_awal,tgl_akhir,jumlah_ketersedian from paket INNER JOIN available_tour WHERE paket.idpaket=available_tour.id_paket_tour AND available_tour.status='1' ");
         return $hasil;
     }
     public function berita()
@@ -94,9 +101,17 @@ class Mpaket extends CI_Model
     }
     public function hapus_paket($id)
     {
-        $hasil = $this->db->query("delete from paket where idpaket='$id'");
+        $hasil = $this->db->query("UPDATE paket SET status='0' WHERE idpaket='$id'");
         return $hasil;
     }
+
+    public function nonaktifkanAvailable($id)
+    {
+        $hasil = $this->db->query("UPDATE available_tour SET status='0' WHERE id='$id'");
+        return $hasil;
+    }
+
+
     public function get_no_order()
     {
         $q = $this->db->query("SELECT MAX(RIGHT(id_order,6)) AS kd_max FROM orders where date(tanggal)=CURDATE()");
@@ -193,7 +208,7 @@ class Mpaket extends CI_Model
 
     function search($tgl_awal)
     {
-        $hasil = $this->db->query("SELECT paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$tgl_awal'GROUP BY idpaket");
+        $hasil = $this->db->query("SELECT paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$tgl_awal' GROUP BY idpaket");
         return $hasil;
     }
 }

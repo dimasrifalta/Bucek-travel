@@ -45,4 +45,16 @@ class Kontak extends CI_Controller
         echo $this->session->set_flashdata('msg', '<div><p><strong> NB: </strong> Terima Kasih Telah Menghubungi Kami.</p></div>');
         redirect('kontak');
     }
+
+
+    public function faq()
+    {
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $x['bnk'] = $this->morders->get_bank();
+        $this->load->view('nfront/templates/f_header', $x);
+        $this->load->view('nfront/v_faq', $x);
+        $this->load->view('nfront/templates/_footer', $x);
+    }
 }

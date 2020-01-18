@@ -17,6 +17,8 @@ class Paket_tour extends CI_Controller
 			$x['data'] = $this->mpaket->tampil_paket();
 			$x['kat'] = $this->mpaket->get_kategori();
 			$x['availble_tour'] = $this->mpaket->tampil_availible_tour();
+			$x['tour_gate'] = $this->mpaket->tampil_tourget();
+
 
 			$this->load->view('backend/v_paket_tour', $x);
 		} else {
@@ -109,40 +111,49 @@ class Paket_tour extends CI_Controller
 
 	function simpan_ketersedian_paket()
 	{
-		$id_paket_tour = $this->input->post('id_paket_tour', true);
-		$jumlah_ketersedian = $this->input->post('jumlah_ketersedian', true);
-
-		$tgl1     = $this->input->post('tgl_awal', true);
-		$tgl_awal = date('Y-m-d', strtotime($tgl1));
-
-		$tgl2 = $this->input->post('tgl_akhir', true);
-		$tgl_akhir = date('Y-m-d', strtotime($tgl2));
-
-		$min_group = $this->input->post('min_group', true);
-		$max_group = $this->input->post('max_group', true);
-
-
-
-		$this->mpaket->simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $min_group, $max_group);
-		echo $this->session->set_flashdata('msg', 'success');
-		redirect('backend/paket_tour');
+		if ($this->session->userdata('akses') == '1') {
+			$id_paket_tour = $this->input->post('id_paket_tour', true);
+			$jumlah_ketersedian = $this->input->post('jumlah_ketersedian', true);
+			$tgl1     = $this->input->post('tgl_awal', true);
+			$tgl_awal = date('Y-m-d', strtotime($tgl1));
+			$tgl2 = $this->input->post('tgl_akhir', true);
+			$tgl_akhir = date('Y-m-d', strtotime($tgl2));
+			$id_operator = $this->input->post('id_operator', true);
+			$this->mpaket->simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $id_operator);
+			echo $this->session->set_flashdata('msg', 'success');
+			redirect('backend/paket_tour');
+		} else {
+			echo "Halaman tidak ditemukan";
+		}
 	}
 
 
 	function update_available_tour()
 	{
+		if ($this->session->userdata('akses') == '1') {
+			$jumlah_ketersedian = $this->input->post('jumlah_ketersedian', true);
+			$tgl1     = $this->input->post('tgl_awal', true);
+			$tgl_awal = date('Y-m-d', strtotime($tgl1));
+			$tgl2 = $this->input->post('tgl_akhir', true);
+			$tgl_akhir = date('Y-m-d', strtotime($tgl2));
+			$kode = $this->input->post('kode');
+			$this->mpaket->update_available_tour($tgl_awal, $tgl_akhir, $jumlah_ketersedian, $kode);
+			echo $this->session->set_flashdata('msg', 'success');
+			redirect('backend/paket_tour');
+		} else {
+			echo "Halaman tidak ditemukan";
+		}
+	}
 
-		$jumlah_ketersedian = $this->input->post('jumlah_ketersedian', true);
-
-		$tgl1     = $this->input->post('tgl_awal', true);
-		$tgl_awal = date('Y-m-d', strtotime($tgl1));
-
-		$tgl2 = $this->input->post('tgl_akhir', true);
-		$tgl_akhir = date('Y-m-d', strtotime($tgl2));
-		$kode = $this->input->post('kode');
-
-		$this->mpaket->update_available_tour($tgl_awal, $tgl_akhir, $jumlah_ketersedian, $kode);
-		echo $this->session->set_flashdata('msg', 'success');
-		redirect('backend/paket_tour');
+	function nonaktifkanAvailable()
+	{
+		if ($this->session->userdata('akses') == '1') {
+			$id = $this->input->post('kode');
+			$this->mpaket->nonaktifkanAvailable($id);
+			echo $this->session->set_flashdata('msg', 'success-hapus');
+			redirect('backend/paket_tour');
+		} else {
+			echo "Halaman tidak ditemukan";
+		}
 	}
 }

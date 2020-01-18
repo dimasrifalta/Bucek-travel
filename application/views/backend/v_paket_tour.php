@@ -374,7 +374,7 @@ function limit_words($string, $word_limit)
 
                             <td style="text-align:right;">
                               <a class="btn" data-toggle="modal" data-target="#available_tour<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
-                              <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                              <a class="btn" data-toggle="modal" data-target="#ModalHapusavailable_tour<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
                             </td>
                           </tr>
                         <?php endforeach; ?>
@@ -526,19 +526,26 @@ function limit_words($string, $word_limit)
               </div>
             </div>
 
+
+
             <div class="form-group">
-              <label class="control-label col-xs-2">Group Minimal</label>
+              <label class="control-label col-xs-2">Tour Gate</label>
               <div class="col-xs-8">
-                <input name="min_group" class="form-control" type="number" placeholder="Group Minimal" required>
+                <select name="id_operator" id="paket2" data-width="100%" class="form-control" required>
+                  <option value="">-PILIH-</option>
+
+                  <?php
+                  foreach ($tour_gate->result_array() as $i) {
+                    $kode = $i['idadmin'];
+                    $nama = $i['nama'];
+                  ?>
+                    <option value='<?php echo $kode ?>'><?php echo $nama ?></option>
+                  <?php } ?>
+                </select>
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="control-label col-xs-2">Group Maksimal</label>
-              <div class="col-xs-8">
-                <input name="max_group" class="form-control" type="number" placeholder="Group Minimal" required>
-              </div>
-            </div>
+
             <div class="form-group">
               <label class="control-label col-xs-2">Jumlah Ketersedian</label>
               <div class="col-xs-8">
@@ -660,8 +667,8 @@ function limit_words($string, $word_limit)
     $tgl_awal = $a['tgl_awal'];
     $tgl_akhir = $a['tgl_akhir'];
     $jumlah_ketersedian = $a['jumlah_ketersedian'];
-    $min_group = $a['min_group'];
-    $max_group = $a['max_group'];
+    $id_operator = $a['id_operator'];
+
 
   ?>
     <!-- ============ MODAL EDIT AVAILABLE TOUR =============== -->
@@ -698,19 +705,9 @@ function limit_words($string, $word_limit)
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-xs-2">Minimal Group</label>
-                <div class="col-xs-8">
-                  <input name="min_group" value="<?php echo $min_group; ?>" class="form-control" type="number" max="40" placeholder="Minimal Group" required>
-                </div>
-              </div>
 
-              <div class="form-group">
-                <label class="control-label col-xs-2">Maksimal Group</label>
-                <div class="col-xs-8">
-                  <input name="min_group" value="<?php echo $max_group; ?>" class="form-control" type="number" max="40" placeholder="Maksimal Group" required>
-                </div>
-              </div>
+
+
 
               <div class="form-group">
                 <label class="control-label col-xs-2">Jumlah Ketersediaan</label>
@@ -752,16 +749,53 @@ function limit_words($string, $word_limit)
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
-            <h4 class="modal-title" id="myModalLabel">Hapus Paket</h4>
+            <h4 class="modal-title" id="myModalLabel">Nonaktifkan Paket</h4>
           </div>
           <form class="form-horizontal" action="<?php echo base_url() . 'backend/paket_tour/hapus_paket' ?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="kode" value="<?php echo $id; ?>" />
-              <p>Apakah Anda yakin mau menghapus Paket <b><?php echo $nama_paket; ?></b> ?</p>
+              <p>Apakah Anda yakin mau menonaktifkan Paket <b><?php echo $nama_paket; ?></b> ?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
+              <button type="submit" class="btn btn-primary btn-flat" id="simpan">Nonaktifkan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
+
+  <?php
+  $no = 0;
+  foreach ($availble_tour->result_array() as $a) :
+    $no++;
+    $id = $a['id'];
+    $gambar = $a['gambar'];
+    $nama_paket = $a['nama_paket'];
+    $tgl_awal = $a['tgl_awal'];
+    $tgl_akhir = $a['tgl_akhir'];
+    $jumlah_ketersedian = $a['jumlah_ketersedian'];
+    $id_operator = $a['id_operator'];
+
+
+  ?>
+    <!--Modal Hapus Post-->
+    <div class="modal fade" id="ModalHapusavailable_tour<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+            <h4 class="modal-title" id="myModalLabel">Nonaktifkan Available Tour</h4>
+          </div>
+          <form class="form-horizontal" action="<?php echo base_url() . 'backend/paket_tour/nonaktifkanAvailable' ?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <input type="hidden" name="kode" value="<?php echo $id; ?>" />
+              <p>Apakah Anda yakin mau Available Tour <b><?php echo $nama_paket; ?></b> ?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary btn-flat" id="simpan">Nonaktifkan</button>
             </div>
           </form>
         </div>
@@ -797,6 +831,12 @@ function limit_words($string, $word_limit)
   <script>
     $(document).ready(function() {
       $("#paket").select2({
+        dropdownParent: $("#my-tour")
+      });
+
+    });
+    $(document).ready(function() {
+      $("#paket2").select2({
         dropdownParent: $("#my-tour")
       });
 
@@ -873,6 +913,9 @@ function limit_words($string, $word_limit)
       });
 
     });
+
+
+
 
     $(document).ready(function() {
       $("#foto_edit").select2();

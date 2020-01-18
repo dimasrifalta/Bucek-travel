@@ -88,7 +88,7 @@
                      <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
                          <h2 class="heading">Enjoy a Luxury Experience</h2>
-                         <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
@@ -99,7 +99,7 @@
                      <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
                          <h2 class="heading">Simple &amp; Elegant</h2>
-                         <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
@@ -110,7 +110,7 @@
                      <div class="col-md-10">
                          <span class="subheading-sm">Welcome</span>
                          <h2 class="heading">Simple &amp; Elegant</h2>
-                         <p><a href="#" class="btn py-4 px-5 btn-primary">Learn More</a></p>
+                         <p><a href="<?= base_url('paket_tour'); ?>" class="btn py-4 px-5 btn-primary">Learn More</a></p>
                      </div>
                  </div>
              </div>
@@ -130,7 +130,10 @@
                              <label for="checkin">Check In</label>
                              <div class="field-icon-wrap">
                                  <div class="icon"><span class="icon-calendar"></span></div>
-                                 <input type="text" id="checkin_date" name="cari" class="form-control" autocomplete="off">
+                                 <?php
+                                    $date = date("yyyy-mm-dd");
+                                    ?>
+                                 <input type="text" id="cari" name="cari" class="form-control" autocomplete="off">
                              </div>
                          </div>
                          <div class="col-md-6 mb-3 mb-md-0 col-lg-4">
