@@ -70,7 +70,7 @@ class Paket_tour extends CI_Controller
         $x['berita'] = $this->mberita->berita_footer();
         $x['photo'] = $this->mberita->get_photo();
 
-        $kode = 5;
+        $kode = $this->uri->segment(3);
         $x['brt'] = $this->mpaket->tampil_paket();
         $x['news'] = $this->mpaket->getpaket($kode);
         $x['foto'] = $this->mwisata->get_foto($kode);

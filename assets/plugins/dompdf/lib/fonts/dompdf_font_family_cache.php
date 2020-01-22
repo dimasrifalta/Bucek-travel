@@ -86,4 +86,7 @@
   'sourcesanspro' => array(
     'normal' => $fontDir . '\2d1a4ff92cd84248de0313af2c661210',
   ),
+  'fontawesome' => array(
+    'normal' => $fontDir . '\e75a26cb6d3ec7601efedba288e45e69',
+  ),
 ) ?>

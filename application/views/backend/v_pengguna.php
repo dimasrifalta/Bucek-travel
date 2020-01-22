@@ -281,26 +281,25 @@ $jum_konfirmasi = $query4->num_rows();
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user"></i>Data Customer</a></li>
-                                        <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>Data Operator</a></li>
+                                        <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>Data Admin</a></li>
+
+                                        <li role="presentation"><a href="#Section3" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>Data Tour Gate</a></li>
+
 
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content tabs">
                                         <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-
                                             <div class="box-header">
-
                                             </div>
                                             <!-- /.box-header -->
                                             <div class="box-body">
                                                 <table id="example" class="table table-bordered table-striped table-hover">
                                                     <thead>
                                                         <tr>
-
                                                             <th>Nama</th>
                                                             <th>Email</th>
                                                             <th>Status</th>
-
                                                             <th style="text-align:right;">Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -316,7 +315,6 @@ $jum_konfirmasi = $query4->num_rows();
 
                                                         ?>
                                                             <tr>
-
                                                                 <td><?php echo $nama; ?></td>
                                                                 <td><?php echo $email; ?></td>
                                                                 <td>
@@ -337,7 +335,6 @@ $jum_konfirmasi = $query4->num_rows();
                                                 </table>
                                             </div>
                                             <!-- /.box-body -->
-
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="Section2">
 
@@ -387,7 +384,49 @@ $jum_konfirmasi = $query4->num_rows();
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="Section3">
 
+                                            <!-- /.box-header -->
+                                            <div class="box-header">
+                                                <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#tourgate"><span class="fa fa-plus"></span> Add New</a>
+                                            </div>
+                                            <div class="box-body">
+                                                <table id="example2" class="table table-striped" style="font-size:13px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Photo</th>
+                                                            <th>Nama</th>
+                                                            <th>No Hp</th>
+
+                                                            <th style="text-align:right;">Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $no = 0;
+                                                        foreach ($tourgate->result_array() as $a) :
+                                                            $no++;
+                                                            $id = $a['id'];
+                                                            $nama = $a['nama'];
+                                                            $no_hp = $a['no_hp'];
+                                                            $gambar = $a['gambar'];
+
+                                                        ?>
+                                                            <tr>
+                                                                <td><img src="<?php echo base_url() . 'assets/images/' . $gambar; ?>" class="img-circle" style="width:60px;"></td>
+                                                                <td><?php echo $nama; ?></td>
+                                                                <td><?php echo $no_hp; ?></td>
+                                                                <td style="text-align:right;">
+                                                                    <a class="btn" data-toggle="modal" data-target="#ModalUpdate2<?php echo $id; ?>"><span class="fa fa-pencil"></span></a>
+                                                                    <a class="btn" data-toggle="modal" data-target="#ModalHapus2<?php echo $id; ?>"><span class="fa fa-trash"></span></a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -480,6 +519,52 @@ $jum_konfirmasi = $query4->num_rows();
         </div>
     </div>
 
+
+    <!-- ============ MODAL ADD TOUR GATE =============== -->
+    <div class="modal fade" id="tourgate" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 class="modal-title" id="myModalLabel">Add Tour Gate</h3>
+                </div>
+                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'backend/pengguna/simpan_tourgate' ?>" enctype="multipart/form-data">
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Nama</label>
+                            <div class="col-xs-8">
+                                <input name="nama" class="form-control" type="text" placeholder="Nama" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">No HP</label>
+                            <div class="col-xs-8">
+                                <input name="no_hp" maxlength="12" class="form-control" type="number" placeholder="NO HP" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Photo</label>
+                            <div class="col-xs-8">
+                                <input type="file" name="filefoto" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-flat" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-primary btn-flat">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <?php
     $no = 0;
     foreach ($data->result_array() as $a) :
@@ -491,7 +576,7 @@ $jum_konfirmasi = $query4->num_rows();
         $level = $a['level'];
         $photo = $a['photo'];
     ?>
-        <!-- ============ MODAL ADD PENGGUNA =============== -->
+        <!-- ============ MODAL EDIT PENGGUNA =============== -->
         <div class="modal fade" id="ModalUpdate<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -545,6 +630,62 @@ $jum_konfirmasi = $query4->num_rows();
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">Photo</label>
+                                <div class="col-xs-8">
+                                    <input type="file" name="filefoto">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="hidden" name="kode" value="<?php echo $id; ?>">
+                            <button class="btn btn-flat" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                            <button class="btn btn-primary btn-flat">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+    <?php
+    $no = 0;
+    foreach ($tourgate->result_array() as $a) :
+        $no++;
+        $id = $a['id'];
+        $nama = $a['nama'];
+        $no_hp = $a['no_hp'];
+        $gambar = $a['gambar'];
+
+    ?>
+        <!-- ============ MODAL EDIT TOUR GATE =============== -->
+        <div class="modal fade" id="ModalUpdate2<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h3 class="modal-title" id="myModalLabel">Update Tour Gate</h3>
+                    </div>
+                    <form class="form-horizontal" method="post" action="<?php echo base_url() . 'backend/pengguna/update_tourgate' ?>" enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">Nama</label>
+                                <div class="col-xs-8">
+                                    <input name="nama" value="<?php echo $nama; ?>" class="form-control" type="text" placeholder="Nama" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3">NO HP</label>
+                                <div class="col-xs-8">
+                                    <input name="no_hp" value="<?php echo $no_hp; ?>" class="form-control" type="number" maxlength="12" placeholder="no_hp" required>
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3">Photo</label>
@@ -642,7 +783,8 @@ $jum_konfirmasi = $query4->num_rows();
     <!-- Bootstrap 3.3.6 -->
     <script src="<?php echo base_url() . 'assets/bootstrap/js/bootstrap.min.js' ?>"></script>
     <!-- DataTables -->
-    <script src="<?php echo base_url() . 'assets/plugins/datatables/jquery.dataTables.min.js' ?>"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
     <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.bootstrap.min.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.rowReorder.min.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/plugins/datatables/dataTables.responsive.min.js' ?>"></script>

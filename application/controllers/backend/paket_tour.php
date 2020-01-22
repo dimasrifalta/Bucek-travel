@@ -120,6 +120,7 @@ class Paket_tour extends CI_Controller
 			$tgl_akhir = date('Y-m-d', strtotime($tgl2));
 			$id_operator = $this->input->post('id_operator', true);
 			$this->mpaket->simpan_ketersedian_paket($id_paket_tour, $tgl_awal, $tgl_akhir, $jumlah_ketersedian, $id_operator);
+			$this->mpaket->updateStatus_tourgate($id_operator);
 			echo $this->session->set_flashdata('msg', 'success');
 			redirect('backend/paket_tour');
 		} else {

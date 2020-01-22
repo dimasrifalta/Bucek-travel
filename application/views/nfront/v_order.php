@@ -148,7 +148,7 @@ $b = $ketersediaan->row_array();
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="th_sewa">Dewasa</label>
-                            <input type="number" min="<?= $b['min_group']; ?>" max="<?= $b['max_group']; ?>" class="form-control" id="adultamt" name="adultamt" value="1">
+                            <input type="number" min="1" max="<?= $b['jumlah_ketersedian']; ?>" class="form-control" id="adultamt" name="adultamt" value="1">
                         </div>
 
 

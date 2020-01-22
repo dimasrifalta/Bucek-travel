@@ -63,4 +63,28 @@ class Mpengguna extends CI_Model
         $query = $this->db->query("SELECT * FROM user WHERE is_active ='1' ");
         return $query;
     }
+
+    function tourgate()
+    {
+        $query = $this->db->query("SELECT * FROM tour_gate");
+        return $query;
+    }
+
+    function simpan_tourgate($nama, $no_hp, $gambar)
+    {
+        $query = $this->db->query("insert into tour_gate(nama,no_hp,gambar,status)values('$nama','$no_hp','$gambar','1')");
+        return $query;
+    }
+
+    function edit_tourgate($id, $nama, $no_hp)
+    {
+        $query = $this->db->query("update tour_gate set nama='$nama',no_hp='$no_hp' where id='$id'");
+        return $query;
+    }
+
+    function update_tourgate_with_img($id, $nama, $no_hp, $gambar)
+    {
+        $query = $this->db->query("update tour_gate set nama='$nama',no_hp='$no_hp',gambar='$gambar' where id='$id'");
+        return $query;
+    }
 }

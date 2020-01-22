@@ -269,7 +269,9 @@ $(document).ready(function ($) {
 
 	$('#cari').datepicker({
 		format: 'd MM, yyyy',
-		startDate: new Date(),
+		startDate: '+1d',
+		calendarWeeks: true,
+		todayHighlight: true,
 		'autoclose': true
 	});
 

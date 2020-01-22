@@ -41,7 +41,6 @@ ob_start();
                 <thead style="background:#e8ecee">
                     <tr class="tr-title">
                         <th height="20" align="center" valign="middle">NO.</th>
-                        <th height="20" align="center" valign="middle">Id Order</th>
                         <th height="20" align="center" valign="middle">nama_paket</th>
                         <th height="20" align="center" valign="middle">Total Harga</th>
                         <th height="20" align="center" valign="middle">Jumlah Orang</th>
@@ -58,12 +57,12 @@ ob_start();
                         foreach ($keluar as $data) {
 
                             $tanggal1 = tanggal($data['tanggal']);
+                            $hasil_rupiah = "Rp." . number_format($data['total']);
                             // menampilkan isi tabel dari database ke tabel di aplikasi
                             echo "  <tr>
                     <td width='40' height='13' align='center' valign='middle'>$no</td>
-                    <td width='150' height='13' align='center' valign='middle'>$data[id_order]</td>
                     <td width='150' height='13' align='center' valign='middle'>$data[nama_paket]</td>
-                    <td width='80' height='13' align='center' valign='middle'>$data[total]</td>
+                    <td width='90' height='13' align='left' valign='middle'>$hasil_rupiah</td>
                     <td width='80' height='13' align='left' valign='middle'>$data[jml_berangkat]</td>
                     <td width='150' height='13' align='left' valign='middle'>$data[email]</td>
                     <td width='140' height='13' align='left' valign='middle'>$tanggal1</td>
@@ -78,11 +77,15 @@ ob_start();
 
                 </tbody>
             </table>
+            <br>
+            <br>
+            <br>
+
             <div id="footer-tanggal">
-                Cilame, <?php echo $hari_ini; ?>
+                Bandung, <?php echo "$hari_ini"; ?>
             </div>
             <div id="footer-jabatan">
-                Kepala Desa
+                Pimpinan
             </div>
 
             <div id="footer-nama">
@@ -103,7 +106,7 @@ $content = '<page style="font-family: freeserif">' . ($content) . '</page>';
 // panggil library html2pdf
 require_once '././assets/plugins/html2pdf_v4.03/html2pdf.class.php';
 try {
-    $html2pdf = new HTML2PDF('L', 'F4', 'en', false, 'ISO-8859-15', array(10, 10, 10, 10));
+    $html2pdf = new HTML2PDF('P', 'F4', 'en', false, 'ISO-8859-15', array(10, 10, 10, 10));
     $html2pdf->pdf->SetDisplayMode('fullpage');
 
     $html2pdf->setDefaultFont('Arial');

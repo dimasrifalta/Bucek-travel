@@ -57,4 +57,15 @@ class Kontak extends CI_Controller
         $this->load->view('nfront/v_faq', $x);
         $this->load->view('nfront/templates/_footer', $x);
     }
+
+    public function carapesan()
+    {
+        $x['paket'] = $this->mberita->paket_footer();
+        $x['berita'] = $this->mberita->berita_footer();
+        $x['photo'] = $this->mberita->get_photo();
+        $x['bnk'] = $this->morders->get_bank();
+        $this->load->view('nfront/templates/f_header', $x);
+        $this->load->view('nfront/v_cara_pesan', $x);
+        $this->load->view('nfront/templates/_footer', $x);
+    }
 }

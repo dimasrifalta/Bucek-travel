@@ -344,7 +344,7 @@ $jum_konfirmasi = $query4->num_rows();
                   <h3>Data Transaksi Penjualan Tiket</h3>
                   <!-- /.box-header -->
                   <div class="box-header">
-                    <a class="btn btn-danger btn-flat" data-toggle="modal" data-target="#my-cetak"><span class="fa fa-print"></span> Print Laporan Penjualan Tiket</a>
+                    <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#my-cetak"><span class="fa fa-search"></span> Cari Data Penjualan Tiket</a>
                   </div>
                   <div class="box-body">
                     <table id="example2" class="table table-striped" style="font-size:12px;">
@@ -423,7 +423,7 @@ $jum_konfirmasi = $query4->num_rows();
   <!-- ./wrapper -->
 
 
-  <form action="<?= base_url('backend/orders/printlaporan') ?>" method="POST" target=blank>
+  <form action="<?= base_url('backend/orders/cariorder') ?>" method="POST">
     <!-- Modal Popup untuk delete -->
     <div class="modal fade small" id="my-cetak">
       <div class="modal-body center">
@@ -431,7 +431,7 @@ $jum_konfirmasi = $query4->num_rows();
           <div class="modal-content" style="margin-top:100px;">
             <div class="modal-header">
 
-              <h4 class="modal-title" id="myModalLabel">Print Laporan Penjualan Tiket</h4>
+              <h4 class="modal-title" id="myModalLabel">Cari Data Penjualan Tiket</h4>
             </div>
             <div class="modal-body center">
               <div class="row">
@@ -446,7 +446,7 @@ $jum_konfirmasi = $query4->num_rows();
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
-                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cari</button>
               </div>
             </div>
           </div>

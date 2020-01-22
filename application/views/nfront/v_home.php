@@ -35,7 +35,7 @@
                      </a>
                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                          <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                         <a class="dropdown-item" href="#">Cara Pesan</a>
+                         <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                          <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                      </div>
@@ -183,8 +183,8 @@
                      <div class="col-md-12 col-sm-4">
                          <div class="row mb-5">
                              <div class="col-md-7 section-heading">
-                                 <span class="subheading-sm">Services</span>
-                                 <h2 class="heading">Facilities &amp; Services</h2>
+                                 <span class="subheading-sm">Layanan</span>
+                                 <h2 class="heading">Fasilitas &amp; Layanan</h2>
                              </div>
                          </div>
                      </div>
@@ -193,8 +193,7 @@
                              <div class="icon"><span class="flaticon-double-bed"></span></div>
                              <div class="media-body">
                                  <h3 class="heading">Luxury Rooms</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
+                                 <p>Nikmati pengalaman traveling mu dengan menginap di hotal yang mewah.</p>
                              </div>
                          </div>
                      </div>
@@ -215,8 +214,7 @@
                              <div class="icon"><span class="flaticon-taxi"></span></div>
                              <div class="media-body">
                                  <h3 class="heading">Travel Accomodation</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
+                                 <p>Semua accomodation kami semua yang tanggung,kamu tidak perlu pusing lagi untuk mengurus akomodasi waktu traveling.</p>
                              </div>
                          </div>
                      </div>
@@ -226,8 +224,7 @@
                              <div class="icon"><span class="flaticon-dinner"></span></div>
                              <div class="media-body">
                                  <h3 class="heading">Restaurant</h3>
-                                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                     unorthographic.</p>
+                                 <p>Semua restorant yang kami tawarkan adalah resturant yang kualitas makanannya jos ngandos.</p>
                              </div>
                          </div>
                      </div>

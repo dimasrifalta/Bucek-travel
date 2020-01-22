@@ -55,7 +55,13 @@ class Mpaket extends CI_Model
 
     public function tampil_tourget()
     {
-        $hasil = $this->db->query("select * from admin where level='2' ");
+        $hasil = $this->db->query("select * from tour_gate where status='1' ");
+        return $hasil;
+    }
+
+    public function updateStatus_tourgate($id_operator)
+    {
+        $hasil = $this->db->query("UPDATE tour_gate SET status='3' WHERE id='$id_operator' ");
         return $hasil;
     }
 
@@ -86,7 +92,7 @@ class Mpaket extends CI_Model
     public function get_ketersediaan_all($kode)
     {
         $date = date('Y-m-d');
-        $hasil = $this->db->query("SELECT max_group,min_group,paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$date' AND idpaket='$kode' order BY idpaket");
+        $hasil = $this->db->query("SELECT paket.idpaket,paket.nama_paket,paket.hrg_dewasa,paket.hrg_anak,paket.deskripsi,paket.gambar,paket.views,available_tour.id,available_tour.tgl_awal,available_tour.tgl_akhir,available_tour.jumlah_ketersedian FROM paket JOIN available_tour ON paket.idpaket=available_tour.id_paket_tour WHERE available_tour.tgl_awal > '$date' AND idpaket='$kode' AND available_tour.status='1' order BY idpaket");
         return $hasil;
     }
     public function updatedenganimg($kode, $nama_paket, $kategori, $deskripsi, $hrg_dewasa, $hrg_anak, $gambar)
@@ -126,9 +132,9 @@ class Mpaket extends CI_Model
         }
         return "INV" . date('dmy') . $kd;
     }
-    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id_paket_tour)
+    public function simpan_order($no_order, $id_user, $nama, $jekel, $alamat, $notelp, $email, $paket, $dewasa, $anak2, $ket, $no_ktp, $id)
     {
-        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,keterangan,tanggal,status, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email',(SELECT tgl_awal from  available_tour where 	id = '$id_paket_tour'),(SELECT tgl_akhir from  available_tour where id = '$id_paket_tour'),'$dewasa','$anak2','$paket','$ket',CURDATE(),'belum_bayar', '$no_ktp')");
+        $hasil = $this->db->query("INSERT INTO orders(id_order,id_user,nama,jenkel,alamat,notelp,email,berangkat,kembali,adult,kids,paket_id_order,id_ketersediaan_tanggal,keterangan,tanggal,status, no_ktp)VALUES('$no_order','$id_user','$nama','$jekel','$alamat','$notelp','$email',(SELECT tgl_awal from  available_tour where 	id = '$id'),(SELECT tgl_akhir from  available_tour where id = '$id'),'$dewasa','$anak2','$paket','$id','$ket',CURDATE(),'belum_bayar', '$no_ktp')");
         return $hasil;
     }
 

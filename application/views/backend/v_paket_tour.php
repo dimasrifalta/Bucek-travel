@@ -536,7 +536,7 @@ function limit_words($string, $word_limit)
 
                   <?php
                   foreach ($tour_gate->result_array() as $i) {
-                    $kode = $i['idadmin'];
+                    $kode = $i['id'];
                     $nama = $i['nama'];
                   ?>
                     <option value='<?php echo $kode ?>'><?php echo $nama ?></option>

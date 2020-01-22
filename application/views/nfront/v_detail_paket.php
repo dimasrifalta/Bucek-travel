@@ -246,9 +246,10 @@ $n = $news->row_array();
                         $kode = $i['id'];
                         $tgl_awal = $i['tgl_awal'];
                         $tgl_akhir = $i['tgl_akhir'];
+                        $jumlah_ketersedian = $i['jumlah_ketersedian'];
                     ?>
 
-                        <li class="list-group-item"><?= tanggal($tgl_awal); ?> - <?= tanggal($tgl_akhir); ?></li>
+                        <li class="list-group-item"><?= tanggal($tgl_awal); ?> - <?= tanggal($tgl_akhir); ?>(Tersedia <?= $jumlah_ketersedian; ?> Orang)</li>
 
                     <?php endforeach; ?>
                 <?php } else { ?>
