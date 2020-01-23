@@ -130,7 +130,7 @@
                               <label for="checkin">Check In</label>
                               <div class="field-icon-wrap">
                                   <div class="icon"><span class="icon-calendar"></span></div>
-                                  <input type="text" id="cari" name="cari" class="form-control" autocomplete="off">
+                                  <input type="text" id="cari" name="cari" class="form-control" autocomplete="off" required>
                               </div>
                           </div>
 

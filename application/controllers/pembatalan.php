@@ -84,7 +84,7 @@ class Pembatalan extends CI_Controller
 
 
         $this->email->initialize($config);
-        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->from('bucekcoffe@gmail.com', 'Sumbawa Tour');
         $this->email->to($this->session->userdata('email'));
 
         $data = array(

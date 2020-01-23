@@ -42,6 +42,17 @@ $jum_konfirmasi = $query4->num_rows();
 
   ?>
 
+
+  <?php
+  /* Mengambil query report*/
+  foreach ($penjualan as $result) {
+    $bulan2[] = $result->tgl; //ambil bulan
+    $value2[] = (float) $result->jumlah; //ambil nilai
+  }
+  /* end mengambil query*/
+
+  ?>
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -271,7 +282,7 @@ $jum_konfirmasi = $query4->num_rows();
         <!-- /.row -->
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12 col-sm-4">
             <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">Pengunjung bulan ini</h3>
@@ -280,10 +291,44 @@ $jum_konfirmasi = $query4->num_rows();
               <!-- /.box-header -->
               <div class="box-body">
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-12 col-sm-4">
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-4">
                       <canvas id="canvas" width="1000" height="280"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div>
+                  <!-- /.col -->
+
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./box-body -->
+
+              <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="row">
+          <div class="col-md-12 col-sm-4">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Penjualan bulan ini</h3>
+
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-12 col-sm-4">
+
+                    <div class="col-md-12 col-sm-4">
+                      <canvas id="canvas2" width="1000" height="280"></canvas>
                     </div>
                     <!-- /.chart-responsive -->
                   </div>
@@ -310,15 +355,45 @@ $jum_konfirmasi = $query4->num_rows();
             <!-- MAP & BOX PANE -->
             <div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title">Posting Populer</h3>
+                <h3 class="box-title">Paket Tour Wisata Populer</h3>
 
                 <table class="table">
                   <?php
-                  $query = $this->db->query("SELECT * FROM berita ORDER BY idberita DESC");
+                  $query = $this->db->query("SELECT * FROM paket  ORDER BY views DESC");
                   foreach ($query->result_array() as $i) :
-                    $tulisan_id = $i['idberita'];
-                    $tulisan_judul = $i['judul'];
+                    $tulisan_id = $i['idpaket'];
+                    $tulisan_judul = $i['nama_paket'];
                     $tulisan_views = $i['views'];
+                  ?>
+                    <tr>
+                      <td><?php echo $tulisan_judul; ?></td>
+                      <td><?php echo $tulisan_views . ' Terbeli'; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                </table>
+              </div>
+
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-8">
+            <!-- MAP & BOX PANE -->
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Tempat Wisata Populer</h3>
+
+                <table class="table">
+                  <?php
+                  $query = $this->db->query("SELECT * FROM wisata  ORDER BY idwisata DESC");
+                  foreach ($query->result_array() as $i) :
+                    $tulisan_id = $i['idwisata'];
+                    $tulisan_judul = $i['nama_wisata'];
+                    $tulisan_views = $i['idwisata'];
                   ?>
                     <tr>
                       <td><?php echo $tulisan_judul; ?></td>
@@ -484,6 +559,48 @@ $jum_konfirmasi = $query4->num_rows();
     }
 
     var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+
+    var canvas = new Chart(myLine).Line(lineChartData, {
+      scaleShowGridLines: true,
+      scaleGridLineColor: "rgba(0,0,0,.005)",
+      scaleGridLineWidth: 0,
+      scaleShowHorizontalLines: true,
+      scaleShowVerticalLines: true,
+      bezierCurve: true,
+      bezierCurveTension: 0.4,
+      pointDot: true,
+      pointDotRadius: 4,
+      pointDotStrokeWidth: 1,
+      pointHitDetectionRadius: 2,
+      datasetStroke: true,
+      tooltipCornerRadius: 2,
+      datasetStrokeWidth: 2,
+      datasetFill: true,
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+      responsive: true
+    });
+  </script>
+
+  <script>
+    var lineChartData = {
+      labels: <?php echo json_encode($bulan2); ?>,
+      datasets: [
+
+        {
+          fillColor: "rgba(60,141,188,0.9)",
+          strokeColor: "rgba(60,141,188,0.8)",
+          pointColor: "#3b8bba",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(152,235,239,1)",
+          data: <?php echo json_encode($value2); ?>
+        }
+
+      ]
+
+    }
+
+    var myLine = new Chart(document.getElementById("canvas2").getContext("2d")).Line(lineChartData);
 
     var canvas = new Chart(myLine).Line(lineChartData, {
       scaleShowGridLines: true,

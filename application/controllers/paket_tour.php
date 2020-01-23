@@ -146,7 +146,7 @@ class Paket_tour extends CI_Controller
         $x['data'] = $this->mpaket->faktur();
 
         $this->email->initialize($config);
-        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->from('bucekcoffe@gmail.com', 'Sumbawa Tour');
         $this->email->to($this->session->userdata('email'));
         $message = $this->load->view('nfront/email/email_invoice', $x, TRUE);
 

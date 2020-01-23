@@ -133,7 +133,7 @@
                                  <?php
                                     $date = date("yyyy-mm-dd");
                                     ?>
-                                 <input type="text" id="cari" name="cari" class="form-control" autocomplete="off">
+                                 <input type="text" id="cari" name="cari" class="form-control" autocomplete="off" required>
                              </div>
                          </div>
                          <div class="col-md-6 mb-3 mb-md-0 col-lg-4">

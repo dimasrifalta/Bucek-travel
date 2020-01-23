@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jan 2020 pada 02.26
+-- Waktu pembuatan: 23 Jan 2020 pada 15.43
 -- Versi server: 10.1.30-MariaDB
 -- Versi PHP: 7.2.2
 
@@ -43,7 +43,9 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`idadmin`, `nama`, `username`, `password`, `level`, `photo`) VALUES
 (2, 'Admin', 'admin', '202cb962ac59075b964b07152d234b70', '1', '9ff6127f058d57731cc367f3de09c5e3.jpg'),
-(4, 'Bucek', 'bucek', 'f526a1dac9b918e067315d8c47226af0', '2', 'd72edce79567571924ce3829e36554d5.jpg');
+(4, 'Bucek', 'bucek', 'f526a1dac9b918e067315d8c47226af0', '2', 'd72edce79567571924ce3829e36554d5.jpg'),
+(5, 'damara', 'damara', '202cb962ac59075b964b07152d234b70', '2', 'fd52d8697efdbf94e90b1a72335f8a37.png'),
+(6, 'Surya Abdai', 'surya', '202cb962ac59075b964b07152d234b70', '2', '79df1c236ea0082e9d9ec33a3cc2f9a2.jpg');
 
 -- --------------------------------------------------------
 
@@ -83,19 +85,21 @@ CREATE TABLE `available_tour` (
   `id_paket_tour` int(11) NOT NULL,
   `tgl_awal` date NOT NULL,
   `tgl_akhir` date NOT NULL,
-  `jumlah_ketersedian` int(11) NOT NULL
+  `jumlah_ketersedian` int(11) NOT NULL,
+  `id_operator` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `available_tour`
 --
 
-INSERT INTO `available_tour` (`id`, `id_paket_tour`, `tgl_awal`, `tgl_akhir`, `jumlah_ketersedian`) VALUES
-(1, 5, '2019-12-28', '2019-12-29', 23),
-(2, 3, '2020-01-27', '2020-01-29', 32),
-(3, 3, '2020-01-30', '2020-02-03', 14),
-(4, 5, '2020-01-08', '2020-01-11', 30),
-(5, 5, '2020-02-08', '2020-03-01', 4);
+INSERT INTO `available_tour` (`id`, `id_paket_tour`, `tgl_awal`, `tgl_akhir`, `jumlah_ketersedian`, `id_operator`, `status`) VALUES
+(5, 5, '2020-02-08', '2020-03-01', 4, 1, 1),
+(6, 5, '2020-01-24', '2020-01-26', 30, 3, 1),
+(7, 3, '2020-01-31', '2020-01-31', 30, 4, 0),
+(8, 3, '2020-02-08', '2020-02-08', 55, 6, 1),
+(9, 5, '2020-02-08', '2020-02-08', 22, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,8 @@ INSERT INTO `batal_token` (`id`, `id_order`, `email`, `date_created`) VALUES
 (15, 'INV141219000001', 'dimasrifalta9@gmail.com', 1576315960),
 (16, 'INV141219000001', 'dimasrifalta9@gmail.com', 1576318112),
 (17, 'INV141219000001', 'dimasrifalta9@gmail.com', 1576318249),
-(18, 'INV060120000001', 'dimasrifalta9@gmail.com', 1578374269);
+(18, 'INV060120000001', 'dimasrifalta9@gmail.com', 1578374269),
+(19, 'INV170120000001', 'dimascloud3@gmail.com', 1579226412);
 
 -- --------------------------------------------------------
 
@@ -270,6 +275,7 @@ CREATE TABLE `orders` (
   `kids` int(11) DEFAULT NULL,
   `metode_id` int(11) DEFAULT NULL,
   `paket_id_order` int(11) DEFAULT NULL,
+  `id_ketersediaan_tanggal` int(11) NOT NULL,
   `keterangan` varchar(200) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `status` varchar(70) DEFAULT NULL,
@@ -282,10 +288,11 @@ CREATE TABLE `orders` (
 -- Dumping data untuk tabel `orders`
 --
 
-INSERT INTO `orders` (`id_order`, `id_user`, `nama`, `jenkel`, `alamat`, `notelp`, `email`, `berangkat`, `kembali`, `adult`, `kids`, `metode_id`, `paket_id_order`, `keterangan`, `tanggal`, `status`, `pembatalan`, `no_ktp`, `kode_booking`) VALUES
-('INV060120000001', 51, 'dimas rifalta', 'La', 'sariasih bandung jawa barat indonesia', '088229232921', 'dimasrifalta9@gmail.com', '2020-01-08', '2020-01-11', 7, 0, 2, 5, '', '2020-01-06', 'LUNAS', 'CANCEL', '2412412412412421', 'BQ4HCY'),
-('INV070120000001', 51, 'damara', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'damara@gmail.com', '2020-02-08', '2020-03-01', 1, 0, 2, 5, '', '2020-01-07', 'belum_bayar', '', '2412412412412421', ''),
-('INV070120000002', 51, 'amelia', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'amelia@gmail.com', '2020-02-08', '2020-03-01', 7, 0, 2, 5, '', '2020-01-07', 'belum_bayar', '', '2412412412412421', '');
+INSERT INTO `orders` (`id_order`, `id_user`, `nama`, `jenkel`, `alamat`, `notelp`, `email`, `berangkat`, `kembali`, `adult`, `kids`, `metode_id`, `paket_id_order`, `id_ketersediaan_tanggal`, `keterangan`, `tanggal`, `status`, `pembatalan`, `no_ktp`, `kode_booking`) VALUES
+('INV180120000001', 51, 'dimas rifalta', 'La', 'sumedang', '088229232921', 'dimasrifalta9@gmail.com', '2020-02-08', '2020-02-08', 5, 0, 2, 3, 8, '', '2020-01-18', 'LUNAS', '', '2412412412412421', 'HR36RH'),
+('INV210120000001', 51, 'dimas rifalta', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'dimasrifalta9@gmail.com', '2020-02-08', '2020-02-08', 1, 0, 2, 3, 8, 'ddvd', '2020-01-21', 'belum_bayar', '', '2412412412412421', ''),
+('INV230120000001', 60, 'dimas rifalta', 'La', 'bandung', '088229232921', 'dimasrifalta9@gmail.com', '2020-02-08', '2020-02-08', 3, 1, 3, 3, 8, 'asasasasas', '2020-01-23', 'belum_bayar', '', '111212133131', ''),
+('INV230120000002', 62, 'Surya Abdai', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'suryabdaii@gmail.com', '2020-02-08', '2020-03-01', 4, 2, 2, 5, 5, 'fdfsddfa', '2020-01-23', 'belum_bayar', '', '113131131', '');
 
 -- --------------------------------------------------------
 
@@ -301,18 +308,19 @@ CREATE TABLE `paket` (
   `deskripsi` longtext,
   `kategori_id` int(11) DEFAULT NULL,
   `gambar` varchar(40) DEFAULT NULL,
-  `views` int(11) NOT NULL
+  `views` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `paket`
 --
 
-INSERT INTO `paket` (`idpaket`, `nama_paket`, `hrg_dewasa`, `hrg_anak`, `deskripsi`, `kategori_id`, `gambar`, `views`) VALUES
-(3, 'EXPLORE SUMBAWA CULTURE', 1765000, 1765000, '<p>Meeting Point : Sultan Muhammad Kaharuddin (SWQ)<br />\r\nDrop Off Point : Sultan Muhammad Kaharuddin (SWQ)</p>\r\n\r\n<p>Trip Kali ini adalah perpaduan antara budaya ,sejarah,atraksi ,dan pemandangan alam ( pantai dan gunung )</p>\r\n\r\n<h3>INCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Menginap di hotel 2 malam ( 1 kamar isi 2 orang ).</li>\r\n	<li>Makan sesuai program ( 2 kali makan malam 3 kali makan pagi 3 kali makan siang ) Lokal resto dan hotel.</li>\r\n	<li>Transport AC sesuai jumlah peserta ( Mobil dan bus Pariwisata ).</li>\r\n	<li>Tiket dan donasi wisata .</li>\r\n	<li>Private speed boat ke Pulau Kenawa.</li>\r\n	<li>Guide Local selama di Pulau Sumbawa .</li>\r\n	<li>Antar jemput airport.</li>\r\n	<li>Shall / Selendang selamat datang.</li>\r\n</ul>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Tiket pesawat dari daerah asal menuju Sumbawa.</li>\r\n	<li>Pengeluaran pribadi.</li>\r\n	<li>Minibar.</li>\r\n	<li>Laundry.</li>\r\n	<li>Permainan di obyek wisata .</li>\r\n</ul>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>DAY 1.<br />\r\n08.00 - 09.00<br />\r\nPerkiraan berangkat / tiba di sumbawa Airport.</p>\r\n\r\n<p>09.00 - 10.00<br />\r\nDesa sade (Desa Rumah adat sumbawa ).</p>\r\n\r\n<p>10.00 - 11.00<br />\r\nDesa Sukarara ( Desa penenun ).</p>\r\n\r\n<p>11.00 - 13.00<br />\r\nPantai kenawa sumbawa dan makan siang lokal resto.</p>\r\n\r\n<p>13.00 - 15.00<br />\r\nPantai Tanjung Aan.</p>\r\n\r\n<p>15.00 - 18.00<br />\r\nBukit Meresek ( sunset ).</p>\r\n\r\n<p><br />\r\nDay 2. (Pantai Toro Mbala)<br />\r\n06.00 - 08.00<br />\r\nPersiapan tour dan makan pagi.</p>\r\n\r\n<p>08.00 - 09.00<br />\r\nMenuju pelabuhan teluk nara Sumbawa.</p>\r\n\r\n<p>09.00 - 09.30<br />\r\nBukit Malimbu (spot photo).</p>\r\n\r\n<p>09.30 - 10.00<br />\r\nMenuju Pantai Toro Mbala.</p>\r\n\r\n<p>10.30 - 11.30<br />\r\nTiba di Pantai Toro Mbala. ( activitas snorkling -sepeda -naik andong dll ).</p>\r\n\r\n<p>11.00 - 13.00<br />\r\nAktivitas (snorkeling, naik sepeda, andong).<br />\r\n13.00 - 14.00<br />\r\nMakan siang lokal resto.</p>\r\n\r\n<p><br />\r\nDay 3. (City tour)<br />\r\n06.00 - 08.00<br />\r\nPersiapan dan sarapan pagi di hotel.</p>\r\n\r\n<p>08.00 - 09.00<br />\r\nBerangkat menuju taman lingsar.</p>\r\n\r\n<p>09.00 - 12.00<br />\r\nTiba di Pura Tamanlingsar (perpaduan sejarah dan perang tupat).</p>\r\n\r\n<p>12.00 - 14.00<br />\r\nTaman Tiang Enam(sejarah) dan makan siang lokal resto.</p>\r\n\r\n<p>14.00 - 16.00<br />\r\nEdukasi pengerjain sumbawa( gerabah-mutiara-ukiran dll ).</p>\r\n\r\n<p>16.00 : 18.00<br />\r\nMenuju airport / hotel / sumbawa.</p>\r\n\r\n<h3>TERMS &amp; CONDITIONS</h3>\r\n\r\n<ul>\r\n	<li>Itinerary sewaktu bisa berubah jika terjadi force majure , di antara nya :</li>\r\n	<li>Pembatalan penerbangan pesawat.</li>\r\n	<li>Bencana alam.</li>\r\n	<li>Kebijakan pemetintah yang dapat membatalkan acara tour.</li>\r\n</ul>\r\n\r\n<h3>DO&#39;s &amp; DONT&#39;s</h3>\r\n\r\n<ul>\r\n	<li>Ikuti arahan guide .</li>\r\n	<li>Anak balita di awasi.</li>\r\n	<li>Peserta kelainan info kami.</li>\r\n	<li>Jangan merokok dan buang puntung rokok di desa sade yang dapat berbahaya.</li>\r\n</ul>\r\n\r\n<h3>PERSONAL EQUIPMENT LIST</h3>\r\n\r\n<ul>\r\n	<li>Obat obatan pribadi .</li>\r\n	<li>Pakaian ganti secukupnya.</li>\r\n	<li>Kamera .</li>\r\n	<li>Kaca mata hitam.</li>\r\n	<li>Sunblock.</li>\r\n	<li>Sepatu dan sandal</li>\r\n</ul>\r\n', 1, '619935a47e7b00121766489489a1c2e9.jpg', 0),
-(5, 'PULAU MOYO DAY TOUR', 525000, 525000, '<p>Meeting Point : Sultan Muhammad Kaharuddin (SWQ)<br />\r\nDrop Off Point : Sultan Muhammad Kaharuddin (SWQ)</p>\r\n\r\n<p>Keliling area moyo yang memiliki pemandangan yang sangat cantik seperti air terjun,monkey forest,rice terrace,dan pira yang memiliki air suci dan juga kamu bisa melihat lihat souvenir di pasar ubud bila kamu ingin membeli oleh oleh.</p>\r\n\r\n<h3>INCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Mobil</li>\r\n	<li>Sopir</li>\r\n	<li>Bensin</li>\r\n</ul>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Tiket masuk wisata</li>\r\n	<li>Makan siang</li>\r\n</ul>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>08.00<br />\r\ndi jemput di hotel</p>\r\n\r\n<p>9.30-10.30<br />\r\ndi air terjun</p>\r\n\r\n<p>11.00-12.00<br />\r\ndi monkey forest</p>\r\n\r\n<p>12.30<br />\r\nmakan siang</p>\r\n\r\n<p>13.30<br />\r\ndi pasar ubud</p>\r\n\r\n<p>14.00-14.30<br />\r\ndi riceterrace</p>\r\n\r\n<p>15.00-15.30<br />\r\ndi tirta empul</p>\r\n\r\n<p>16.00-17.00<br />\r\ndigoa gajah kemudian kembali ke hotel</p>\r\n\r\n<h3>TERMS &amp; CONDITIONS</h3>\r\n\r\n<ul>\r\n	<li>Dilarang merokok di dalam mobil</li>\r\n</ul>\r\n\r\n<h3>DO&#39;s &amp; DONT&#39;s</h3>\r\n\r\n<ul>\r\n	<li>Pakai sarung ketika masuk pura</li>\r\n</ul>\r\n\r\n<h3>PERSONAL EQUIPMENT LIST</h3>\r\n\r\n<ul>\r\n	<li>Bawalah handuk dan pakaian ganti kalau ingin berenang di air terjun</li>\r\n</ul>\r\n', 2, 'd0d649e473c3d19af3d600a23c162c72.jpg', 4),
-(6, 'TREKKING TAMBORA', 1418000, 1418000, '<h2>Trekking Rinjani</h2>\r\n\r\n<p>Gunung Tambora Salah satu gunung bersejarah di&nbsp;Indonesia ini keesoktisan nya berhasil menjadi magnet wisatawan untuk datang ke gunung tercantik ini. Tidak cuma pendaki gunung pro saja yang terhipnotis tapi mereka yang awam dalam pendakian pun ikut tertantang untuk melihat pesona akan keindahanya. Wonderful Trekking Tambora sanggup menarik banyak wisatawan lokal maupun mancanegara.</p>\r\n\r\n<h3>INCLUDE</h3>\r\n\r\n<p>Penjemputan dan pengantaran di Bandara (mobil Elf AC).</p>\r\n\r\n<p>Simaksi TNGR (Untuk Domestik).</p>\r\n\r\n<p>Guide selama di gunung (Team Leader).</p>\r\n\r\n<p>Camp gears (Tenda, alat masak, Alat Makan).</p>\r\n\r\n<p>Porter tim (bawa tenda, alat masak, logistik, dimasakin).</p>\r\n\r\n<p>Service makan 9X.</p>\r\n\r\n<p>Bonus ke tempat oleh2 dan kuliner lombok (opsional).</p>\r\n\r\n<p>P3K standart.</p>\r\n\r\n<p>Dokumentasi foto.</p>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<p>Porter pribadi (untuk membawakan barang pribadi).</p>\r\n\r\n<p>Alat pribadi (sleeping bag, matras).</p>\r\n\r\n<p>Pengeluaran pribadi.</p>\r\n\r\n<p>Tip Guide &amp; Porter (seikhlasnya).</p>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>DAY 1.<br />\r\n08.00<br />\r\nPenjemputan Meeting Point / Hotel.</p>\r\n\r\n<p>09.30 - 11.00<br />\r\nTrekking start bawanao/sembalun.</p>\r\n\r\n<p>12.00 - 13.00<br />\r\nIstirahat pos 2, Snack Siang (makan 1).</p>\r\n\r\n<p>14.00- 17.00<br />\r\nKembali Trekking.</p>\r\n\r\n<p>17.00<br />\r\nTiba di Plawangan Bima(camp).</p>\r\n\r\n<p>18.30<br />\r\nMakan Malam (makan 2).</p>\r\n\r\n<p><br />\r\nDAY 2.<br />\r\n00.00 - 12.30<br />\r\nPersiapan Summit attack, Makan pagi (makan 3). Perjalanan menuju puncak.</p>\r\n\r\n<p>06.00 - 07.00<br />\r\nTiba di Puncak Rinjan. Persiapan turun menuju danau segara anak.</p>\r\n\r\n<p>08.30 - 09.30<br />\r\nMakan siang di plawangan bima (makan 4).</p>\r\n\r\n<p>09.30 - 16.00<br />\r\nTrekking menuju Segara Anak.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>18.00 makan malam (makan 5).</p>\r\n\r\n<p><br />\r\nDAY 3.<br />\r\n07.00 - 09.00<br />\r\nMakan pagi (makan 6). Persiapan menuju plawangan bima.</p>\r\n\r\n<p>12.00<br />\r\nTiba di Plawangan bima.</p>\r\n\r\n<p>14.00 - 15.00<br />\r\nMakan siang (makan 7).</p>\r\n\r\n<p>15.00 - 17.00<br />\r\nTrekking menuj Pos 2.</p>\r\n\r\n<p>17.00<br />\r\nTiba di Pos 2 (camp).</p>\r\n\r\n<p>19.00<br />\r\nMakan malam (makan 8).</p>\r\n\r\n<p><br />\r\nDAY 4.<br />\r\n07.00 - 09.00<br />\r\nMakan pagi (makan 9) dan persiapan turun.</p>\r\n\r\n<p>09.00 - 12.00<br />\r\nTrekking menuju Desa lamusung</p>\r\n\r\n<p>12.00<br />\r\nTiba di Desa lamusung</p>\r\n\r\n<p>12.30 - 15.00<br />\r\nPerjalanan menuju meeting point</p>\r\n\r\n<p>15.00<br />\r\nTiba di Meeting point</p>\r\n\r\n<p>TERMS &amp; CONDITIONS</p>\r\n\r\n<p>Untuk Open Trip Kuota dibatasi minimal 8 orang dan maksimal 16 orang. Apabila kuota minimal tak terpenuhi maka dimusyawarahkan untuk penambahan biaya trip seminimal mungkin.</p>\r\n\r\n<p>Peserta diharapkan saling menjaga sopan santun sesama peserta.</p>\r\n\r\n<p>Peserta dianggap telah membaca, mengerti dan menyetujui syarat dan ketentuan trip.</p>\r\n\r\n<h3>DO&#39;s &amp; DONT&#39;s</h3>\r\n\r\n<p>Bawa peralatan hiking yang memadai.</p>\r\n\r\n<p>Efektif dalam membawa perlengkapan hiking.</p>\r\n\r\n<p>Dilarang membawa/menyalakan kembang api.</p>\r\n\r\n<p>Ikuti arahan dari guide.</p>\r\n\r\n<p>Membawa peralatan mendaki (Tas carrier, Tas lipat u/summit, Jaket hangat, Topi/kupluk, Sarung tangan, Sleeping bag, Matras, Headlamp/senter, Trekking pole, Sepatu trekking)</p>\r\n\r\n<h3>PERSONAL EQUIPMENT LIST</h3>\r\n\r\n<p>Snack.</p>\r\n\r\n<p>Pakaian ganti.</p>\r\n\r\n<p>Raincoat.</p>\r\n\r\n<p>Kaos kaki.</p>\r\n\r\n<p>Baterai.</p>\r\n\r\n<p>Sandal.</p>\r\n\r\n<p>Gaiters.</p>\r\n\r\n<p>Masker/buff.</p>\r\n\r\n<p>Termos/tumblr</p>\r\n\r\n<p>Alat makan (Sendok, piring, gelas).</p>\r\n\r\n<p>Alat Mandi.</p>\r\n\r\n<p>Obat pribadi.</p>\r\n\r\n<p>Sunblock.</p>\r\n', 1, 'a776fa5c8e74c5f28b646ed462d9fa6e.jpg', 0),
-(7, 'Open Trip Keliling Sumbawa 3D2N', 1460000, 1460000, '<h3>INCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Transportasi AC selama tour Akomodasi selama 2 malam di hotel *2</li>\r\n	<li>Mahkota Plengkung atau setara (Kamar mandi dalam, AC, TV)</li>\r\n	<li>Konsumsi sesuai program</li>\r\n	<li>Air mineral</li>\r\n	<li>Kapal ke dan dari pulau Menjangan dan pulau Tabuhan</li>\r\n	<li>Izin kegiatan snorkeling</li>\r\n	<li>Snorkeling set Jaket pelampung</li>\r\n	<li>Dokumentasi</li>\r\n	<li>underwater Boat di dari Rajegwesi ke Teluk Ijo</li>\r\n	<li>Masker gas Guide</li>\r\n	<li>Izin dan karcis masuk lokasi wisata</li>\r\n</ul>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Tiket pesawat / kereta</li>\r\n	<li>Pengeluaran pribadi selama tour</li>\r\n	<li>Tips guide / driver</li>\r\n</ul>\r\n\r\n<p>&nbsp;&nbsp;</p>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>DAY 1.<br />\r\n07:00 &ndash; 08:00<br />\r\nPenjemputan di Sultan Muhammad Kaharuddin (SWQ)</p>\r\n\r\n<p>08:00<br />\r\nMakan Pagi</p>\r\n\r\n<p>09:00<br />\r\nMenuju hutan djawatan Benculuk</p>\r\n\r\n<p>10:00<br />\r\nDiperkirakan tiba di kawasan hutan djawatan, agenda sesi foto</p>\r\n\r\n<p>11:00<br />\r\nBerangkat menuju Desa Airsuning</p>\r\n\r\n<p>12:00<br />\r\nSampai di Rajegwesi menyeberang ke Selat Alas</p>\r\n\r\n<p>12:20<br />\r\nFree agenda di Teluk Ijo dan Pantai Batu</p>\r\n\r\n<p>13:20<br />\r\nMeninggalkan Selat Alas, menuju ke Red Island</p>\r\n\r\n<p>14:30<br />\r\nMakan siang</p>\r\n\r\n<p>15:30<br />\r\nMengunjungi Red Island, jika peserta berkenan bisa menikmati suasana sunset di pulau kenawa</p>\r\n\r\n<p>19:00<br />\r\nMakan malam</p>\r\n\r\n<p>20:00<br />\r\nCheck-in Hotel</p>\r\n\r\n<p>20:30<br />\r\nPeserta Open Trip Keliling Sumbawa 3D2N dipersilahkan istirahat untuk mempersiapkan tour di hari berikutnya</p>\r\n\r\n<p><br />\r\nDAY 2.<br />\r\n04:00<br />\r\nMenuju Pantai Pasir Putih</p>\r\n\r\n<p>05:00<br />\r\nMenyeberang ke pulau Tabuhan (Menyaksikan sunrise selat Alas dari atas kapal)</p>\r\n\r\n<p>05:30<br />\r\nAgenda bebas dan photo session di pulau Tabuhan</p>\r\n\r\n<p>06:00<br />\r\nMenuju pulau Pulau Moyo</p>\r\n\r\n<p>06:30<br />\r\nMakan pagi</p>\r\n\r\n<p>07:00<br />\r\nSampai di pulau moyo, snorkeling di spot pertama</p>\r\n\r\n<p>08:00<br />\r\nSnorkeling di spot kedua</p>\r\n\r\n<p>09:00<br />\r\nAgenda bebas dan photo session di dermaga pulau moyo</p>\r\n\r\n<p>10:00<br />\r\nMeninggalkan pulau moyo</p>\r\n\r\n<p>11:00<br />\r\nSampai watudodol dan bilas-bilas</p>\r\n\r\n<p>12:00<br />\r\nMakan siang dan menuju bima</p>\r\n\r\n<p>13:00<br />\r\nSampai di bima,&nbsp;</p>\r\n\r\n<p>14:00<br />\r\nExplore mangrove trail dan pantai pink</p>\r\n\r\n<p>17:00<br />\r\nMeninggalkan bima</p>\r\n\r\n<p>19:00<br />\r\nMakan malam</p>\r\n\r\n<p>20:00<br />\r\nPeserta Open Trip Keliling Sumbawa 3D2N dipersilahkan stirahat untuk persiapan tour ke Mantar</p>\r\n\r\n<p>23:40<br />\r\nPersiapan naik ke Mantar</p>\r\n\r\n<p><br />\r\nDAY 3.<br />\r\n00:00<br />\r\nCheck-out Hotel dan menuju Mantar</p>\r\n\r\n<p>02:00<br />\r\nSampai di paltuding dan tracking&nbsp;</p>\r\n\r\n<p>03:30<br />\r\nSampai di Mantar, bila beruntung bisa menyaksikan blue fire serta sunrise</p>\r\n\r\n<p>08:30<br />\r\nMakan pagi di hotel</p>\r\n\r\n<p>10:00<br />\r\nMengunjungi pusat oleh &ndash; oleh khas Sumbawa(Optional)</p>\r\n\r\n<p>12:00<br />\r\nDiantar ke Stasiun / Bandara / Hotel dan tour berakhir</p>\r\n\r\n<p>&nbsp;</p>\r\n', 1, 'bc2fb72167cd705b80415a1a0212c4ec.jpg', 8);
+INSERT INTO `paket` (`idpaket`, `nama_paket`, `hrg_dewasa`, `hrg_anak`, `deskripsi`, `kategori_id`, `gambar`, `views`, `status`) VALUES
+(3, 'EXPLORE SUMBAWA CULTURE', 1765000, 1765000, '<p>Meeting Point : Sultan Muhammad Kaharuddin (SWQ)<br />\r\nDrop Off Point : Sultan Muhammad Kaharuddin (SWQ)</p>\r\n\r\n<p>Trip Kali ini adalah perpaduan antara budaya ,sejarah,atraksi ,dan pemandangan alam ( pantai dan gunung )</p>\r\n\r\n<h3>INCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Menginap di hotel 2 malam ( 1 kamar isi 2 orang ).</li>\r\n	<li>Makan sesuai program ( 2 kali makan malam 3 kali makan pagi 3 kali makan siang ) Lokal resto dan hotel.</li>\r\n	<li>Transport AC sesuai jumlah peserta ( Mobil dan bus Pariwisata ).</li>\r\n	<li>Tiket dan donasi wisata .</li>\r\n	<li>Private speed boat ke Pulau Kenawa.</li>\r\n	<li>Guide Local selama di Pulau Sumbawa .</li>\r\n	<li>Antar jemput airport.</li>\r\n	<li>Shall / Selendang selamat datang.</li>\r\n</ul>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Tiket pesawat dari daerah asal menuju Sumbawa.</li>\r\n	<li>Pengeluaran pribadi.</li>\r\n	<li>Minibar.</li>\r\n	<li>Laundry.</li>\r\n	<li>Permainan di obyek wisata .</li>\r\n</ul>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>DAY 1.<br />\r\n08.00 - 09.00<br />\r\nPerkiraan berangkat / tiba di sumbawa Airport.</p>\r\n\r\n<p>09.00 - 10.00<br />\r\nDesa sade (Desa Rumah adat sumbawa ).</p>\r\n\r\n<p>10.00 - 11.00<br />\r\nDesa Sukarara ( Desa penenun ).</p>\r\n\r\n<p>11.00 - 13.00<br />\r\nPantai kenawa sumbawa dan makan siang lokal resto.</p>\r\n\r\n<p>13.00 - 15.00<br />\r\nPantai Tanjung Aan.</p>\r\n\r\n<p>15.00 - 18.00<br />\r\nBukit Meresek ( sunset ).</p>\r\n\r\n<p><br />\r\nDay 2. (Pantai Toro Mbala)<br />\r\n06.00 - 08.00<br />\r\nPersiapan tour dan makan pagi.</p>\r\n\r\n<p>08.00 - 09.00<br />\r\nMenuju pelabuhan teluk nara Sumbawa.</p>\r\n\r\n<p>09.00 - 09.30<br />\r\nBukit Malimbu (spot photo).</p>\r\n\r\n<p>09.30 - 10.00<br />\r\nMenuju Pantai Toro Mbala.</p>\r\n\r\n<p>10.30 - 11.30<br />\r\nTiba di Pantai Toro Mbala. ( activitas snorkling -sepeda -naik andong dll ).</p>\r\n\r\n<p>11.00 - 13.00<br />\r\nAktivitas (snorkeling, naik sepeda, andong).<br />\r\n13.00 - 14.00<br />\r\nMakan siang lokal resto.</p>\r\n\r\n<p><br />\r\nDay 3. (City tour)<br />\r\n06.00 - 08.00<br />\r\nPersiapan dan sarapan pagi di hotel.</p>\r\n\r\n<p>08.00 - 09.00<br />\r\nBerangkat menuju taman lingsar.</p>\r\n\r\n<p>09.00 - 12.00<br />\r\nTiba di Pura Tamanlingsar (perpaduan sejarah dan perang tupat).</p>\r\n\r\n<p>12.00 - 14.00<br />\r\nTaman Tiang Enam(sejarah) dan makan siang lokal resto.</p>\r\n\r\n<p>14.00 - 16.00<br />\r\nEdukasi pengerjain sumbawa( gerabah-mutiara-ukiran dll ).</p>\r\n\r\n<p>16.00 : 18.00<br />\r\nMenuju airport / hotel / sumbawa.</p>\r\n\r\n<h3>TERMS &amp; CONDITIONS</h3>\r\n\r\n<ul>\r\n	<li>Itinerary sewaktu bisa berubah jika terjadi force majure , di antara nya :</li>\r\n	<li>Pembatalan penerbangan pesawat.</li>\r\n	<li>Bencana alam.</li>\r\n	<li>Kebijakan pemetintah yang dapat membatalkan acara tour.</li>\r\n</ul>\r\n\r\n<h3>DO&#39;s &amp; DONT&#39;s</h3>\r\n\r\n<ul>\r\n	<li>Ikuti arahan guide .</li>\r\n	<li>Anak balita di awasi.</li>\r\n	<li>Peserta kelainan info kami.</li>\r\n	<li>Jangan merokok dan buang puntung rokok di desa sade yang dapat berbahaya.</li>\r\n</ul>\r\n\r\n<h3>PERSONAL EQUIPMENT LIST</h3>\r\n\r\n<ul>\r\n	<li>Obat obatan pribadi .</li>\r\n	<li>Pakaian ganti secukupnya.</li>\r\n	<li>Kamera .</li>\r\n	<li>Kaca mata hitam.</li>\r\n	<li>Sunblock.</li>\r\n	<li>Sepatu dan sandal</li>\r\n</ul>\r\n', 1, '619935a47e7b00121766489489a1c2e9.jpg', 1, 0),
+(5, 'PULAU MOYO DAY TOUR', 525000, 525000, '<p>Meeting Point : Sultan Muhammad Kaharuddin (SWQ)<br />\r\nDrop Off Point : Sultan Muhammad Kaharuddin (SWQ)</p>\r\n\r\n<p>Keliling area moyo yang memiliki pemandangan yang sangat cantik seperti air terjun,monkey forest,rice terrace,dan pira yang memiliki air suci dan juga kamu bisa melihat lihat souvenir di pasar ubud bila kamu ingin membeli oleh oleh.</p>\r\n\r\n<h3>INCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Mobil</li>\r\n	<li>Sopir</li>\r\n	<li>Bensin</li>\r\n</ul>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Tiket masuk wisata</li>\r\n	<li>Makan siang</li>\r\n</ul>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>08.00<br />\r\ndi jemput di hotel</p>\r\n\r\n<p>9.30-10.30<br />\r\ndi air terjun</p>\r\n\r\n<p>11.00-12.00<br />\r\ndi monkey forest</p>\r\n\r\n<p>12.30<br />\r\nmakan siang</p>\r\n\r\n<p>13.30<br />\r\ndi pasar ubud</p>\r\n\r\n<p>14.00-14.30<br />\r\ndi riceterrace</p>\r\n\r\n<p>15.00-15.30<br />\r\ndi tirta empul</p>\r\n\r\n<p>16.00-17.00<br />\r\ndigoa gajah kemudian kembali ke hotel</p>\r\n\r\n<h3>TERMS &amp; CONDITIONS</h3>\r\n\r\n<ul>\r\n	<li>Dilarang merokok di dalam mobil</li>\r\n</ul>\r\n\r\n<h3>DO&#39;s &amp; DONT&#39;s</h3>\r\n\r\n<ul>\r\n	<li>Pakai sarung ketika masuk pura</li>\r\n</ul>\r\n\r\n<h3>PERSONAL EQUIPMENT LIST</h3>\r\n\r\n<ul>\r\n	<li>Bawalah handuk dan pakaian ganti kalau ingin berenang di air terjun</li>\r\n</ul>\r\n', 2, 'd0d649e473c3d19af3d600a23c162c72.jpg', 16, 1),
+(6, 'TREKKING TAMBORA', 1418000, 1418000, '<h2>Trekking Tambora</h2>\r\n\r\n<p>Gunung Tambora Salah satu gunung bersejarah di&nbsp;Indonesia ini keesoktisan nya berhasil menjadi magnet wisatawan untuk datang ke gunung tercantik ini. Tidak cuma pendaki gunung pro saja yang terhipnotis tapi mereka yang awam dalam pendakian pun ikut tertantang untuk melihat pesona akan keindahanya. Wonderful Trekking Tambora sanggup menarik banyak wisatawan lokal maupun mancanegara.</p>\r\n\r\n<h3>INCLUDE</h3>\r\n\r\n<p>Penjemputan dan pengantaran di Bandara (mobil Elf AC).</p>\r\n\r\n<p>Simaksi TNGR (Untuk Domestik).</p>\r\n\r\n<p>Guide selama di gunung (Team Leader).</p>\r\n\r\n<p>Camp gears (Tenda, alat masak, Alat Makan).</p>\r\n\r\n<p>Porter tim (bawa tenda, alat masak, logistik, dimasakin).</p>\r\n\r\n<p>Service makan 9X.</p>\r\n\r\n<p>Bonus ke tempat oleh2 dan kuliner lombok (opsional).</p>\r\n\r\n<p>P3K standart.</p>\r\n\r\n<p>Dokumentasi foto.</p>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<p>Porter pribadi (untuk membawakan barang pribadi).</p>\r\n\r\n<p>Alat pribadi (sleeping bag, matras).</p>\r\n\r\n<p>Pengeluaran pribadi.</p>\r\n\r\n<p>Tip Guide &amp; Porter (seikhlasnya).</p>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>DAY 1.<br />\r\n08.00<br />\r\nPenjemputan Meeting Point / Hotel.</p>\r\n\r\n<p>09.30 - 11.00<br />\r\nTrekking start bawanao/sembalun.</p>\r\n\r\n<p>12.00 - 13.00<br />\r\nIstirahat pos 2, Snack Siang (makan 1).</p>\r\n\r\n<p>14.00- 17.00<br />\r\nKembali Trekking.</p>\r\n\r\n<p>17.00<br />\r\nTiba di Plawangan Bima(camp).</p>\r\n\r\n<p>18.30<br />\r\nMakan Malam (makan 2).</p>\r\n\r\n<p><br />\r\nDAY 2.<br />\r\n00.00 - 12.30<br />\r\nPersiapan Summit attack, Makan pagi (makan 3). Perjalanan menuju puncak.</p>\r\n\r\n<p>06.00 - 07.00<br />\r\nTiba di Puncak tambora. Persiapan turun menuju danau tmabora anak.</p>\r\n\r\n<p>08.30 - 09.30<br />\r\nMakan siang di plawangan bima (makan 4).</p>\r\n\r\n<p>09.30 - 16.00<br />\r\nTrekking menuju Segara Anak.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>18.00 makan malam (makan 5).</p>\r\n\r\n<p><br />\r\nDAY 3.<br />\r\n07.00 - 09.00<br />\r\nMakan pagi (makan 6). Persiapan menuju plawangan bima.</p>\r\n\r\n<p>12.00<br />\r\nTiba di Plawangan bima.</p>\r\n\r\n<p>14.00 - 15.00<br />\r\nMakan siang (makan 7).</p>\r\n\r\n<p>15.00 - 17.00<br />\r\nTrekking menuj Pos 2.</p>\r\n\r\n<p>17.00<br />\r\nTiba di Pos 2 (camp).</p>\r\n\r\n<p>19.00<br />\r\nMakan malam (makan 8).</p>\r\n\r\n<p><br />\r\nDAY 4.<br />\r\n07.00 - 09.00<br />\r\nMakan pagi (makan 9) dan persiapan turun.</p>\r\n\r\n<p>09.00 - 12.00<br />\r\nTrekking menuju Desa lamusung</p>\r\n\r\n<p>12.00<br />\r\nTiba di Desa lamusung</p>\r\n\r\n<p>12.30 - 15.00<br />\r\nPerjalanan menuju meeting point</p>\r\n\r\n<p>15.00<br />\r\nTiba di Meeting point</p>\r\n\r\n<p>TERMS &amp; CONDITIONS</p>\r\n\r\n<p>Untuk Open Trip Kuota dibatasi minimal 8 orang dan maksimal 16 orang. Apabila kuota minimal tak terpenuhi maka dimusyawarahkan untuk penambahan biaya trip seminimal mungkin.</p>\r\n\r\n<p>Peserta diharapkan saling menjaga sopan santun sesama peserta.</p>\r\n\r\n<p>Peserta dianggap telah membaca, mengerti dan menyetujui syarat dan ketentuan trip.</p>\r\n\r\n<h3>DO&#39;s &amp; DONT&#39;s</h3>\r\n\r\n<p>Bawa peralatan hiking yang memadai.</p>\r\n\r\n<p>Efektif dalam membawa perlengkapan hiking.</p>\r\n\r\n<p>Dilarang membawa/menyalakan kembang api.</p>\r\n\r\n<p>Ikuti arahan dari guide.</p>\r\n\r\n<p>Membawa peralatan mendaki (Tas carrier, Tas lipat u/summit, Jaket hangat, Topi/kupluk, Sarung tangan, Sleeping bag, Matras, Headlamp/senter, Trekking pole, Sepatu trekking)</p>\r\n\r\n<h3>PERSONAL EQUIPMENT LIST</h3>\r\n\r\n<p>Snack.</p>\r\n\r\n<p>Pakaian ganti.</p>\r\n\r\n<p>Raincoat.</p>\r\n\r\n<p>Kaos kaki.</p>\r\n\r\n<p>Baterai.</p>\r\n\r\n<p>Sandal.</p>\r\n\r\n<p>Gaiters.</p>\r\n\r\n<p>Masker/buff.</p>\r\n\r\n<p>Termos/tumblr</p>\r\n\r\n<p>Alat makan (Sendok, piring, gelas).</p>\r\n\r\n<p>Alat Mandi.</p>\r\n\r\n<p>Obat pribadi.</p>\r\n\r\n<p>Sunblock.</p>\r\n', 1, '4494eee4df00cade8e8a36635d00a36f.jpg', 0, 1),
+(7, 'Open Trip Keliling Sumbawa 3D2N', 1460000, 1460000, '<h3>INCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Transportasi AC selama tour Akomodasi selama 2 malam di hotel *2</li>\r\n	<li>Mahkota Plengkung atau setara (Kamar mandi dalam, AC, TV)</li>\r\n	<li>Konsumsi sesuai program</li>\r\n	<li>Air mineral</li>\r\n	<li>Kapal ke dan dari pulau Menjangan dan pulau Tabuhan</li>\r\n	<li>Izin kegiatan snorkeling</li>\r\n	<li>Snorkeling set Jaket pelampung</li>\r\n	<li>Dokumentasi</li>\r\n	<li>underwater Boat di dari Rajegwesi ke Teluk Ijo</li>\r\n	<li>Masker gas Guide</li>\r\n	<li>Izin dan karcis masuk lokasi wisata</li>\r\n</ul>\r\n\r\n<h3>EXCLUDE</h3>\r\n\r\n<ul>\r\n	<li>Tiket pesawat / kereta</li>\r\n	<li>Pengeluaran pribadi selama tour</li>\r\n	<li>Tips guide / driver</li>\r\n</ul>\r\n\r\n<p>&nbsp;&nbsp;</p>\r\n\r\n<h3>ITINERARY</h3>\r\n\r\n<p>DAY 1.<br />\r\n07:00 &ndash; 08:00<br />\r\nPenjemputan di Sultan Muhammad Kaharuddin (SWQ)</p>\r\n\r\n<p>08:00<br />\r\nMakan Pagi</p>\r\n\r\n<p>09:00<br />\r\nMenuju hutan djawatan Benculuk</p>\r\n\r\n<p>10:00<br />\r\nDiperkirakan tiba di kawasan hutan djawatan, agenda sesi foto</p>\r\n\r\n<p>11:00<br />\r\nBerangkat menuju Desa Airsuning</p>\r\n\r\n<p>12:00<br />\r\nSampai di Rajegwesi menyeberang ke Selat Alas</p>\r\n\r\n<p>12:20<br />\r\nFree agenda di Teluk Ijo dan Pantai Batu</p>\r\n\r\n<p>13:20<br />\r\nMeninggalkan Selat Alas, menuju ke Red Island</p>\r\n\r\n<p>14:30<br />\r\nMakan siang</p>\r\n\r\n<p>15:30<br />\r\nMengunjungi Red Island, jika peserta berkenan bisa menikmati suasana sunset di pulau kenawa</p>\r\n\r\n<p>19:00<br />\r\nMakan malam</p>\r\n\r\n<p>20:00<br />\r\nCheck-in Hotel</p>\r\n\r\n<p>20:30<br />\r\nPeserta Open Trip Keliling Sumbawa 3D2N dipersilahkan istirahat untuk mempersiapkan tour di hari berikutnya</p>\r\n\r\n<p><br />\r\nDAY 2.<br />\r\n04:00<br />\r\nMenuju Pantai Pasir Putih</p>\r\n\r\n<p>05:00<br />\r\nMenyeberang ke pulau Tabuhan (Menyaksikan sunrise selat Alas dari atas kapal)</p>\r\n\r\n<p>05:30<br />\r\nAgenda bebas dan photo session di pulau Tabuhan</p>\r\n\r\n<p>06:00<br />\r\nMenuju pulau Pulau Moyo</p>\r\n\r\n<p>06:30<br />\r\nMakan pagi</p>\r\n\r\n<p>07:00<br />\r\nSampai di pulau moyo, snorkeling di spot pertama</p>\r\n\r\n<p>08:00<br />\r\nSnorkeling di spot kedua</p>\r\n\r\n<p>09:00<br />\r\nAgenda bebas dan photo session di dermaga pulau moyo</p>\r\n\r\n<p>10:00<br />\r\nMeninggalkan pulau moyo</p>\r\n\r\n<p>11:00<br />\r\nSampai watudodol dan bilas-bilas</p>\r\n\r\n<p>12:00<br />\r\nMakan siang dan menuju bima</p>\r\n\r\n<p>13:00<br />\r\nSampai di bima,&nbsp;</p>\r\n\r\n<p>14:00<br />\r\nExplore mangrove trail dan pantai pink</p>\r\n\r\n<p>17:00<br />\r\nMeninggalkan bima</p>\r\n\r\n<p>19:00<br />\r\nMakan malam</p>\r\n\r\n<p>20:00<br />\r\nPeserta Open Trip Keliling Sumbawa 3D2N dipersilahkan stirahat untuk persiapan tour ke Mantar</p>\r\n\r\n<p>23:40<br />\r\nPersiapan naik ke Mantar</p>\r\n\r\n<p><br />\r\nDAY 3.<br />\r\n00:00<br />\r\nCheck-out Hotel dan menuju Mantar</p>\r\n\r\n<p>02:00<br />\r\nSampai di paltuding dan tracking&nbsp;</p>\r\n\r\n<p>03:30<br />\r\nSampai di Mantar, bila beruntung bisa menyaksikan blue fire serta sunrise</p>\r\n\r\n<p>08:30<br />\r\nMakan pagi di hotel</p>\r\n\r\n<p>10:00<br />\r\nMengunjungi pusat oleh &ndash; oleh khas Sumbawa(Optional)</p>\r\n\r\n<p>12:00<br />\r\nDiantar ke Stasiun / Bandara / Hotel dan tour berakhir</p>\r\n\r\n<p>&nbsp;</p>\r\n', 1, 'bc2fb72167cd705b80415a1a0212c4ec.jpg', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -346,7 +354,8 @@ INSERT INTO `pembatalan` (`id_pembatalan`, `order_id`, `id_user`, `no_rek`, `nam
 (54, 'INV131219000004', '51', '546547577557', 'dimas rifalta', 'Ada keluarga yang sakit', ''),
 (55, 'INV131219000004', '51', '546547577557', 'dimas rifalta', 'Ada keluarga yang sakit', ''),
 (58, 'INV141219000001', '51', '546547577557', 'dimas rifalta', 'karna ada pekerjaan', ''),
-(59, 'INV060120000001', '51', '546547577557', 'dimas rifalta', 'Ada Urusan Yang sangat Ngenting', '');
+(59, 'INV060120000001', '51', '546547577557', 'dimas rifalta', 'Ada Urusan Yang sangat Ngenting', ''),
+(60, 'INV170120000001', '53', '546547577557', 'dimas rifalta', 'Ada Urusan Yang sangat Ngenting', '');
 
 -- --------------------------------------------------------
 
@@ -372,7 +381,10 @@ CREATE TABLE `pembayaran` (
 INSERT INTO `pembayaran` (`id_bayar`, `id_user`, `tgl_bayar`, `metode_id_bayar`, `order_id`, `jumlah`, `pengirim`, `bukti_transfer`) VALUES
 (32, 51, '2020-01-06', 2, 'INV060120000001', 20000000, 'dimas rifalta', 'file_1578319302.jpg'),
 (33, 51, '2020-01-07', 2, 'INV070120000001', 525000, 'damara', 'file_1578373975.jpg'),
-(34, 51, '2020-01-07', 2, 'INV070120000002', 3675000, 'amelia', 'file_1578374161.jpg');
+(34, 51, '2020-01-07', 2, 'INV070120000002', 3675000, 'amelia', 'file_1578374161.jpg'),
+(35, 51, '2020-01-10', 2, 'INV100120000001', 1575000, 'dimas rifalta', 'file_1578627354.jpg'),
+(36, 53, '2020-01-17', 2, 'INV170120000001', 3150000, 'dimas rifalta', 'file_1579226112.jpg'),
+(37, 51, '2020-01-18', 2, 'INV180120000001', 8825000, 'dimas rifalta', 'file_1579358545.jpg');
 
 -- --------------------------------------------------------
 
@@ -1393,7 +1405,25 @@ INSERT INTO `tbl_pengunjung` (`pengunjung_id`, `pengunjung_tanggal`, `pengunjung
 (974, '2020-01-05 07:58:44', '192.168.100.4', 'Chrome'),
 (975, '2020-01-05 07:59:12', '192.168.100.23', 'Chrome'),
 (976, '2020-01-05 23:40:22', '::1', 'Chrome'),
-(977, '2020-01-07 04:46:53', '::1', 'Chrome');
+(977, '2020-01-07 04:46:53', '::1', 'Chrome'),
+(978, '2020-01-08 10:56:48', '::1', 'Chrome'),
+(979, '2020-01-09 07:25:17', '::1', 'Chrome'),
+(980, '2020-01-10 02:10:36', '::1', 'Chrome'),
+(981, '2020-01-10 16:21:34', '192.168.100.4', 'Chrome'),
+(982, '2020-01-10 16:21:54', '192.168.100.3', 'Chrome'),
+(983, '2020-01-11 01:31:22', '192.168.100.3', 'Chrome'),
+(984, '2020-01-12 23:52:02', '::1', 'Chrome'),
+(985, '2020-01-16 13:57:36', '::1', 'Chrome'),
+(986, '2020-01-17 01:04:15', '192.168.137.152', 'Chrome'),
+(987, '2020-01-17 01:42:39', '192.168.137.83', 'Chrome'),
+(988, '2020-01-17 01:42:58', '192.168.137.227', 'Chrome'),
+(989, '2020-01-17 01:42:59', '192.168.137.214', 'Chrome'),
+(990, '2020-01-17 01:43:13', '192.168.137.233', 'Safari'),
+(991, '2020-01-18 06:54:47', '::1', 'Chrome'),
+(992, '2020-01-19 02:39:02', '::1', 'Chrome'),
+(993, '2020-01-21 01:25:53', '::1', 'Chrome'),
+(994, '2020-01-22 12:52:48', '::1', 'Chrome'),
+(995, '2020-01-23 13:54:34', '::1', 'Chrome');
 
 -- --------------------------------------------------------
 
@@ -1416,18 +1446,8 @@ CREATE TABLE `testimoni` (
 --
 
 INSERT INTO `testimoni` (`idtestimoni`, `idwisata`, `nama`, `email`, `pesan`, `status`, `tgl_post`) VALUES
-(1, 7, 'M Fikri Setiadi', 'fikrifiver97@gail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '1', '2016-04-26'),
-(32, 8, 'dimas rifalta', '', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '1', '2019-08-02'),
-(33, 6, 'dimas rifalta', '', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '1', '2019-08-02'),
-(34, 12, 'dimas rifalta', '', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '1', '2019-12-11'),
-(36, 12, 'dimas rifalta123', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-11'),
-(37, 0, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-11'),
-(38, 0, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-11'),
-(39, 0, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-11'),
-(40, 0, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-11'),
-(41, 0, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-11'),
-(42, 0, 'damara', 'dimasrifalta9@gmail.com', 'Sangat Membantu Orang awam untuk berkunjung kepulau', '0', '2019-12-12'),
-(43, 6, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'wwqwqweqw', '1', '2020-01-02');
+(44, 16, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Keren sekali tempat wisatanya', '1', '2020-01-09'),
+(45, 16, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Saya tertarik kesini', '1', '2020-01-17');
 
 -- --------------------------------------------------------
 
@@ -1453,6 +1473,30 @@ INSERT INTO `testimoni_order` (`idtestimoni`, `nama`, `email`, `pesan`, `status`
 (3, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'Alam Indonesia yang tiada duanya, membuat saya kagum. Banyak yang harus di jelajah di negeri ini.', '1', '2019-12-12'),
 (4, 'amelia', 'amelia@gmail.com', 'Sangat Puas dengan berwisata dengan sumbawatour , pokoknya keren banget dah..', '1', '2019-12-12'),
 (5, 'renata', 'renata@gmail.com', 'Manggumkan sebuah pengalaman besa travel dengan sumbawa tour', '1', '2019-12-12');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tour_gate`
+--
+
+CREATE TABLE `tour_gate` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `no_hp` varchar(12) NOT NULL,
+  `gambar` varchar(40) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tour_gate`
+--
+
+INSERT INTO `tour_gate` (`id`, `nama`, `no_hp`, `gambar`, `status`) VALUES
+(1, 'Surya Abdai1', '088229232921', '8fdf3b6e00d29aaa68b8a7c3a19c6a8a.jpg', 1),
+(2, 'damara', '088229232921', '9a1aa66f818b932cda43cc541035c5be.jpg', 3),
+(3, 'Nadya rahma', '088229232921', '17a235367dd7800001b6d324ac8c1e12.jpg', 1),
+(4, 'amelia', '088229232921', 'ef6d3f5004b2e0fd7e638b5daf15802a.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -1539,7 +1583,14 @@ INSERT INTO `transaksi` (`id_tranksaksi`, `id_order`, `id_user`, `nama`, `jenkel
 (53, 'INV291219000001', 51, 'dimas rifalta', 'La', 'sumedang', '088229232921', 'dimasrifalta9@gmail.com', '2019-12-28', '2019-12-30', 1, 0, 2, 5, '', '2019-12-29', 550000, '2019-12-30 18:09:50', '2412412412412421', '154NHI', 'LUNAS'),
 (54, 'INV020120000001', 51, 'dimas rifalta', 'La', 'sumedang', '088229232921', 'dimasrifalta9@gmail.com', '2019-12-28', '2019-12-30', 1, 0, 6, 5, 'tttttt', '2020-01-02', 550000, '2020-01-02 14:15:14', '2412412412412421', '950S1K', 'LUNAS'),
 (55, 'INV020120000002', 51, 'dimas rifalta', 'La', 'sariasih bandung jawa barat indonesia1', '088229232921', 'dimasrifalta9@gmail.com', '2019-12-28', '2019-12-30', 1, 0, 2, 5, '', '2020-01-02', 550000, '2020-01-02 17:39:49', '2412412412412421', '2IT65Z', 'LUNAS'),
-(56, 'INV060120000001', 51, 'dimas rifalta', 'La', 'sariasih bandung jawa barat indonesia', '088229232921', 'dimasrifalta9@gmail.com', '2020-01-08', '2020-01-11', 7, 0, 2, 5, '', '2020-01-06', 3675000, '2020-01-06 21:02:06', '2412412412412421', 'BQ4HCY', 'LUNAS');
+(56, 'INV060120000001', 51, 'dimas rifalta', 'La', 'sariasih bandung jawa barat indonesia', '088229232921', 'dimasrifalta9@gmail.com', '2020-01-08', '2020-01-11', 7, 0, 2, 5, '', '2020-01-06', 3675000, '2020-01-18 21:15:55', '2412412412412421', 'IWQT5V', 'LUNAS'),
+(57, 'INV100120000001', 51, 'dimas rifalta', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'dimasrifalta9@gmail.com', '2020-01-24', '2020-01-26', 3, 0, 2, 5, '', '2020-01-10', 1575000, '2020-01-10 10:36:32', '2412412412412421', '7WODWF', 'LUNAS'),
+(58, 'INV070120000001', 51, 'damara', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'damara@gmail.com', '2020-02-08', '2020-03-01', 1, 0, 2, 5, '', '2020-01-07', 525000, '2020-01-10 10:38:52', '2412412412412421', 'KALFQL', 'LUNAS'),
+(59, 'INV170120000001', 53, 'dimas rifalta', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'dimascloud3@gmail.com', '2020-01-24', '2020-01-26', 6, 0, 2, 5, '', '2020-01-17', 3150000, '2020-01-17 08:56:20', '2412412412412421', 'C4WHNK', 'LUNAS'),
+(60, 'INV060120000001', 51, 'dimas rifalta', 'La', 'sariasih bandung jawa barat indonesia', '088229232921', 'dimasrifalta9@gmail.com', '2020-01-08', '2020-01-11', 7, 0, 2, 5, '', '2020-01-06', 3675000, '2020-01-18 21:15:55', '2412412412412421', 'IWQT5V', 'LUNAS'),
+(61, 'INV060120000001', 51, 'dimas rifalta', 'La', 'sariasih bandung jawa barat indonesia', '088229232921', 'dimasrifalta9@gmail.com', '2020-01-08', '2020-01-11', 7, 0, 2, 5, '', '2020-01-06', 3675000, '2020-01-18 21:15:55', '2412412412412421', 'IWQT5V', 'LUNAS'),
+(62, 'INV070120000002', 51, 'amelia', 'La', 'Jln.bandung raya lembang, bandung barat jawa barat', '088229232921', 'amelia@gmail.com', '2020-02-08', '2020-03-01', 7, 0, 2, 5, '', '2020-01-07', 3675000, '2020-01-18 21:20:54', '2412412412412421', 'PF1KOA', 'LUNAS'),
+(63, 'INV180120000001', 51, 'dimas rifalta', 'La', 'sumedang', '088229232921', 'dimasrifalta9@gmail.com', '2020-02-08', '2020-02-08', 5, 0, 2, 3, '', '2020-01-18', 8825000, '2020-01-18 21:42:58', '2412412412412421', 'HR36RH', 'LUNAS');
 
 -- --------------------------------------------------------
 
@@ -1563,9 +1614,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(32, 'damara', 'dimasrifalta@gmail.com', 'default.jpg', '$2y$10$EaVE4KkT1SF7kEDTqynZ0emZtysSCoopIUX9peisArUbVo/Ob0Iua', 2, 1, 1564633660),
-(34, 'damara', 'damara@gmail.com', 'default.jpg', '$2y$10$fXo.4zDQSceSYgxDgPYfV.ZlVJSdKS7rw0Q5SLkZfiVITc4L4EtNi', 2, 1, 1564762633),
-(51, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'default.jpg', '$2y$10$Fm..2Btab2ys37yg1RRBv.m2N/wkup8FZzrdHwRzsGGKZNk0mDbcC', 2, 1, 1576245116);
+(51, 'dimas rifalta', 'dimasrifalta9@gmail.com', 'default.jpg', '$2y$10$Fm..2Btab2ys37yg1RRBv.m2N/wkup8FZzrdHwRzsGGKZNk0mDbcC', 2, 1, 1576245116),
+(62, 'surya abdai', 'suryabdaii@gmail.com', 'default.jpg', '$2y$10$njfgndmFAjnwlSSVlLQVau5zFcEfskT5Fx0Lj4PryNc/JCjEtUCaC', 2, 1, 1579789509);
 
 -- --------------------------------------------------------
 
@@ -1585,9 +1635,12 @@ CREATE TABLE `user_token` (
 --
 
 INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
-(27, 'dimasrifalta@gmail.com', 'Y+TeQ0VpNRotd5JJL7m3iMmkiwEO0SbqbohBWBBnYtw=', 1564644302),
 (28, 'damara@gmail.com', 'y7b/vpSn2Ph/8Pvvl1pHZQIWpYvh50z1yoiNhzbiKVo=', 1564762633),
-(29, 'dimasrifalta9@gmail.com', 'BKWCjIiqpeltQK6VHGlh2Qa6MwfjBFV/XmPsKwXK0iQ=', 1578012702);
+(29, 'dimasrifalta9@gmail.com', 'BKWCjIiqpeltQK6VHGlh2Qa6MwfjBFV/XmPsKwXK0iQ=', 1578012702),
+(30, 'yadi@gmail.com', 'QWbE4YpIDKmhQNh3k7PEyf9SlLoJSQ+vwUBslyIvIuc=', 1579225569),
+(32, 'yadi21@gmail.com', 'igpQILZtw5gAhlV0jHrJ3Qdgq3rK94uv+PZ0a4pa5bE=', 1579226509),
+(33, 'suryabaii@gmail.com', '8a+1zh4ubXlxp14kcGxSE0thSPc3mR132ZbYVBz+ldE=', 1579787765),
+(34, 'suryabdaiii@gmail.com', 'AFONJjHWf7VcGKCBZKqFnCS6qYRk8rsV5/Wo96AD8E0=', 1579788021);
 
 -- --------------------------------------------------------
 
@@ -1730,6 +1783,12 @@ ALTER TABLE `testimoni_order`
   ADD PRIMARY KEY (`idtestimoni`);
 
 --
+-- Indeks untuk tabel `tour_gate`
+--
+ALTER TABLE `tour_gate`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -1761,7 +1820,7 @@ ALTER TABLE `wisata`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `album`
@@ -1773,13 +1832,13 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT untuk tabel `available_tour`
 --
 ALTER TABLE `available_tour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `batal_token`
 --
 ALTER TABLE `batal_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `berita`
@@ -1821,13 +1880,13 @@ ALTER TABLE `paket`
 -- AUTO_INCREMENT untuk tabel `pembatalan`
 --
 ALTER TABLE `pembatalan`
-  MODIFY `id_pembatalan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_pembatalan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_bayar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_inbox`
@@ -1839,13 +1898,13 @@ ALTER TABLE `tbl_inbox`
 -- AUTO_INCREMENT untuk tabel `tbl_pengunjung`
 --
 ALTER TABLE `tbl_pengunjung`
-  MODIFY `pengunjung_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=978;
+  MODIFY `pengunjung_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=996;
 
 --
 -- AUTO_INCREMENT untuk tabel `testimoni`
 --
 ALTER TABLE `testimoni`
-  MODIFY `idtestimoni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idtestimoni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `testimoni_order`
@@ -1854,22 +1913,28 @@ ALTER TABLE `testimoni_order`
   MODIFY `idtestimoni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT untuk tabel `tour_gate`
+--
+ALTER TABLE `tour_gate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_tranksaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_tranksaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT untuk tabel `wisata`

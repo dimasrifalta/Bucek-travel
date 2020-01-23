@@ -86,7 +86,7 @@ class Konfirmasi extends CI_Controller
 
 
         $this->email->initialize($config);
-        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->from('bucekcoffe@gmail.com', 'Sumbawa Tour');
         $this->email->to($this->session->userdata('email'));
         $message = $this->load->view('nfront/email/email_invoice_booking', $x, TRUE);
 
@@ -149,7 +149,7 @@ class Konfirmasi extends CI_Controller
 
 
         $this->email->initialize($config);
-        $this->email->from('bucekcoffe@gmail.com', 'Coffe Bucek');
+        $this->email->from('bucekcoffe@gmail.com', 'SUmbawa Tour');
         $this->email->to($this->session->userdata('email'));
         $message = $this->load->view('nfront/email/email_invoice_pembatalan', $x, TRUE);
 
