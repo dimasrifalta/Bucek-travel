@@ -15,7 +15,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                        <a class="dropdown-item" href="#">Cara Pesan</a>
+                        <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                         <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                     </div>
@@ -110,6 +110,7 @@
                             <tr>
                                 <?php
                                 foreach ($data as $b) {
+                                    $date = date('Y-m-d', strtotime("+1 day"));
 
                                 ?>
                                     <th scope="row" class="border-0">
@@ -122,12 +123,19 @@
                                     </th>
                                     <td class="border-0 align-middle"><strong><?php echo $b['berangkat'] ?></strong></td>
                                     <td class="border-0 align-middle"><strong><?php echo $b['alamat'] ?></strong></td>
-                                    <td class="border-0 align-middle"><a href="<?php echo base_url() . 'paket_tour/Detail_booking/' . $b['id_order']; ?>" class="text-dark"><?php
-                                                                                                                                                                            if ($b['pembatalan'] ==                                                                                                     "CANCEL" or $b['pembatalan'] ==                                                                                                     "BATAL") {
-                                                                                                                                                                                echo "<i class='fa fa-window-close'>CANCELED</i>";
-                                                                                                                                                                            } else {
-                                                                                                                                                                                echo "<i class='fa fa-trash'>Batalkan</i>";
-                                                                                                                                                                            }; ?></a></td>
+                                    <td class="border-0 align-middle">
+                                        <?php
+                                        if ($b['pembatalan'] ==  "CANCEL" or $b['pembatalan'] == "BATAL") { ?>
+
+                                            <a href="<?php echo base_url() . 'paket_tour/Detail_booking/' . $b['id_order']; ?>" class="text-dark"><i class='fa fa-window-close'>CANCELED</i></a></td>
+                                <?php } elseif ($date > $b['berangkat']) { ?>
+                                    <a href="<?php echo base_url() . 'paket_tour/Detail_booking/' . $b['id_order']; ?>" class="text-dark"><i class='fa fa-window-close'>Lihat Tetimoni</i></a></td>
+
+                                <?php } else { ?>
+                                    <a href="<?php echo base_url() . 'paket_tour/Detail_booking/' . $b['id_order']; ?>" class="text-dark"><i class='fa fa-trash'>Batalkan</i></a></td>
+                                <?php } ?>
+
+
                             </tr>
 
                         <?php
@@ -143,3 +151,20 @@
 
     </div>
 </div>
+
+<!-- SweetAlet -->
+<script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert-dev.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert.min.js' ?>"></script>
+<!-- <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/myscript.js' ?>"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<?php if ($this->session->flashdata('flash')) : ?>
+    <script>
+        setTimeout(function() {
+            swal('Succes!', 'Terimah kasih Telah mempercayakan Liburan Anda Kepada Kami. Kami akan terus memperbaikki kualitas pelayan kami', 'success')
+        }, 10);
+        window.setTimeout(function() {
+
+        }, 1200);
+    </script>
+<?php endif; ?>

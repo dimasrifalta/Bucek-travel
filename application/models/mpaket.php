@@ -165,6 +165,15 @@ class Mpaket extends CI_Model
         return $hasil;
     }
 
+    public function booking_num_rows($id)
+    {
+
+        $id_user = $this->session->userdata('id');
+        $hasil = $this->db->query("SELECT * FROM testimoni_order WHERE id_order='$id' ");
+        return $hasil;
+    }
+
+
     public function booking_email($id)
     {
 

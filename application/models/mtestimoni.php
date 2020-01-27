@@ -7,9 +7,9 @@ class Mtestimoni extends CI_Model
         return $hasil;
     }
 
-    public function simpan_testimoni_order($nama, $email, $msg)
+    public function simpan_testimoni_order($id_order, $nama, $email, $msg)
     {
-        $hasil = $this->db->query("INSERT INTO testimoni_order(nama,email,pesan,status,tgl_post) VALUES ('$nama','$email','$msg','0',curdate())");
+        $hasil = $this->db->query("INSERT INTO testimoni_order(id_order,nama,email,pesan,status,tgl_post) VALUES ('$id_order','$nama','$email','$msg','0',curdate())");
         return $hasil;
     }
     public function tampil_test_comment($kode)
@@ -21,6 +21,12 @@ class Mtestimoni extends CI_Model
     public function tampil_test()
     {
         $hasil = $this->db->query("SELECT * FROM testimoni_order WHERE status='1'  order by idtestimoni ");
+        return $hasil;
+    }
+
+    public function tampil_test_user($id)
+    {
+        $hasil = $this->db->query("SELECT * FROM testimoni_order WHERE id_order='$id' ");
         return $hasil;
     }
     public function count_comment($kode)

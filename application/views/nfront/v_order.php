@@ -15,7 +15,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                        <a class="dropdown-item" href="#">Cara Pesan</a>
+                        <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                         <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                     </div>
@@ -86,7 +86,7 @@ $b = $ketersediaan->row_array();
                 <p> 1. Isi Data-data Di Form pemesanan Dengan Lengkap dan Benar </p>
                 <p> 2. Jika anda memimliki Permintaan Khusus, masukan di Form bagian *Permintaan Khusus.</p>
 
-                <p> 3. Setelah semua data-data di form pemesanan tersisi dengan lengkap maka akan keluar Invoice anda
+                <p> 3. Setelah semua data-data di form pemesanan tersisi dengan lengkap maka akan kami akan mengirim Invoice anda alamat email yang sudah terdaftar untu memesan.
                 </p>
                 <p> 4. Setelah itu silahkan Lakukan pembayaran tangihan anda sesuai dengan Invoice</p>
                 <p> 5. setelah melakukan pembayaran maka anda diwajibkan Menkorfirmasi kami melalui Menu Komfirmasi.</p>

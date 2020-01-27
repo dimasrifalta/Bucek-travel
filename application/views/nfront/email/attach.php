@@ -116,6 +116,7 @@ $b = $data->row_array();
         <div id="notices">
             <div>NOTICE:</div>
             <div class="notice">Kami telah membuat jadwal tour anda mohon untuk membaca nya.</div>
+            <!-- <div class="to">Tour Gate Anda : <span style="color: #1E90FF; font-weight:bold;"><?php echo $b['kode_booking'] ?></span></div> -->
         </div>
         <br>
         <br>

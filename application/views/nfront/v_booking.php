@@ -15,7 +15,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                        <a class="dropdown-item" href="#">Cara Pesan</a>
+                        <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                         <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                     </div>
@@ -516,7 +516,7 @@ $b = $data;
                 <a href="<?php echo $b['id'] ?>"><?php echo $b['id'] ?></a>
             </div>
             <div class="data right">
-                <div class="title">Invoice <?php echo $b['id_order'] ?></div>
+                <div class="title">Kode Booking: <?php echo $b['kode_booking'] ?></div>
                 <div class="date">
                     Tanggal Invoice: <?php echo tanggal($b['tanggal']) ?><br>
                     Batas Waktu: <?php echo tanggal($b['berangkat']); ?>
@@ -583,20 +583,56 @@ $b = $data;
             <br>
             <div>
                 <p>
-                    <?php
+                    <?php if ($data_testimoni->num_rows() < 1) { ?>
+                        <?php
+                        $date = date('Y-m-d', strtotime("+1 day"));
 
-                    if ($b['status'] == "CANCEL" or $b['status'] == "BATAL") { ?>
+                        if ($b['status'] == "CANCEL" or $b['status'] == "BATAL") { ?>
 
-                        <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2 disabled">Sudah Di Batalkan</a>
+                            <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2 disabled">Sudah Di Batalkan</a>
+
+                        <?php
+                        } elseif ($date > $b['berangkat']) { ?>
+
+                            <a data-toggle="modal" data-target="#ModalUpdate<?php echo $b['id_order']; ?>" class="btn btn-primary py-1 px-2 ">Selesai dan beri testimoni</a>
+
+                        <?php
+                        } else { ?>
+                            <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2">Pembatalan</a>
+
+                        <?php
+                        } ?>
 
                     <?php
                     } else { ?>
+                        <?php foreach ($testimoni_order->result_array() as $a) :
+                            $id = $a['idtestimoni'];
+                            $nama = $a['nama'];
+                            $email = $a['email'];
+                            $pesan = $a['pesan'];
+                            $status = $a['status'];
+                            $tglpost = $a['tgl_post'];
+                        ?>
+                            <div class="thanks">Testimoni Saya</div>
+                            <div class="item">
+                                <div class="block-33">
+                                    <div class="vcard d-flex mb-3">
+                                        <div class="image align-self-center"><img src="<?= base_url(); ?>assets\images\user_blank.png" alt="Person here"></div>
+                                        <div class="name-text align-self-center">
+                                            <h2 class="heading"><?= $nama; ?></h2>
+                                            <span class="meta"><?= $email; ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="text">
+                                        <blockquote>
+                                            <p>&rdquo; <?= $pesan; ?>. &ldquo;</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php } ?>
 
-
-                        <a href="<?php echo base_url() . 'pembatalan/index/' . $b['id_order']; ?>" class="btn btn-primary py-1 px-2">Pembatalan</a>
-
-                    <?php
-                    } ?>
 
                 </p>
             </div>
@@ -605,48 +641,56 @@ $b = $data;
     </div>
 </footer>
 
-<br>
-<br>
-<br>
+<?php
+$no = 0;
+foreach ($b as $a) :
 
-<script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
-</div>
-<?php if ($this->session->flashdata('msg') == 'success') : ?>
-    <script type="text/javascript">
-        $.toast({
-            heading: 'Success',
-            text: "Data Berhasil Di simpan kamai akan menghubungi anda secepatnya.",
-            showHideTransition: 'slide',
-            icon: 'success',
-            hideAfter: false,
-            position: 'bottom-right',
-            bgColor: '#7EC857'
-        });
-    </script>
-<?php elseif ($this->session->flashdata('msg') == 'info') : ?>
-    <script type="text/javascript">
-        $.toast({
-            heading: 'Info',
-            text: "Post berhasil di update",
-            showHideTransition: 'slide',
-            icon: 'info',
-            hideAfter: false,
-            position: 'bottom-right',
-            bgColor: '#00C9E6'
-        });
-    </script>
-<?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
-    <script type="text/javascript">
-        $.toast({
-            heading: 'Success',
-            text: "Post Berhasil dihapus.",
-            showHideTransition: 'slide',
-            icon: 'success',
-            hideAfter: false,
-            position: 'bottom-right',
-            bgColor: '#7EC857'
-        });
-    </script>
-<?php else : ?>
+?>
+    <!-- ============ MODAL UPDATE ALBUM =============== -->
+    <div class="modal fade" id="ModalUpdate<?php echo $b['id_order']; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 class="modal-title" id="myModalLabel">Add Testimoni</h3>
+                </div>
+                <form class="form-horizontal" method="post" action="<?php echo base_url() . 'testimoni/simpan' ?>" enctype="multipart/form-data">
+                    <div class="modal-body">
 
-<?php endif; ?>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">No Invoice</label>
+                            <div class="col-xs-8">
+                                <input type="text" name="id_order" id="id_order" value="<?php echo $b['id_order']; ?>" class="form-control px-3 py-3" placeholder="Your Name" autocomplete="off" required="" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Nama</label>
+                            <div class="col-xs-8">
+                                <input type="text" name="nama" id="name" class="form-control px-3 py-3" placeholder="Your Name" autocomplete="off" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Testimoni</label>
+                            <div class="col-xs-9">
+                                <textarea name="message" id="comment" cols="30" rows="7" class="form-control px-3 py-3" placeholder="Message" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="hidden" name="kode" <button class="btn btn-flat" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-primary btn-flat">ADD</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<?php endforeach; ?>
+
+<br>
+<br>
+<br>

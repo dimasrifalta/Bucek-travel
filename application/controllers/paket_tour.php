@@ -11,6 +11,7 @@ class Paket_tour extends CI_Controller
         $this->load->model('mberita');
         $this->load->model('morders');
         $this->load->model('mwisata');
+        $this->load->model('mtestimoni');
     }
     public function index()
     {
@@ -225,6 +226,8 @@ class Paket_tour extends CI_Controller
         $id_user = $this->session->userdata('id');
 
         $x['data'] = $this->mpaket->booking($id)->row_array();
+        $x['testimoni_order'] = $this->mtestimoni->tampil_test_user($id);
+        $x['data_testimoni'] = $this->mpaket->booking_num_rows($id);
         $x['judul'] = "Booking Tiket";
 
 

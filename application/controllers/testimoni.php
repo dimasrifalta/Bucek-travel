@@ -20,12 +20,16 @@ class Testimoni extends CI_Controller
     }
     public function simpan()
     {
-        $nama = $this->input->post('nama', true);
-        $email = $this->input->post('email', true);
-        $msg = $this->input->post('message', true);
+        $id_order = $this->input->post('id_order', true);
 
-        $this->mtestimoni->simpan_testimoni_order($nama, $email, $msg);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Terimah kasih Telah Melakukan Testimoni!!</div>');
-        redirect('testimoni');
+        $nama = $this->input->post('nama', true);
+        $email = $this->session->userdata('email');
+        $msg = $this->input->post('message', true);
+        $id = $this->uri->segment(3);
+
+        $this->mtestimoni->simpan_testimoni_order($id_order, $nama, $email, $msg);
+        $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert"> Terimah kasih Telah Melakukan Testimoni!!</div>');
+
+        redirect('paket_tour/booking/');
     }
 }

@@ -16,7 +16,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                        <a class="dropdown-item" href="#">Cara Pesan</a>
+                        <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                         <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                     </div>
@@ -223,19 +223,12 @@
                     <h4 class="panel1-title">
                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#6" aria-expanded="false" aria-controls="6">
                             <i class="more-less fa fa-chevron-down"></i>
-                            6. Selanjutnya Anda akan menerima notifikasi sukses melakukan order. Mohon periksa email anda kami akan mengirimkan jumlah yang harus anda bayar dan nomor rekening tujuan pembayaran. Kemudian ketuk konfirmasi untuk melakukan konfirmasi pembayaran tiket Anda, Mohon melakukan konfirmasi pembayaran < 24 dari waktu pemesanan, jika lebih dari 24 jam kami berhak tidak melanjuti pesanan Anda.
+                            6. Selanjutnya Anda akan menerima notifikasi sukses melakukan order. Mohon periksa email anda kami akan mengirimkan jumlah yang harus anda bayar dan nomor rekening tujuan pembayaran. Kemudian ketuk konfirmasi untuk melakukan konfirmasi pembayaran tiket Anda, Mohon melakukan konfirmasi pembayaran < 24 dari waktu pemesanan, jika lebih dari 24 jam kami berhak tidak melanjuti pesanan Anda. </a> </h4> </div> <div id="6" class="panel1-collapse collapse" role="tabpanel1" aria-labelledby="headingThree">
+                                <div class="panel1-body">
+                                    <img src="<?php echo base_url() . 'assets/carapemesanan/7.png' ?>" class="img-fluid" alt="Responsive image"><img src="<?php echo base_url() . 'assets/carapemesanan/8.png' ?>" class="img-fluid" alt="Responsive image"><br><br>
 
 
-
-                        </a>
-                    </h4>
-                </div>
-                <div id="6" class="panel1-collapse collapse" role="tabpanel1" aria-labelledby="headingThree">
-                    <div class="panel1-body">
-                        <img src="<?php echo base_url() . 'assets/carapemesanan/7.png' ?>" class="img-fluid" alt="Responsive image"><img src="<?php echo base_url() . 'assets/carapemesanan/8.png' ?>" class="img-fluid" alt="Responsive image"><br><br>
-
-
-                    </div>
+                                </div>
                 </div>
             </div>
 
@@ -278,21 +271,21 @@
                 </div>
             </div>
 
-           
 
-</div>
-            </div><!-- container -->
 
         </div>
-        <i class="more-less fas fa-chevron-down"></i>
+    </div><!-- container -->
 
-        <script>
-            function toggleIcon(e) {
-                $(e.target)
-                    .prev('.panel1-heading')
-                    .find(".more-less")
-                    .toggleClass('fas fa-chevron-up fas fa-chevron-down');
-            }
-            $('.panel1-group').on('hidden.bs.collapse', toggleIcon);
-            $('.panel1-group').on('shown.bs.collapse', toggleIcon);
-        </script>
+</div>
+<i class="more-less fas fa-chevron-down"></i>
+
+<script>
+    function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel1-heading')
+            .find(".more-less")
+            .toggleClass('fas fa-chevron-up fas fa-chevron-down');
+    }
+    $('.panel1-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel1-group').on('shown.bs.collapse', toggleIcon);
+</script>

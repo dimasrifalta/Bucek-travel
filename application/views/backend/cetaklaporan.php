@@ -15,7 +15,7 @@ ob_start();
     <body>
 
         <div id="title">
-            SUMBAWA TOUR
+            SUMBAWA ISLAND TOUR
         </div>
         <div id="title">
             LAPORAN PENJUALAN TIKET BOOKING PAKET TOUR

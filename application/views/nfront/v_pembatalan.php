@@ -15,7 +15,7 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                          <a class="dropdown-item" href="#">Cara Pesan</a>
+                          <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                           <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                       </div>

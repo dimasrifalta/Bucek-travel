@@ -16,7 +16,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('kontak'); ?>" class="nav-link">Hubungi Kami</a>
-                        <a class="dropdown-item" href="#">Cara Pesan</a>
+                        <a class="dropdown-item" href="<?= base_url('kontak/carapesan'); ?>">Cara Pesan</a>
 
                         <a class="dropdown-item" href="<?= base_url('testimoni'); ?>">Tingalkan Testimoni</a>
                     </div>
@@ -70,35 +70,8 @@
     </div>
 </div>
 
-<div class="site-section">
-    <div class="container">
-        <div class="row block-9">
-            <div class="col-md-6 pr-md-5">
-                <?php echo $this->session->flashdata('message'); ?>
-                <form action="<?php echo base_url() . 'testimoni/simpan' ?>" method="post">
-                    <div class="form-group">
-                        <input type="text" name="nama" id="name" class="form-control px-3 py-3" placeholder="Your Name" required />
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control px-3 py-3" placeholder="Your Email" required />
-                    </div>
-
-                    <div class="form-group">
-                        <textarea name="message" id="comment" cols="30" rows="7" class="form-control px-3 py-3" placeholder="Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-                    </div>
-                </form>
-
-            </div>
 
 
-
-        </div>
-    </div>
-</div>
-</div>
 
 
 
