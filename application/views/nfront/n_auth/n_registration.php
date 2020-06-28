@@ -7,70 +7,123 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title; ?></title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="<?= base_url('assets/vendors/login'); ?>/fonts/material-icon/css/material-design-iconic-font.min.css">
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="<?= base_url('assets/vendors/login'); ?>/css/style.css">
-    <!--     <link rel="stylesheet" href="<?= base_url('assets/vendors/'); ?>/po-portfolio/css/bootstrap.min.css"> -->
+
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2/'); ?>/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/css/util.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/login_v2'); ?>/css/main.css">
 </head>
 
 <body>
 
-    <div class="main">
 
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <?= $this->session->flashdata('message'); ?>
-                        <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" />
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="text" name="email" id="email" placeholder="Your Email" value="<?= set_value('email'); ?>">
-                                <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="password1" id="password1" placeholder="Password" />
-                            </div>
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="password2" id="password2" placeholder="Repeat your password" />
-                                <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" require>
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
-                                    statements in <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
-                            </div>
-                        </form>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" method="post" action="<?= base_url('auth/registration'); ?>">
+                    <span class="login100-form-title p-b-26">
+                        Registration
+
+                    </span>
+                    <span class="login100-form-title p-b-48">
+
+                        <i class="zmdi zmdi-font"></i>
+                    </span>
+                    <?= $this->session->flashdata('message'); ?>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                        <input class="input100" name="name" id="name" value="<?= set_value('name'); ?>">
+                        <span class="focus-input100" data-placeholder="Name"></span>
                     </div>
-                    <div class="signup-image">
-                        <figure><img src="<?= base_url(''); ?>assets/vendors/photon/images/big-images/nature_big_1 - Copy.jpg" alt="sing up image"></figure>
-                        <a href="<?= base_url('auth'); ?>" class="signup-image-link">I am already member</a>
+
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" name="email" id="email" value="<?= set_value('email'); ?>">
+                        <span class="focus-input100" data-placeholder="Email"></span>
+                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
-                </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        <input class="input100" type="password" name="password1" id="password1" />
+                        <span class="focus-input100" data-placeholder="Password"></span>
+                        <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        <input class="input100" type="password" name="password2" id="password2" />
+                        <span class="focus-input100" data-placeholder="Repeat your password"></span>
+                        <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn">
+                                Register
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center p-t-115">
+                        <span class="txt1">
+                            I am already member
+                        </span>
+
+                        <a class="txt2" href="<?= base_url('auth'); ?>">
+                            Login
+                        </a>
+
+                    </div>
+
+
+                </form>
             </div>
-        </section>
-
-
-
+        </div>
     </div>
 
-    <!-- JS -->
-    <script src="<?= base_url('assets/vendors/login'); ?>/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url('assets/vendors/login'); ?>/js/main.js"></script>
-    <!--     <script src="<?= base_url('assets/vendors/'); ?>/js/bootstrap.min.js"></script> -->
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+    <div id="dropDownSelect1"></div>
+
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/bootstrap/js/popper.js"></script>
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/daterangepicker/moment.min.js"></script>
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= base_url('assets/vendors/login_v2'); ?>/js/main.js"></script>
+
+
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
