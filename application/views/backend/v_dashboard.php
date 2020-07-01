@@ -32,6 +32,7 @@ $jum_konfirmasi = $query4->num_rows();
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url() . 'assets/dist/css/skins/_all-skins.min.css' ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.css' ?>" />
   <?php
   /* Mengambil query report*/
   foreach ($visitor as $result) {
@@ -380,7 +381,50 @@ $jum_konfirmasi = $query4->num_rows();
             <!-- /.box -->
           </div>
           <!-- /.col -->
+          <div class="col-md-4">
+            <!-- USERS LIST -->
+            <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">Daftar Members</h3>
 
+                <div class="box-tools pull-right">
+                  <span class="label label-danger"></span>
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body no-padding">
+                <ul class="users-list clearfix">
+                  <?php
+                  $query = $this->db->query("SELECT  name, DATE_FORMAT(FROM_UNIXTIME(`date_created`), '%Y-%m-%d ') AS `date` FROM user WHERE is_active='1' ORDER BY id ASC LIMIT 8");
+                  foreach ($query->result_array() as $i) :
+                    $name = $i['name'];
+                    $date_created = $i['date'];
+                  ?>
+
+
+                    <li>
+                      <img src="<?php echo base_url('') . 'assets/dist/img/avatar5.png' ?> " alt="User Image">
+                      <a class="users-list-name" href="#"><?php echo $name; ?></a>
+                      <span class="users-list-date"><?= tanggal($date_created); ?></span>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+                <!-- /.users-list -->
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer text-center">
+                <a class="uppercase" data-toggle="modal" data-target="#ModalAddNew">Kirim email promosi ke user</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main row -->
+        <div class="row">
           <div class="col-md-8">
             <!-- MAP & BOX PANE -->
             <div class="box box-success">
@@ -517,6 +561,35 @@ $jum_konfirmasi = $query4->num_rows();
   </div>
   <!-- ./wrapper -->
 
+
+  <!--  Modal send email-->
+  <div class="modal fade" id="ModalAddNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+          <h4 class="modal-title" id="myModalLabel">Kirim Promosi Ke Semua User</h4>
+        </div>
+        <form class="form-horizontal" action="<?php echo base_url() . 'backend/dashboard/SendEmail' ?>" method="post" enctype="multipart/form-data">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-body">
+                <p>Email promosi akan dikirim ke semua user yang aktif dan user subscribe. Apakah anda yakin?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- jQuery 2.2.3 -->
   <script src="<?php echo base_url() . 'assets/plugins/jQuery/jquery-2.2.3.min.js' ?>"></script>
   <!-- Bootstrap 3.3.6 -->
@@ -538,6 +611,7 @@ $jum_konfirmasi = $query4->num_rows();
   <script src="<?php echo base_url() . 'assets/dist/js/pages/dashboard2.js' ?>"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?php echo base_url() . 'assets/dist/js/demo.js' ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url() . 'assets/plugins/toast/jquery.toast.min.js' ?>"></script>
 
   <script>
     var lineChartData = {
@@ -622,7 +696,46 @@ $jum_konfirmasi = $query4->num_rows();
       responsive: true
     });
   </script>
+  <?php if ($this->session->flashdata('msg') == 'success') : ?>
+    <script type="text/javascript">
+      $.toast({
+        heading: 'Success',
+        text: "Email berhasil dikirim ke user.",
+        showHideTransition: 'slide',
+        icon: 'success',
+        hideAfter: false,
+        position: 'bottom-right',
+        bgColor: '#7EC857'
+      });
+    </script>
 
+  <?php elseif ($this->session->flashdata('msg') == 'info') : ?>
+    <script type="text/javascript">
+      $.toast({
+        heading: 'Info',
+        text: "Rekening berhasil di update",
+        showHideTransition: 'slide',
+        icon: 'info',
+        hideAfter: false,
+        position: 'bottom-right',
+        bgColor: '#00C9E6'
+      });
+    </script>
+  <?php elseif ($this->session->flashdata('msg') == 'success-hapus') : ?>
+    <script type="text/javascript">
+      $.toast({
+        heading: 'Success',
+        text: "Rekening Berhasil dihapus.",
+        showHideTransition: 'slide',
+        icon: 'success',
+        hideAfter: false,
+        position: 'bottom-right',
+        bgColor: '#7EC857'
+      });
+    </script>
+  <?php else : ?>
+
+  <?php endif; ?>
 </body>
 
 </html>

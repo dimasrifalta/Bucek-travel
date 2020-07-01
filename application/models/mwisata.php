@@ -13,6 +13,11 @@ class Mwisata extends CI_Model
 		$hasil = $this->db->query("select * from wisata order by idwisata DESC limit $offset,$limit");
 		return $hasil;
 	}
+	function get_wisata_email($limit)
+	{
+		$hasil = $this->db->query("select * from wisata order by idwisata DESC limit $limit");
+		return $hasil;
+	}
 
 	function get_foto($kode)
 	{

@@ -44,4 +44,16 @@ class M_pengunjung extends CI_Controller
         $hsl = $this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_ip='$user_ip' AND DATE(pengunjung_tanggal)=CURDATE()");
         return $hsl;
     }
+
+    function  send_email()
+    {
+        $hsl = $this->db->query("SELECT * FROM user");
+        return $hsl;
+    }
+
+    function paket_populer()
+    {
+        $hasil = $this->db->query("SELECT * FROM paket ORDER BY views DESC limit 3");
+        return $hasil;
+    }
 }
