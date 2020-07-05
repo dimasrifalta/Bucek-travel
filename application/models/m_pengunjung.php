@@ -56,4 +56,10 @@ class M_pengunjung extends CI_Controller
         $hasil = $this->db->query("SELECT * FROM paket ORDER BY views DESC limit 3");
         return $hasil;
     }
+
+    function user_subscribe($name, $email, $is_active, $date_created)
+    {
+        $hsl = $this->db->query("INSERT INTO user(name,email,is_active,date_created) VALUES ('$name','$email','$is_active','$date_created')");
+        return $hsl;
+    }
 }

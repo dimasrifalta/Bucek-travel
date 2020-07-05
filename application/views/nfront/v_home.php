@@ -262,7 +262,9 @@
                          <div class="item">
                              <div class="block-34">
                                  <div class="image ">
-                                     <a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><img src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" class="img-fluid" style="height: 250px;" alt="Image placeholder"></a>
+                                     <a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>">
+                                         <!-- <img src="<?php echo base_url() . 'assets/gambars/' . $gbr; ?>" class="img-fluid" style="height: 250px;" alt="Image placeholder"></a> -->
+                                         <img src="https://drive.google.com/uc?export=view&amp;id=1YJOrmoAJ-EOaq94J3SNP8avPoqFSx2Ve" class="img-fluid" style="height: 250px;" alt="Image placeholder"></a>
                                  </div>
                                  <div class="text">
                                      <h2 class="heading"><a href="<?php echo base_url() . 'paket_tour/detail_paket/' . $idberita; ?>"><?= $judul; ?>g</a></h2>
@@ -329,3 +331,31 @@
      </div>
  </div>
  </div>
+
+ <!-- SweetAlet -->
+ <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert-dev.js' ?>"></script>
+ <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/sweetalert.min.js' ?>"></script>
+ <!-- <script src="<?php echo base_url() . 'assets/plugins/SweetAlert/myscript.js' ?>"></script> -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+ <?php if ($this->session->flashdata('flash')) : ?>
+     <script>
+         setTimeout(function() {
+             swal('Succes!', 'Terimah kasih Telah Melakukan Subscribe. Kami akan menawarkan promo produk-produk menarik kami langsung ke alamat Email anda. Happy Traveling', 'success')
+         }, 10);
+         window.setTimeout(function() {
+
+         }, 1200);
+     </script>
+
+ <?php elseif ($this->session->flashdata('flash-gagal')) : ?>
+     <script>
+         setTimeout(function() {
+             swal('Error!', 'Maafkan kami, Email telah terdaftar. Tapi jangan khawatir anda pasti mendapatkan promo produk-produk menarik dari kami. Happy Traveling', 'error')
+         }, 10);
+         window.setTimeout(function() {
+
+         }, 1200);
+     </script>
+ <?php else : ?>
+ <?php endif; ?>

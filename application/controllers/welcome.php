@@ -10,6 +10,7 @@ class Welcome extends CI_Controller
 		$this->load->model('mtestimoni');
 		$this->load->model('mpaket');
 		$this->load->model('m_pengunjung');
+		$this->load->model('m_kontak');
 	}
 
 	public function index()
@@ -71,5 +72,25 @@ class Welcome extends CI_Controller
 		$this->load->view('nfront/templates/f_header');
 		$this->load->view('nfront/v_pencarian', $x);
 		$this->load->view('nfront/templates/_footer', $x);
+	}
+
+	public function subscribe()
+	{
+
+		$name = 'User Subscribe';
+		$email = str_replace("'", "", $this->input->post('email', true));
+		$is_active = 0;
+		$date_created = time();
+
+		$user = $this->db->get_where('user', ['email' => $email])->row_array();
+		if (empty($user)) {
+
+			$this->m_pengunjung->user_subscribe($name, $email, $is_active, $date_created);
+			$this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert"> Terimah kasih Telah Melakukan Order Silahkan cek email anda. Kami Telah mengirim jumlah yang harus anda bayar dan nomor</div>');
+			redirect('welcome');
+		} else {
+			$this->session->set_flashdata('flash-gagal', '<div class="alert alert-success" role="alert"> Terimah kasih Telah Melakukan Order Silahkan cek email anda. Kami Telah mengirim jumlah yang harus anda bayar dan nomor</div>');
+			redirect('welcome');
+		}
 	}
 }

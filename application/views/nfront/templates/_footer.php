@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style>
-    .float {
+    .whats-app {
         position: fixed;
         width: 60px;
         height: 60px;
         bottom: 40px;
-        right: 40px;
+        left: 0;
+        right: unset;
         background-color: #25d366;
         color: #FFF;
         border-radius: 50px;
@@ -19,7 +20,7 @@
         margin-top: 16px;
     }
 </style>
-<a href="https://api.whatsapp.com/send?phone=+6285738601017&text=Hallo%20Kak!%20saya%20mau%20pesan%20paket%20tour%20wisatanya%20." class="float" target="_blank">
+<a class="whats-app" href="https://api.whatsapp.com/send?phone=+6285738601017&text=Hallo%20Kak!%20saya%20mau%20pesan%20paket%20tour%20wisatanya%20." class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
 </a>
 <div class="block-22">
@@ -27,9 +28,9 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-md-7 text-center">
                 <h2 class="heading mb-4">Be Sure To Get Our Promos</h2>
-                <form action="#" class="subscribe">
+                <form action="<?php echo base_url('welcome/subscribe') ?>" class="subscribe">
                     <div class="form-group">
-                        <input type="email" class="form-control email" placeholder="Enter your email">
+                        <input type="email" name="email" class="form-control email" placeholder="Enter your email">
                         <!-- <input type="submit" class="btn btn-primary submit"> -->
                         <button type="submit" class="btn btn-primary submit">Subscribe</button>
                     </div>
